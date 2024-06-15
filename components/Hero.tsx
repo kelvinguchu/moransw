@@ -29,7 +29,7 @@ const Hero: FC = () => (
     <div className='w-full md:w-1/2 pt-6 md:pt-[70px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
       <Reveal>
         <h2
-          className={`${spacegrotesk.className} text-2xl md:text-6xl font-semibold mb-2 md:mb-4 leading-snug`}>
+          className={`${spacegrotesk.className} text-4xl md:text-6xl font-semibold mb-2 md:mb-4 leading-snug`}>
           We build Websites, Web Applications <br />{" "}
           <span className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>
             & Softwares
@@ -37,7 +37,7 @@ const Hero: FC = () => (
         </h2>
       </Reveal>
       <h3
-        className={`${poppins.className} w-full text-lg md:text-xl font-medium mb-2 md:mb-4`}>
+        className={`${poppins.className} w-full text-sm md:text-xl font-medium mb-2 md:mb-4`}>
         for ambitious businesses and innovators.
       </h3>
       <h3 className='text-lg md:text-xl font-medium'>
