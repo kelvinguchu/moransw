@@ -49,7 +49,7 @@ export const GlowingStarsBackground: React.FC<GlowingStarsBackgroundProps> = ({
   className,
 }) => {
   const [stars, setStars] = useState<StarProps[]>([]);
-  const numberOfStars = 50;
+  const numberOfStars = 25;
 
   useEffect(() => {
     setStars(generateStars(numberOfStars));
