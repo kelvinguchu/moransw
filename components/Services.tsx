@@ -9,26 +9,14 @@ import {
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
-import { FiTool } from "react-icons/fi"; // Make sure you have this package installed
+import { FiTool } from "react-icons/fi";
 import { Space_Grotesk } from "next/font/google";
+import Header from "./Header";
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-spacegrotesk",
 });
-
-const Header = () => (
-  <div className='w-full flex flex-col items-center justify-center px-4'>
-    <h1
-      className={`${spacegrotesk.className}  md:px-2 md:py-2 py-2 px-2 text-3xl sm:text-4xl md:text-6xl font-semibold border rounded-lg mb-4 leading-snug text-center md:text-left flex items-center justify-center md:justify-start inverted-glow`}>
-      <FiTool className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
-      Our{" "}
-      <span className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent ml-3'>
-        Services
-      </span>
-    </h1>
-  </div>
-);
 
 const Skeleton = () => (
   <div className='flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100'></div>
@@ -89,7 +77,14 @@ const items = [
 export function Services() {
   return (
     <>
-      <Header />
+      <Header
+        icon={
+          <FiTool className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
+        }
+        mainText='Our'
+        gradientText='Services'
+        additionalClassNames={`${spacegrotesk.className} px-4 mb-4 inverted-glow`}
+      />
       <BentoGrid className='max-w-6xl md:px-0 px-6 mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {items.map((item, i) => (
           <BentoGridItem

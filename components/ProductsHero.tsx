@@ -2,6 +2,7 @@
 import React from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Space_Grotesk } from "next/font/google";
+import GradualSpacing from "@/components/ui/gradual-spacing";
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -31,8 +32,8 @@ export function ProductHero() {
         <div className='absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]'></div>
       </div>
       <h1
-        className={`${spacegrotesk.className} text-3xl md:text-7xl lg:text-7xl font-bold text-center mt-[-8rem] md:mt-[-2rem] text-[#E8E8E8] relative z-20`}>
-        Bringing your <br />{" "}
+        className={`${spacegrotesk.className} text-3xl md:text-7xl lg:text-7xl font-bold text-center mt-[-8rem] md:mt-[-8rem] text-[#E8E8E8] relative z-20`}>
+        Bringing your<br />{" "}
         <span className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>
           Unicorn
         </span>{" "}
