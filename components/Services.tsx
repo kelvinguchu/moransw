@@ -90,7 +90,7 @@ export function Services() {
   return (
     <>
       <Header />
-      <BentoGrid className='max-w-4xl px-6 mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+      <BentoGrid className='max-w-6xl md:px-0 px-6 mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
