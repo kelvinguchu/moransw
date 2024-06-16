@@ -20,7 +20,7 @@ const spacegrotesk = Space_Grotesk({
 const Header = () => (
   <div className='w-full flex flex-col items-center justify-center px-4'>
     <h1
-      className={`${spacegrotesk.className} py-5 px-2 text-3xl sm:text-4xl md:text-6xl font-semibold border rounded-lg mb-4 leading-snug text-center md:text-left flex items-center justify-center md:justify-start inverted-glow`}>
+      className={`${spacegrotesk.className}  md:px-2 md:py-2 py-2 px-2 text-3xl sm:text-4xl md:text-6xl font-semibold border rounded-lg mb-4 leading-snug text-center md:text-left flex items-center justify-center md:justify-start inverted-glow`}>
       <FiTool className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
       Our{" "}
       <span className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent ml-3'>
@@ -90,7 +90,7 @@ export function Services() {
   return (
     <>
       <Header />
-      <BentoGrid className='max-w-4xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+      <BentoGrid className='max-w-4xl px-6 mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
