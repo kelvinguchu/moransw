@@ -2,7 +2,6 @@
 import React from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { Space_Grotesk } from "next/font/google";
-import GradualSpacing from "@/components/ui/gradual-spacing";
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],

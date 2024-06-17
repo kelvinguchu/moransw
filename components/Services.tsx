@@ -70,13 +70,13 @@ const items = [
     description:
       "Enhance visibility and performance in search engines to drive organic traffic.",
     header: <Skeleton />,
-    icon: <IconArrowWaveRightUp className='h-4 w-4 text-indigo-500' />, // Change color here
+    icon: <IconArrowWaveRightUp className='h-4 w-4 text-indigo-500' />,
   },
 ];
 
 export function Services() {
   return (
-    <>
+    <div className='md:-mt-0 -mt-9'>
       <Header
         icon={
           <FiTool className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
@@ -99,7 +99,7 @@ export function Services() {
           />
         ))}
       </BentoGrid>
-    </>
+    </div>
   );
 }
 
