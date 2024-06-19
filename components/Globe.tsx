@@ -92,7 +92,7 @@ export function Globe() {
         <div className='absolute inset-x-0 -top-10 h-24 bg-gradient-to-t from-transparent to-black opacity-40 pointer-events-none'></div>
       </div>
       <Meteors
-        number={20}
+        number={15}
         className='absolute top-0 left-0 right-0 bottom-0 pointer-events-none'
       />
     </div>

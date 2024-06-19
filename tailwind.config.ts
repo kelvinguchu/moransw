@@ -89,11 +89,20 @@ const config: Config = {
       animation: {
         "spin-slow": "spin 3s linear infinite", // For reference
         "pulse-spin": "pulse-spin 2s ease-in-out infinite",
+        "meteor-effect": "meteor 5s linear infinite",
       },
       keyframes: {
         "pulse-spin": {
           "0%, 100%": { transform: "rotate(0deg) scale(1)", opacity: "1" },
           "50%": { transform: "rotate(180deg) scale(1.2)", opacity: "0.7" },
+        },
+        meteor: {
+          "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+          "70%": { opacity: "1" },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: "0",
+          },
         },
       },
     },

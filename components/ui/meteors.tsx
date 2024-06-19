@@ -1,6 +1,6 @@
+// Meteors.tsx
 import React from "react";
 import { cn } from "@/lib/utils";
-import clsx from "clsx";
 
 interface MeteorsProps {
   number?: number;
@@ -30,8 +30,7 @@ export const Meteors: React.FC<MeteorsProps> = ({ number = 20, className }) => {
             left: `${meteor.left}px`,
             animationDelay: meteor.animationDelay,
             animationDuration: meteor.animationDuration,
-          }}
-        ></span>
+          }}></span>
       ))}
     </>
   );
