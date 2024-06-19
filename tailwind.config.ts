@@ -87,19 +87,13 @@ const config: Config = {
         mono: ["var(--font-roboto-mono)", ...defaultTheme.fontFamily.mono],
       },
       animation: {
-        "spin-slow": "spin 3s linear infinite",
+        "spin-slow": "spin 3s linear infinite", // For reference
         "pulse-spin": "pulse-spin 2s ease-in-out infinite",
-        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
       },
       keyframes: {
         "pulse-spin": {
           "0%, 100%": { transform: "rotate(0deg) scale(1)", opacity: "1" },
           "50%": { transform: "rotate(180deg) scale(1.2)", opacity: "0.7" },
-        },
-        "border-beam": {
-          "100%": {
-            "offset-distance": "100%",
-          },
         },
       },
     },
