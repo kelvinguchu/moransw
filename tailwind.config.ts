@@ -81,6 +81,7 @@ const config: Config = {
         sans: [
           "var(--font-sixtyfour)",
           "var(--font-poppins)",
+          "var(--font-indieflower)",
           "var(--font-spacegrotesk)",
           ...defaultTheme.fontFamily.sans,
         ],

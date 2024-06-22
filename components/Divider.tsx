@@ -8,7 +8,7 @@ interface DividerProps {
 const Divider: React.FC<DividerProps> = ({ className = "" }) => {
   return (
     <div
-      className={`w-full h-0.5 bg-gradient-to-r from-transparent via-white to-transparent my-10 ${className}`}
+      className={`w-full h-0.5 bg-gradient-to-r from-transparent via-indigo-500 to-transparent my-10 ${className}`}
     />
   );
 };
