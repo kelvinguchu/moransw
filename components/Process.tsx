@@ -180,7 +180,7 @@ const MoranIcon = () => {
       alt='Logo'
       width='35'
       height='45'
-      className='h-20 w-20'
+      className='h-15 w-10'
     />
   );
 };
