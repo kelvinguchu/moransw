@@ -13,11 +13,17 @@ export default function Home() {
         <Navbar />
         <Hero />
         <ProductsHero />
-        <Services />
+        <section id='services'>
+          <Services />
+        </section>
         <Divider />
-        <Process />
+        <section id='process'>
+          <Process />
+        </section>
         <Divider />
-        <RecentProjects />
+        <section id='recent-projects'>
+          <RecentProjects />
+        </section>
         <Divider />
       </TracingBeam>
     </main>

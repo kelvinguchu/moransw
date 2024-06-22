@@ -1,8 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { HoveredLink } from "@/components/ui/navbar-menu";
 import DarkModeToggle from "./DarkModeToggle";
+import Image from "next/image";
+import Link from "next/link";
 
 interface MobileMenuProps {
   mode: string;
@@ -10,56 +19,70 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
-
   return (
-    <>
-      {/* Hamburger Menu Button */}
-      <button
-        className='focus:outline-none'
-        onClick={() => setMenuOpen(!menuOpen)}>
-        <svg
-          className='w-6 h-6 text-white'
-          fill='none'
-          stroke='currentColor'
-          viewBox='0 0 24 24'
-          xmlns='http://www.w3.org/2000/svg'>
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={2}
-            d='M4 6h16M4 12h16m-7 6h7'
+    <section className='w-full max-w-[264px]'>
+      <Sheet>
+        <SheetTrigger>
+          <Image
+            src='/hamburger.svg'
+            width={30}
+            height={30}
+            alt='menu'
+            className='cursor-pointer'
           />
-        </svg>
-      </button>
+        </SheetTrigger>
+        <SheetContent
+          side='left'
+          className='border-none bg-gradient-to-br from-transparent via-gray-900 to-black h-screen flex flex-col'>
+          <Link
+            href='/'
+            className='cursor-pointer flex items-center gap-1 px-4'>
+            <Image src='/logo.svg' width={34} height={34} alt='Moran logo' />
+            <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1'>
+              Moran Softwares
+            </h1>
+          </Link>
+          <div className='mobilenav-sheet flex-1 overflow-y-auto'>
+            <SheetClose asChild>
+              <nav className='flex flex-col gap-6 pt-16 text-white'>
+                <SheetClose asChild>
+                  <Link
+                    href='#services'
+                    className='mobilenav-sheet_close w-full'>
+                    <p className='text-16 font-semibold'>Services</p>
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    href='#process'
+                    className='mobilenav-sheet_close w-full'>
+                    <p className='text-16 font-semibold'>Our Process</p>
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    href='#recent-projects'
+                    className='mobilenav-sheet_close w-full'>
+                    <p className='text-16 font-semibold'>Recent Projects</p>
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    href='#pricing'
+                    className='mobilenav-sheet_close w-full'>
+                    <p className='text-16 font-semibold'>Pricing</p>
+                  </Link>
+                </SheetClose>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className='absolute top-full left-0 right-0 bg-gray-800 flex flex-col items-center space-y-4 p-4 rounded-b-md shadow-lg z-50'>
-            <HoveredLink href='/web-dev' className='hover:text-gray-300'>
-              Services
-            </HoveredLink>
-            <HoveredLink href='/projects' className='hover:text-gray-300'>
-              Recent Projects
-            </HoveredLink>
-            <HoveredLink href='/pricing' className='hover:text-gray-300'>
-              Pricing
-            </HoveredLink>
-
-            {/* Dark Mode Toggle Inside Mobile Menu */}
-            <div className='flex justify-center'>
-              <DarkModeToggle selected={mode} setSelected={setMode} />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+                <div className='flex justify-center'>
+                  <DarkModeToggle selected={mode} setSelected={setMode} />
+                </div>
+              </nav>
+            </SheetClose>
+          </div>
+        </SheetContent>
+      </Sheet>
+    </section>
   );
 };
 

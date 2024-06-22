@@ -70,22 +70,6 @@
   }
 }
 
-.inverted-glow {
-  position: relative;
-}
-
-.inverted-glow::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  /* Adjust these values to control the size of the glow */
-  right: -2px;
-  bottom: -2px;
-  left: -2px;
-  z-index: -1;
-  background: inherit;
-  filter: invert(1) blur(4px);
-  /* invert the color and apply a blur */
-  border-radius: inherit;
-  /* make sure the glow follows the rounded corners */
+html {
+  scroll-behavior: smooth;
 }

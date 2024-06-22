@@ -17,22 +17,24 @@ export const MenuItem = ({
   setActive,
   active,
   item,
+  href,
   children,
 }: {
   setActive: (item: string) => void;
   active: string | null;
   item: string;
+  href: string;
   children?: React.ReactNode;
 }) => {
   return (
-    <div
-      onMouseEnter={() => setActive(item)}
-      className='relative'>
-      <motion.p
-        transition={{ duration: 0.3 }}
-        className='cursor-pointer text-black hover:opacity-[0.9] dark:text-white'>
-        {item}
-      </motion.p>
+    <div onMouseEnter={() => setActive(item)} className='relative'>
+      <Link href={href} passHref>
+        <motion.a
+          transition={{ duration: 0.3 }}
+          className='cursor-pointer text-black hover:opacity-[0.9] dark:text-white'>
+          {item}
+        </motion.a>
+      </Link>
       {active !== null && (
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 10 }}
@@ -42,7 +44,7 @@ export const MenuItem = ({
             <div className='absolute top-[calc(100%_+_0.2rem)] left-1/2 transform -translate-x-1/2 pt-4'>
               <motion.div
                 transition={transition}
-                layoutId='active' // layoutId ensures smooth animation
+                layoutId='active'
                 className='bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.4] dark:border-white/[0.2] shadow-xl'>
                 <motion.div layout className='w-max h-full p-2'>
                   {children}
@@ -55,7 +57,6 @@ export const MenuItem = ({
     </div>
   );
 };
-
 
 export const Menu = ({
   setActive,
@@ -78,7 +79,7 @@ export const ProductItem = ({
   description,
   href,
   src,
-  className, 
+  className,
 }: {
   title: string;
   description: string;

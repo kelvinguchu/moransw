@@ -1,9 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import {
-  Menu,
-  MenuItem,
-} from "@/components/ui/navbar-menu";
+import { Menu, MenuItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
@@ -53,19 +50,27 @@ function Navbar({ className }: { className?: string }) {
           <MenuItem
             setActive={setActive}
             active={active}
-            item='Services'></MenuItem>
+            item='Services'
+            href='#services' // Link to the section
+          />
           <MenuItem
             setActive={setActive}
             active={active}
-            item='Our Process'></MenuItem>
+            item='Our Process'
+            href='#process' // Link to the section
+          />
           <MenuItem
             setActive={setActive}
             active={active}
-            item='Recent Projects'></MenuItem>
+            item='Recent Projects'
+            href='#recent-projects' // Link to the section
+          />
           <MenuItem
             setActive={setActive}
             active={active}
-            item='Pricing'></MenuItem>
+            item='Pricing'
+            href='#pricing' // Link to the section
+          />
         </Menu>
       </div>
 

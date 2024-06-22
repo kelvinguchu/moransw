@@ -88,7 +88,7 @@ const items = [
 
 export function Services() {
   return (
-    <div className='md:-mt-0 -mt-9'>
+    <section id='services' className='md:-mt-0 -mt-9'>
       <Header
         icon={
           <FiTool className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
@@ -111,7 +111,7 @@ export function Services() {
           />
         ))}
       </BentoGrid>
-    </div>
+    </section>
   );
 }
 

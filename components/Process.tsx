@@ -15,7 +15,7 @@ const spacegrotesk = Space_Grotesk({
 
 export function Process() {
   return (
-    <>
+    <section id="process">
       <Header
         icon={
           <FiSettings className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
@@ -61,7 +61,7 @@ export function Process() {
           />
         </Card>
       </div>
-    </>
+    </ section>
   );
 }
 
