@@ -15,7 +15,7 @@ const VerticalAccordion = () => {
   const [open, setOpen] = useState(items[0].id);
 
   return (
-    <section className='p-4 bg-transparent border'>
+    <section className='p-4 bg-transparent border rounded mx-3 md:mx-0'>
       <Header
         icon={
           <FiArchive className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
