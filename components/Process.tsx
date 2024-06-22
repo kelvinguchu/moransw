@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { Space_Grotesk } from "next/font/google";
+
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -13,10 +14,10 @@ const spacegrotesk = Space_Grotesk({
 export function Process() {
   return (
     <>
-      <div className='py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-black w-full gap-4 mx-auto px-8'>
+      <div className='py-5 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-black w-full gap-4 mx-auto px-8'>
         <Card
           title='Step 1: Call & Meet'
-          description=''
+          description='Begin with a foundational meeting to set goals and align on the project scope, ensuring a clear path forward'
           icon={<MoranIcon />}>
           <CanvasRevealEffect
             animationSpeed={5.1}
@@ -25,7 +26,7 @@ export function Process() {
         </Card>
         <Card
           title='Step 2: Development'
-          description=''
+          description='Engage in intensive development using cutting-edge technology to create a refined prototype through iterative enhancements.'
           icon={<MoranIcon />}>
           <CanvasRevealEffect
             animationSpeed={3}
@@ -41,7 +42,7 @@ export function Process() {
         </Card>
         <Card
           title='Step 3: Deliver'
-          description=''
+          description='Conclude with rigorous testing and final adjustments, focusing on quality assurance for a successful project launch.'
           icon={<MoranIcon />}>
           <CanvasRevealEffect
             animationSpeed={3}
@@ -54,30 +55,81 @@ export function Process() {
   );
 }
 
-const Card = ({
-    title,
-    description,
-  icon,
-  children,
-}: {
+interface CardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
   children?: React.ReactNode;
-}) => {
-  const [hovered, setHovered] = React.useState(false);
+}
+
+const Card: React.FC<CardProps> = ({ title, description, icon, children }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Update device type based on viewport width
+  useEffect(() => {
+    const updateDeviceType = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", updateDeviceType);
+    updateDeviceType(); // Initialize at component mount
+
+    return () => {
+      window.removeEventListener("resize", updateDeviceType);
+    };
+  }, []);
+
+  // Intersection Observer for mobile devices with a delay
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (isMobile) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          if (entry.isIntersecting) {
+            timeoutId = setTimeout(() => {
+              setIsVisible(true);
+            }, 1500); // Delay setting visibility to true by 1.5 seconds
+          } else {
+            clearTimeout(timeoutId); // Clear the timeout if the element leaves the view
+            setIsVisible(false);
+          }
+        },
+        {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.5,
+        }
+      );
+
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+
+      return () => {
+        clearTimeout(timeoutId); // Ensure the timeout is cleared on component unmount
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      };
+    }
+  }, [isMobile]);
+
   return (
     <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className='border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 h-[30rem] relative'>
+      ref={ref}
+      onMouseEnter={() => !isMobile && setIsVisible(true)}
+      onMouseLeave={() => !isMobile && setIsVisible(false)}
+      className='border border-black/[0.2] group/canvas-card flex items-center justify-center dark:border-white/[0.2] max-w-[20rem] w-full mx-auto py-4 h-[30rem] relative'>
       <Icon className='absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black' />
       <Icon className='absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black' />
       <Icon className='absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black' />
       <Icon className='absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black' />
 
       <AnimatePresence>
-        {hovered && (
+        {isVisible && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -87,22 +139,33 @@ const Card = ({
         )}
       </AnimatePresence>
 
-      <div className='relative z-20'>
-        <div className='text-center group-hover/canvas-card:-translate-y-4 group-hover/canvas-card:opacity-0 transition duration-200 w-full  mx-auto flex flex-col items-center justify-center'>
+      <div className='relative w-full z-20'>
+        <div
+          className={`text-center transition duration-200 w-full mx-auto flex flex-col items-center justify-center ${
+            isVisible ? "opacity-0" : "opacity-100"
+          }`}>
           {icon}
           <div
             className={`${spacegrotesk.className} text-3xl mt-4 font-extrabold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent`}>
             {title}
           </div>
         </div>
-        <h3
-          className={`${spacegrotesk.className} dark:text-white text-xl opacity-0 group-hover/canvas-card:opacity-100 relative z-10 text-black mt-4  font-semibold group-hover/canvas-card:text-white group-hover/canvas-card:-translate-y-2 transition duration-200`}>
+        <h4
+          className={`${
+            spacegrotesk.className
+          } dark:text-white w-full px-2 text-xl opacity-0 ${
+            isVisible ? "opacity-100" : ""
+          } relative z-10 text-black mt-4 font-semibold ${
+            isVisible ? "text-white" : ""
+          } transition duration-200`}>
           {description}
-        </h3>
+        </h4>
       </div>
     </div>
   );
 };
+
+
 
 const MoranIcon = () => {
   return (
@@ -110,8 +173,8 @@ const MoranIcon = () => {
       src='/logo.svg'
       alt='Logo'
       width='35'
-      height='35'
-      className='h-10 w-10'
+      height='45'
+      className='h-20 w-20'
     />
   );
 };
