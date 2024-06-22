@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import useWindowSize from "../components/useWindowSize";
 import Header from "./Header";
 import { Space_Grotesk } from "next/font/google";
-import { FiArchive } from "react-icons/fi";
+import { FiArchive, FiExternalLink } from "react-icons/fi"; // Import the icon
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -65,6 +65,8 @@ const Panel = ({
 }: PanelProps) => {
   const { width } = useWindowSize();
   const isOpen = open === id;
+  const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
 
   return (
     <>
@@ -92,28 +94,43 @@ const Panel = ({
             initial='closed'
             animate='open'
             exit='closed'
-            style={{
-              backgroundImage: `url(${imgSrc})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-            }}
             className='w-full h-full overflow-hidden relative flex items-end rounded-lg shadow-inner'>
+            <div
+              style={{
+                backgroundImage: `url(${imgSrc})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                display: loaded && !error ? "none" : "block",
+              }}
+              className='w-full h-full absolute inset-0'></div>
             <motion.div
               variants={descriptionVariants}
               initial='closed'
               animate='open'
               exit='closed'
-              className='px-6 py-4 bg-black/75 backdrop-blur-md text-white rounded-b-lg'>
+              className='w-full h-full'>
+              <iframe
+                src={link}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  display: loaded && !error ? "block" : "none",
+                }}
+                onLoad={() => setLoaded(true)}
+                onError={() => setError(true)}></iframe>
+            </motion.div>
+            <div className='px-6 py-4 bg-black/75 backdrop-blur-md text-white rounded-b-lg absolute bottom-0 w-full'>
               <p>
                 <a
                   href={link}
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='hover:underline'>
-                  {description}
+                  className='hover:underline flex items-center'>
+                  {description} <FiExternalLink className='ml-2' />
                 </a>
               </p>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -147,28 +164,28 @@ const items = [
     id: 1,
     title: "Aquatreat Solutions Limited",
     imgSrc: "/aquatreat.webp",
-    description: "Click the image to view the site",
+    description: "visit site",
     link: "https://aquatreat.co.ke/",
   },
   {
     id: 2,
     title: "Scaperthru Springs Limited",
     imgSrc: "/scapethru.webp",
-    description: "Click the image to view the site",
-    link: "https://scaperthrusprings.co.ke/",
+    description: "visit site",
+    link: "https://scapethrusprings.co.ke/",
   },
   {
     id: 3,
     title: "Moran Bank Limited",
     imgSrc: "/moranbank.webp",
-    description: "Click the image to view the site",
+    description: "visit site",
     link: "https://moranbank.vercel.app/",
   },
   {
     id: 4,
     title: "Youtubify",
     imgSrc: "/youtubify.webp",
-    description: "Click the image to view the site",
+    description: "visit site",
     link: "https://you-tubify.vercel.app/",
   },
 ];
