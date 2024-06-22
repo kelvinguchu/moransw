@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useWindowSize from "../components/useWindowSize";
@@ -15,16 +15,16 @@ const VerticalAccordion = () => {
   const [open, setOpen] = useState(items[0].id);
 
   return (
-    <section className='p-4 bg-transparent rounded mx-3 md:mx-0'>
+    <section className='p-6 bg-gradient-to-br from-transparent via-gray-900 to-black rounded-lg mx-3 md:mx-0 shadow-lg'>
       <Header
         icon={
-          <FiArchive className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
+          <FiArchive className='mx-3 text-violet-400 animate-pulse-spin w-8 h-8' />
         }
         mainText='Recent'
         gradientText='Projects'
-        additionalClassNames={`${spacegrotesk.className}`}
+        additionalClassNames={`${spacegrotesk.className} text-white`}
       />
-      <div className='flex flex-col lg:flex-row h-fit lg:h-[450px] w-full max-w-6xl mx-auto shadow overflow-hidden mt-4'>
+      <div className='flex flex-col lg:flex-row h-fit lg:h-[450px] w-full max-w-6xl mx-auto overflow-hidden mt-6 gap-4'>
         {items.map((item) => (
           <Panel
             key={item.id}
@@ -67,20 +67,19 @@ const Panel = ({
   return (
     <>
       <button
-        className='bg-black hover:bg-slate-800 transition-colors p-3 border-r-[1px] border-b-[1px] border-white flex flex-row-reverse lg:flex-col justify-end items-center gap-4 relative group'
+        className={`bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-colors p-4 border-r-[1px] border-b-[1px] border-transparent flex flex-row-reverse lg:flex-col justify-end items-center gap-4 relative group ${
+          isOpen ? "shadow-lg" : ""
+        }`}
         onClick={() => setOpen(id)}>
         <span
-          style={{
-            writingMode: "vertical-lr",
-          }}
-          className='hidden lg:block text-xl font-light rotate-180 text-white'>
+          style={{ writingMode: "vertical-lr" }}
+          className='hidden lg:block text-lg font-medium text-white rotate-180'>
           {title}
         </span>
-        <span className='block lg:hidden text-xl font-light text-white'>
+        <span className='block lg:hidden text-lg font-medium text-white'>
           {title}
         </span>
-
-        <span className='w-4 h-4 bg-black group-hover:bg-slate-800 transition-colors border-r border-b lg:border-b-0 lg:border-t-[1px] border-white rotate-45 absolute bottom-0 lg:bottom-[50%] right-[50%] lg:right-0 translate-y-[50%] translate-x-[50%] z-20' />
+        <span className='w-4 h-4 bg-indigo-600 group-hover:bg-indigo-700 transition-colors border-r border-b lg:border-b-0 lg:border-t-[1px] border-transparent rotate-45 absolute bottom-0 lg:bottom-[50%] right-[50%] lg:right-0 translate-y-[50%] translate-x-[50%] z-20' />
       </button>
 
       <AnimatePresence>
@@ -96,14 +95,22 @@ const Panel = ({
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
-            className='w-full h-full overflow-hidden relative bg-black flex items-end'>
+            className='w-full h-full overflow-hidden relative flex items-end rounded-lg shadow-inner'>
             <motion.div
               variants={descriptionVariants}
               initial='closed'
               animate='open'
               exit='closed'
-              className='px-4 py-2 bg-black/80 backdrop-blur-sm text-white'>
-              <p>{description}</p>
+              className='px-6 py-4 bg-black/75 backdrop-blur-md text-white rounded-b-lg'>
+              <p>
+                <a
+                  href={link}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='hover:underline'>
+                  {description}
+                </a>
+              </p>
             </motion.div>
           </motion.div>
         )}
@@ -115,34 +122,20 @@ const Panel = ({
 export default VerticalAccordion;
 
 const panelVariants = {
-  open: {
-    width: "100%",
-    height: "100%",
-  },
-  closed: {
-    width: "0%",
-    height: "100%",
-  },
+  open: { width: "100%", height: "100%" },
+  closed: { width: "0%", height: "100%" },
 };
 
 const panelVariantsSm = {
-  open: {
-    width: "100%",
-    height: "200px",
-  },
-  closed: {
-    width: "100%",
-    height: "0px",
-  },
+  open: { width: "100%", height: "200px" },
+  closed: { width: "100%", height: "0px" },
 };
 
 const descriptionVariants = {
   open: {
     opacity: 1,
     y: "0%",
-    transition: {
-      delay: 0.125,
-    },
+    transition: { delay: 0.125 },
   },
   closed: { opacity: 0, y: "100%" },
 };

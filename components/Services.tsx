@@ -56,10 +56,10 @@ const items = [
     icon: <IconClipboardCopy className='h-4 w-4 text-red-500' />,
   },
   {
-    title: "Brand Guidelines",
+    title: "CRM & ERP implemention",
     description:
-      "Establish comprehensive guidelines for consistent brand representation.",
-    header: <Skeleton imageSrc='brand.jpg' />,
+      "We expertly implement CRM and ERP systems to enhance your business.",
+    header: <Skeleton imageSrc='crm.png' />,
     icon: <IconBoxAlignTopLeft className='h-4 w-4 text-yellow-500' />,
     className: "md:col-span-2",
   },
