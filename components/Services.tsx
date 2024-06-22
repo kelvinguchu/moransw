@@ -18,58 +18,70 @@ const spacegrotesk = Space_Grotesk({
   variable: "--font-spacegrotesk",
 });
 
-const Skeleton = () => (
-  <div className='flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100'></div>
-);
+interface SkeletonProps {
+  imageSrc?: string;
+}
+
+// Updated Skeleton component to accept an optional image prop
+const Skeleton: React.FC<SkeletonProps> = ({ imageSrc }) =>
+  imageSrc ? (
+    <img
+      src={imageSrc}
+      alt='Image loading...'
+      className='flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 object-cover'
+    />
+  ) : (
+    <div className='flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100'></div>
+  );
 
 const items = [
   {
     title: "UI Design",
     description:
       "Craft visually appealing designs for web, mobile, and SaaS applications.",
-    header: <Skeleton />,
-    icon: <IconSignature className='h-4 w-4 text-blue-500' />, // Change color here
+    header: <Skeleton imageSrc='webdesign.jpg' />,
+    icon: <IconSignature className='h-4 w-4 text-blue-500' />,
   },
   {
     title: "UI Development",
     description: "Implement designs into functional and responsive interfaces.",
-    header: <Skeleton />,
-    icon: <IconTableColumn className='h-4 w-4 text-green-500' />, // Change color here
+    header: <Skeleton imageSrc='uidev.jpg' />,
+    icon: <IconTableColumn className='h-4 w-4 text-green-500' />,
   },
   {
     title: "No-Code Development",
     description:
       "Build applications using no-code platforms for rapid deployment.",
-    header: <Skeleton />,
-    icon: <IconClipboardCopy className='h-4 w-4 text-red-500' />, // Change color here
+    header: <Skeleton imageSrc='nocode.jpg' />,
+    icon: <IconClipboardCopy className='h-4 w-4 text-red-500' />,
   },
   {
     title: "Brand Guidelines",
     description:
       "Establish comprehensive guidelines for consistent brand representation.",
-    header: <Skeleton />,
-    icon: <IconBoxAlignTopLeft className='h-4 w-4 text-yellow-500' />, // Change color here
+    header: <Skeleton imageSrc='brand.jpg' />,
+    icon: <IconBoxAlignTopLeft className='h-4 w-4 text-yellow-500' />,
     className: "md:col-span-2",
   },
   {
-    title: "SaaS Product Design",
-    description: "Design intuitive and engaging SaaS products.",
-    header: <Skeleton />,
-    icon: <IconBoxAlignRightFilled className='h-4 w-4 text-purple-500' />, // Change color here
+    title: "Collaborations",
+    description: "Get an extra hand in your software project.",
+    header: <Skeleton imageSrc='collab.jpg' />,
+    icon: <IconBoxAlignRightFilled className='h-4 w-4 text-purple-500' />,
   },
   {
     title: "Web Application Development",
     description:
       "Develop robust and dynamic web applications to meet complex needs.",
-    header: <Skeleton />,
-    icon: <IconFileBroken className='h-4 w-4 text-pink-500' />, // Change color here
+    header: <Skeleton imageSrc='webapp.jpg' />,
+    icon: <IconFileBroken className='h-4 w-4 text-pink-500' />,
     className: "md:col-span-2",
   },
   {
     title: "SEO Improvement",
     description:
       "Enhance visibility and performance in search engines to drive organic traffic.",
-    header: <Skeleton />,
+    header: <Skeleton imageSrc='seo.jpg' />,
     icon: <IconArrowWaveRightUp className='h-4 w-4 text-indigo-500' />,
   },
 ];
