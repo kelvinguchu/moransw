@@ -8,7 +8,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { HoveredLink } from "@/components/ui/navbar-menu";
 import DarkModeToggle from "./DarkModeToggle";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,7 +32,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
         </SheetTrigger>
         <SheetContent
           side='left'
-          className='border-none bg-gradient-to-br from-transparent via-gray-900 to-black h-screen flex flex-col'>
+          className='border-none light:bg-slate-300 dark:bg-gradient-to-br from-black via-gray-900 to-black h-screen flex flex-col'>
           <Link
             href='/'
             className='cursor-pointer flex items-center gap-1 px-4'>
@@ -44,7 +43,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
           </Link>
           <div className='mobilenav-sheet flex-1 overflow-y-auto'>
             <SheetClose asChild>
-              <nav className='flex flex-col gap-6 pt-16 text-white'>
+              <nav className='flex flex-col gap-6 pt-16 text-black dark:text-white'>
                 <SheetClose asChild>
                   <Link
                     href='#services'
