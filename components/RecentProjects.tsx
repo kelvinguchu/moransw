@@ -1,17 +1,10 @@
-"use client";
-import {
-  FiArchive,
-  FiBarChart,
-  FiBell,
-  FiDollarSign,
-  FiPlay,
-} from "react-icons/fi";
-import { Dispatch, SetStateAction, useState } from "react";
+'use client';
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useWindowSize from "../components/useWindowSize";
-import { IconType } from "react-icons";
 import Header from "./Header";
 import { Space_Grotesk } from "next/font/google";
+import { FiArchive } from "react-icons/fi";
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -32,20 +25,18 @@ const VerticalAccordion = () => {
         additionalClassNames={`${spacegrotesk.className}`}
       />
       <div className='flex flex-col lg:flex-row h-fit lg:h-[450px] w-full max-w-6xl mx-auto shadow overflow-hidden mt-4'>
-        {items.map((item) => {
-          return (
-            <Panel
-              key={item.id}
-              open={open}
-              setOpen={setOpen}
-              id={item.id}
-              Icon={item.Icon}
-              title={item.title}
-              imgSrc={item.imgSrc}
-              description={item.description}
-            />
-          );
-        })}
+        {items.map((item) => (
+          <Panel
+            key={item.id}
+            open={open}
+            setOpen={setOpen}
+            id={item.id}
+            title={item.title}
+            imgSrc={item.imgSrc}
+            description={item.description}
+            link={item.link}
+          />
+        ))}
       </div>
     </section>
   );
@@ -55,20 +46,20 @@ interface PanelProps {
   open: number;
   setOpen: Dispatch<SetStateAction<number>>;
   id: number;
-  Icon: IconType;
   title: string;
   imgSrc: string;
   description: string;
+  link: string;
 }
 
 const Panel = ({
   open,
   setOpen,
   id,
-  Icon,
   title,
   imgSrc,
   description,
+  link,
 }: PanelProps) => {
   const { width } = useWindowSize();
   const isOpen = open === id;
@@ -79,17 +70,11 @@ const Panel = ({
         className='bg-black text-white hover:bg-gray-900 transition-colors p-3 border-r-[1px] border-b-[1px] border-gray-700 flex flex-row-reverse lg:flex-col justify-end items-center gap-4 relative group'
         onClick={() => setOpen(id)}>
         <span
-          style={{
-            writingMode: "vertical-lr",
-          }}
+          style={{ writingMode: "vertical-lr" }}
           className='hidden lg:block text-xl font-light rotate-180'>
           {title}
         </span>
         <span className='block lg:hidden text-xl font-light'>{title}</span>
-        <div className='w-6 lg:w-full aspect-square bg-white text-black grid place-items-center'>
-          <Icon />
-        </div>
-        <span className='w-4 h-4 bg-black group-hover:bg-gray-900 transition-colors border-r-[1px] border-b-[1px] lg:border-b-0 lg:border-t-[1px] border-gray-700 rotate-45 absolute bottom-0 lg:bottom-[50%] right-[50%] lg:right-0 translate-y-[50%] translate-x-[50%] z-20' />
       </button>
 
       <AnimatePresence>
@@ -105,13 +90,14 @@ const Panel = ({
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
-            className='w-full h-full overflow-hidden relative bg-black flex items-end'>
+            className='w-full h-full overflow-hidden relative bg-black flex items-end cursor-pointer'
+            onClick={() => window.open(link, "_blank")}>
             <motion.div
               variants={descriptionVariants}
               initial='closed'
               animate='open'
               exit='closed'
-              className='px-4 py-2 bg-black/40 backdrop-blur-sm text-white'>
+              className='px-4 py-2 bg-black/70 backdrop-blur-sm text-white'>
               <p>{description}</p>
             </motion.div>
           </motion.div>
@@ -160,33 +146,29 @@ const items = [
   {
     id: 1,
     title: "Aquatreat Solutions Limited",
-    Icon: FiDollarSign,
     imgSrc: "/aquatreat.webp",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum eius deserunt quia consectetur aliquid obcaecati voluptatibus quos distinctio natus! Tenetur.",
+    description: "Click the image to view the site",
+    link: "https://aquatreat.co.ke/",
   },
   {
     id: 2,
     title: "Scaperthru Springs Limited",
-    Icon: FiPlay,
     imgSrc: "/scapethru.webp",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum eius deserunt quia consectetur aliquid obcaecati voluptatibus quos distinctio natus! Tenetur.",
+    description: "Click the image to view the site",
+    link: "https://scaperthrusprings.co.ke/",
   },
   {
     id: 3,
     title: "Moran Bank Limited",
-    Icon: FiBell,
     imgSrc: "/moranbank.webp",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum eius deserunt quia consectetur aliquid obcaecati voluptatibus quos distinctio natus! Tenetur.",
+    description: "Click the image to view the site",
+    link: "https://moranbank.vercel.app/",
   },
   {
     id: 4,
     title: "Youtubify",
-    Icon: FiBarChart,
     imgSrc: "/youtubify.webp",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum eius deserunt quia consectetur aliquid obcaecati voluptatibus quos distinctio natus! Tenetur.",
+    description: "Click the image to view the site",
+    link: "https://you-tubify.vercel.app/",
   },
 ];
