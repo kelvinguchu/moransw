@@ -4,6 +4,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { Space_Grotesk } from "next/font/google";
+import { FiSettings } from "react-icons/fi";
+import Header from "./Header";
 
 
 const spacegrotesk = Space_Grotesk({
@@ -14,6 +16,14 @@ const spacegrotesk = Space_Grotesk({
 export function Process() {
   return (
     <>
+      <Header
+        icon={
+          <FiSettings className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
+        }
+        mainText='Our'
+        gradientText='Process'
+        additionalClassNames={`${spacegrotesk.className}`}
+      />
       <div className='py-5 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-black w-full gap-4 mx-auto px-8'>
         <Card
           title='Step 1: Call & Meet'
@@ -81,26 +91,25 @@ const Card: React.FC<CardProps> = ({ title, description, icon, children }) => {
     };
   }, []);
 
-  // Intersection Observer for mobile devices with a delay
+  // Intersection Observer for mobile devices with delayed effects
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
     if (isMobile) {
       const observer = new IntersectionObserver(
         (entries) => {
-          const [entry] = entries;
-          if (entry.isIntersecting) {
-            timeoutId = setTimeout(() => {
-              setIsVisible(true);
-            }, 1500); // Delay setting visibility to true by 1.5 seconds
-          } else {
-            clearTimeout(timeoutId); // Clear the timeout if the element leaves the view
-            setIsVisible(false);
-          }
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                setIsVisible(true); // Show description and hide title
+              }, 1500); // Delay for 1.5 seconds
+            } else {
+              setIsVisible(false); // Hide description and show title
+            }
+          });
         },
         {
           root: null,
           rootMargin: "0px",
-          threshold: 0.5,
+          threshold: 0.1, // Trigger earlier than the middle of the element
         }
       );
 
@@ -109,7 +118,6 @@ const Card: React.FC<CardProps> = ({ title, description, icon, children }) => {
       }
 
       return () => {
-        clearTimeout(timeoutId); // Ensure the timeout is cleared on component unmount
         if (ref.current) {
           observer.unobserve(ref.current);
         }
@@ -164,8 +172,6 @@ const Card: React.FC<CardProps> = ({ title, description, icon, children }) => {
     </div>
   );
 };
-
-
 
 const MoranIcon = () => {
   return (

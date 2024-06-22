@@ -15,7 +15,7 @@ const VerticalAccordion = () => {
   const [open, setOpen] = useState(items[0].id);
 
   return (
-    <section className='p-4 bg-transparent border rounded mx-3 md:mx-0'>
+    <section className='p-4 bg-transparent rounded mx-3 md:mx-0'>
       <Header
         icon={
           <FiArchive className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
@@ -67,14 +67,20 @@ const Panel = ({
   return (
     <>
       <button
-        className='bg-black text-white hover:bg-gray-900 transition-colors p-3 border-r-[1px] border-b-[1px] border-gray-700 flex flex-row-reverse lg:flex-col justify-end items-center gap-4 relative group'
+        className='bg-black hover:bg-slate-800 transition-colors p-3 border-r-[1px] border-b-[1px] border-white flex flex-row-reverse lg:flex-col justify-end items-center gap-4 relative group'
         onClick={() => setOpen(id)}>
         <span
-          style={{ writingMode: "vertical-lr" }}
-          className='hidden lg:block text-xl font-light rotate-180'>
+          style={{
+            writingMode: "vertical-lr",
+          }}
+          className='hidden lg:block text-xl font-light rotate-180 text-white'>
           {title}
         </span>
-        <span className='block lg:hidden text-xl font-light'>{title}</span>
+        <span className='block lg:hidden text-xl font-light text-white'>
+          {title}
+        </span>
+
+        <span className='w-4 h-4 bg-black group-hover:bg-slate-800 transition-colors border-r border-b lg:border-b-0 lg:border-t-[1px] border-white rotate-45 absolute bottom-0 lg:bottom-[50%] right-[50%] lg:right-0 translate-y-[50%] translate-x-[50%] z-20' />
       </button>
 
       <AnimatePresence>
@@ -90,14 +96,13 @@ const Panel = ({
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
-            className='w-full h-full overflow-hidden relative bg-black flex items-end cursor-pointer'
-            onClick={() => window.open(link, "_blank")}>
+            className='w-full h-full overflow-hidden relative bg-black flex items-end'>
             <motion.div
               variants={descriptionVariants}
               initial='closed'
               animate='open'
               exit='closed'
-              className='px-4 py-2 bg-black/70 backdrop-blur-sm text-white'>
+              className='px-4 py-2 bg-black/80 backdrop-blur-sm text-white'>
               <p>{description}</p>
             </motion.div>
           </motion.div>

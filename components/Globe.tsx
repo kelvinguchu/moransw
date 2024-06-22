@@ -74,7 +74,7 @@ export function Globe() {
     autoRotateSpeed: 0.5,
   };
 
-  const sampleArcs = generateArcs(30); // Generate 30 arcs dynamically
+  const sampleArcs = generateArcs(20); // Generate 30 arcs dynamically
 
   return (
     <div className='relative w-full h-[300px] md:h-[500px] flex justify-center items-center'>
@@ -88,11 +88,11 @@ export function Globe() {
             <World data={sampleArcs} globeConfig={globeConfig} />
           </div>
         </motion.div>
-        <div className='absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-black opacity-40 pointer-events-none'></div>
-        <div className='absolute inset-x-0 -top-10 h-24 bg-gradient-to-t from-transparent to-black opacity-40 pointer-events-none'></div>
+        <div className='absolute inset-x-0 bottom-0 h-24 bg-transparent opacity-40 pointer-events-none'></div>
+        <div className='absolute inset-x-0 -top-10 h-24 bg-transparent opacity-40 pointer-events-none'></div>
       </div>
       <Meteors
-        number={15}
+        number={10}
         className='absolute top-0 left-0 right-0 bottom-0 pointer-events-none'
       />
     </div>
