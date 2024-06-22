@@ -87,9 +87,10 @@ const config: Config = {
         mono: ["var(--font-roboto-mono)", ...defaultTheme.fontFamily.mono],
       },
       animation: {
-        "spin-slow": "spin 3s linear infinite", // For reference
+        "spin-slow": "spin 3s linear infinite",
         "pulse-spin": "pulse-spin 2s ease-in-out infinite",
         "meteor-effect": "meteor 5s linear infinite",
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
       },
       keyframes: {
         "pulse-spin": {
@@ -102,6 +103,11 @@ const config: Config = {
           "100%": {
             transform: "rotate(215deg) translateX(-500px)",
             opacity: "0",
+          },
+        },
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
           },
         },
       },
