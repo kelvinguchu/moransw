@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import { Indie_Flower } from "next/font/google";
 
 const indieflower = Indie_Flower({
-    subsets: ["latin"],
-    variable: "--font-indie-flower",
-    weight: "400"
+  subsets: ["latin"],
+  variable: "--font-indie-flower",
+  weight: "400",
 });
 
 interface TypingAnimationProps {
@@ -15,6 +15,7 @@ interface TypingAnimationProps {
   typingSpeed?: number;
   deletingSpeed?: number;
   delayBetweenTexts?: number;
+  minHeight?: string; // New prop for setting minimum height
   className?: string;
 }
 
@@ -23,10 +24,10 @@ export default function TypingAnimation({
   typingSpeed = 150,
   deletingSpeed = 100,
   delayBetweenTexts = 1000,
+  minHeight = "5rem", // Default minimum height
   className,
 }: TypingAnimationProps) {
   const [displayedText, setDisplayedText] = useState<string>("");
-  const [index, setIndex] = useState<number>(0);
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
   const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
 
@@ -70,9 +71,10 @@ export default function TypingAnimation({
     <h1
       className={cn(
         "font-display text-center text-4xl font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
-          indieflower.className,
+        indieflower.className,
         className
-      )}>
+      )}
+      style={{ minHeight }}>
       {displayedText}
     </h1>
   );
