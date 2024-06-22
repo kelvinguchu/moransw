@@ -27,6 +27,7 @@ export default function Home() {
         </section>
         <Divider />
         <IconsCloud />
+        <Divider />
       </TracingBeam>
     </main>
   );
