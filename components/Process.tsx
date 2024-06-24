@@ -1,21 +1,87 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-
 import { AnimatePresence, motion } from "framer-motion";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { Space_Grotesk } from "next/font/google";
 import { FiSettings } from "react-icons/fi";
 import Header from "./Header";
 
-
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-spacegrotesk",
 });
 
+const MoranIcon = () => (
+  <img
+    src='/logo.svg'
+    alt='Logo'
+    width='35'
+    height='45'
+    className='h-15 w-10'
+  />
+);
+
+export const Icon = ({ className, ...rest }: any) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    fill='none'
+    viewBox='0 0 24 24'
+    strokeWidth='1.5'
+    stroke='currentColor'
+    className={className}
+    {...rest}>
+    <path strokeLinecap='round' strokeLinejoin='round' d='M12 6v12m6-6H6' />
+  </svg>
+);
+
+const cards = [
+  {
+    title: "Step 1: Call & Meet",
+    description:
+      "Begin with a foundational meeting to set goals and align on the project scope, ensuring a clear path forward",
+    icon: <MoranIcon />,
+    revealEffect: (
+      <CanvasRevealEffect
+        animationSpeed={5.1}
+        containerClassName='bg-emerald-900'
+      />
+    ),
+  },
+  {
+    title: "Step 2: Development",
+    description:
+      "Engage in intensive development using cutting-edge technology to create a refined prototype through iterative enhancements.",
+    icon: <MoranIcon />,
+    revealEffect: (
+      <CanvasRevealEffect
+        animationSpeed={3}
+        containerClassName='bg-black'
+        colors={[
+          [236, 72, 153],
+          [232, 121, 249],
+        ]}
+        dotSize={2}
+      />
+    ),
+  },
+  {
+    title: "Step 3: Deliver",
+    description:
+      "Conclude with rigorous testing and final adjustments, focusing on quality assurance for a successful project launch.",
+    icon: <MoranIcon />,
+    revealEffect: (
+      <CanvasRevealEffect
+        animationSpeed={3}
+        containerClassName='bg-sky-600'
+        colors={[[125, 211, 252]]}
+      />
+    ),
+  },
+];
+
 export function Process() {
   return (
-    <section id="process">
+    <section id='process'>
       <Header
         icon={
           <FiSettings className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
@@ -25,43 +91,11 @@ export function Process() {
         additionalClassNames={`${spacegrotesk.className}`}
       />
       <div className='py-5 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-black w-full gap-4 mx-auto px-8'>
-        <Card
-          title='Step 1: Call & Meet'
-          description='Begin with a foundational meeting to set goals and align on the project scope, ensuring a clear path forward'
-          icon={<MoranIcon />}>
-          <CanvasRevealEffect
-            animationSpeed={5.1}
-            containerClassName='bg-emerald-900'
-          />
-        </Card>
-        <Card
-          title='Step 2: Development'
-          description='Engage in intensive development using cutting-edge technology to create a refined prototype through iterative enhancements.'
-          icon={<MoranIcon />}>
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName='bg-black'
-            colors={[
-              [236, 72, 153],
-              [232, 121, 249],
-            ]}
-            dotSize={2}
-          />
-          {/* Radial gradient for the cute fade */}
-          <div className='absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90' />
-        </Card>
-        <Card
-          title='Step 3: Deliver'
-          description='Conclude with rigorous testing and final adjustments, focusing on quality assurance for a successful project launch.'
-          icon={<MoranIcon />}>
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName='bg-sky-600'
-            colors={[[125, 211, 252]]}
-          />
-        </Card>
+        {cards.map((card, index) => (
+          <Card key={index} {...card} />
+        ))}
       </div>
-    </ section>
+    </section>
   );
 }
 
@@ -69,58 +103,51 @@ interface CardProps {
   title: string;
   description: string;
   icon: React.ReactNode;
-  children?: React.ReactNode;
+  revealEffect: React.ReactNode;
 }
 
-const Card: React.FC<CardProps> = ({ title, description, icon, children }) => {
+const Card: React.FC<CardProps> = ({
+  title,
+  description,
+  icon,
+  revealEffect,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  // Update device type based on viewport width
   useEffect(() => {
-    const updateDeviceType = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+    const updateDeviceType = () => setIsMobile(window.innerWidth <= 768);
 
     window.addEventListener("resize", updateDeviceType);
     updateDeviceType(); // Initialize at component mount
 
-    return () => {
-      window.removeEventListener("resize", updateDeviceType);
-    };
+    return () => window.removeEventListener("resize", updateDeviceType);
   }, []);
 
-  // Intersection Observer for mobile devices with delayed effects
   useEffect(() => {
     if (isMobile) {
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              setTimeout(() => {
-                setIsVisible(true); // Show description and hide title
-              }, 1500); // Delay for 1.5 seconds
+              setTimeout(() => setIsVisible(true), 1500); // Delay for 1.5 seconds
             } else {
-              setIsVisible(false); // Hide description and show title
+              setIsVisible(false);
             }
           });
         },
         {
           root: null,
           rootMargin: "0px",
-          threshold: 0.1, // Trigger earlier than the middle of the element
+          threshold: 0.1,
         }
       );
 
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
+      if (ref.current) observer.observe(ref.current);
 
       return () => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
+        if (ref.current) observer.unobserve(ref.current);
       };
     }
   }, [isMobile]);
@@ -142,7 +169,7 @@ const Card: React.FC<CardProps> = ({ title, description, icon, children }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className='h-full w-full absolute inset-0'>
-            {children}
+            {revealEffect}
           </motion.div>
         )}
       </AnimatePresence>
@@ -170,33 +197,6 @@ const Card: React.FC<CardProps> = ({ title, description, icon, children }) => {
         </h4>
       </div>
     </div>
-  );
-};
-
-const MoranIcon = () => {
-  return (
-    <img
-      src='/logo.svg'
-      alt='Logo'
-      width='35'
-      height='45'
-      className='h-15 w-10'
-    />
-  );
-};
-
-export const Icon = ({ className, ...rest }: any) => {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      fill='none'
-      viewBox='0 0 24 24'
-      strokeWidth='1.5'
-      stroke='currentColor'
-      className={className}
-      {...rest}>
-      <path strokeLinecap='round' strokeLinejoin='round' d='M12 6v12m6-6H6' />
-    </svg>
   );
 };
 

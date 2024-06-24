@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Moran Softwares",
   description: "bring your unicorn ideas to life",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
