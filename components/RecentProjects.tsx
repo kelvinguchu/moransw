@@ -1,10 +1,10 @@
 "use client";
-import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useWindowSize from "../components/useWindowSize";
 import Header from "./Header";
 import { Space_Grotesk } from "next/font/google";
-import { FiArchive, FiExternalLink } from "react-icons/fi";
+import { FiArchive, FiExternalLink } from "react-icons/fi"; // Import the icon
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -13,15 +13,6 @@ const spacegrotesk = Space_Grotesk({
 
 const VerticalAccordion = () => {
   const [open, setOpen] = useState(items[0].id);
-  const [hydrated, setHydrated] = useState(false);
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  if (!hydrated) {
-    return null;
-  }
 
   return (
     <section
@@ -72,17 +63,10 @@ const Panel = ({
   description,
   link,
 }: PanelProps) => {
-  const { width } = useWindowSize(); // This might access window properties
+  const { width } = useWindowSize();
   const isOpen = open === id;
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
-
-  // Guard to ensure code runs only on the client side
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setLoaded(true);
-    }
-  }, []);
 
   return (
     <>
@@ -91,7 +75,15 @@ const Panel = ({
           isOpen ? "shadow-lg" : ""
         }`}
         onClick={() => setOpen(id)}>
-        {/* UI components here are safe */}
+        <span
+          style={{ writingMode: "vertical-lr" }}
+          className='hidden lg:block text-lg font-medium text-white rotate-180'>
+          {title}
+        </span>
+        <span className='block lg:hidden text-lg font-medium text-white'>
+          {title}
+        </span>
+        <span className='w-4 h-4 bg-indigo-600 group-hover:bg-indigo-700 transition-colors border-r border-b lg:border-b-0 lg:border-t-[1px] border-transparent rotate-45 absolute bottom-0 lg:bottom-[50%] right-[50%] lg:right-0 translate-y-[50%] translate-x-[50%] z-20' />
       </button>
 
       <AnimatePresence>
@@ -103,7 +95,6 @@ const Panel = ({
             animate='open'
             exit='closed'
             className='w-full h-full overflow-hidden relative flex items-end rounded-lg shadow-inner'>
-            {/* Conditional rendering based on client-side logic */}
             <div
               style={{
                 backgroundImage: `url(${imgSrc})`,
@@ -118,7 +109,6 @@ const Panel = ({
               animate='open'
               exit='closed'
               className='w-full h-full'>
-              {/* Client-only elements like iframe */}
               <iframe
                 src={link}
                 style={{
@@ -130,7 +120,6 @@ const Panel = ({
                 onLoad={() => setLoaded(true)}
                 onError={() => setError(true)}></iframe>
             </motion.div>
-            {/* Always safe to render links */}
             <div className='px-6 py-4 bg-black/75 backdrop-blur-md text-white rounded-b-lg absolute bottom-0 w-full'>
               <p>
                 <a
@@ -148,7 +137,6 @@ const Panel = ({
     </>
   );
 };
-
 
 export default VerticalAccordion;
 
@@ -184,7 +172,7 @@ const items = [
     title: "Scaperthru Springs Limited",
     imgSrc: "/scapethru.webp",
     description: "visit site",
-    link: "https://scaperthrusprings.co.ke/",
+    link: "https://scapethrusprings.co.ke/",
   },
   {
     id: 3,
