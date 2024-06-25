@@ -85,6 +85,46 @@ const pricingData = [
       },
     ],
   },
+  {
+    title: "Additional Services",
+    items: [
+      {
+        description: "Website Maintenance",
+        price: "KES 5,000 per month",
+        technologies: ["WordPress", "HTML", "CSS"],
+      },
+      {
+        description: "Content Updates",
+        price: "KES 3,000 per update",
+        technologies: ["HTML", "CSS", "WordPress"],
+      },
+      {
+        description: "SEO Optimization",
+        price: "KES 10,000",
+        technologies: ["SEO Tools (e.g., Yoast SEO for WordPress)"],
+      },
+      {
+        description: "Website Hosting Setup",
+        price: "KES 5,000",
+        technologies: [
+          "cPanel",
+          "Hosting Platforms (e.g., Hostinger, Bluehost)",
+        ],
+      },
+      {
+        description: "Domain Registration",
+        price: "KES 2,000",
+        technologies: [
+          "Domain Registrars (e.g., GoDaddy, Namecheap, Hostinger)",
+        ],
+      },
+      {
+        description: "Responsive Design Upgrade",
+        price: "KES 10,000",
+        technologies: ["CSS", "Bootstrap"],
+      },
+    ],
+  },
 ];
 
 const Pricing: React.FC = () => {
