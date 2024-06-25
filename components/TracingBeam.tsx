@@ -49,7 +49,7 @@ export const TracingBeam = ({
   return (
     <motion.div
       ref={ref}
-      className={cn("relative h-full", className)}>
+      className={cn("relative h-full ", className)}>
       <div className='absolute -left-4 md:-left-20 top-3'>
         <motion.div
           transition={{

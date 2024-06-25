@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .border-gradient {
+    border-image-slice: 1;
+    border-width: 3px;
+    border-image-source: linear-gradient(45deg, #ffafbd, #ffc3a0, #2193b0, #6dd5ed);
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

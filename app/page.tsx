@@ -7,10 +7,11 @@ import Services from "@/components/Services";
 import { TracingBeam } from "@/components/TracingBeam";
 import Process from "@/components/Process";
 import IconsCloud from "@/components/IconsCloud";
+import Pricing from "@/components/Pricing";
 export default function Home() {
   return (
     <main className='flex w-full min-h-screen flex-col items-center justify-between pt-24'>
-      <TracingBeam>
+      <TracingBeam >
         <Navbar />
         <Hero />
         <ProductsHero />
@@ -28,6 +29,7 @@ export default function Home() {
         <Divider />
         <IconsCloud />
         <Divider />
+        <Pricing />
       </TracingBeam>
     </main>
   );

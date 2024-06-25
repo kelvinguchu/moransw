@@ -41,14 +41,14 @@ const slugs = [
 
 export function IconsCloud() {
   return (
-    <section>
+    <section className='w-[95%] mx-auto'>
       <TypingAnimation
         className='text-4xl font-bold text-black dark:text-white'
         texts={[
-          "We Know No Limits 😤😤",
-          "Reach for the Stars ✨",
-          "Innovation at its Best 🚀",
-          "Best Software Engineers on the planet🌍🌍",
+          "No Limits 😤😤",
+          "Aim for the Stars ✨",
+          "Web Gurus 🚀",
+          "We the Best on 🌍🌍",
         ]}
         minHeight='3rem' // Set a minimum height to prevent content shift
       />
