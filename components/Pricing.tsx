@@ -49,6 +49,11 @@ const pricingData = [
         price: "KES 40,000",
         technologies: ["HTML", "CSS", "JavaScript"],
       },
+      {
+        description: "CRM & ERP implementation",
+        price: "KES 35,000",
+        technologies: ["Odoo", "Zoho", "ETC."],
+      },
     ],
   },
   {
@@ -91,7 +96,7 @@ const Pricing: React.FC = () => {
         }
         mainText='Our'
         gradientText='Rates'
-        additionalClassNames={`${spacegrotesk.className} px-4 mb-4 inverted-glow`}
+        additionalClassNames={`${spacegrotesk.className} px-4 mb-4`}
       />
       <div className='grid grid-cols-1 sm:grid-cols-2 sm:mx-1 lg:grid-cols-3 gap-8'>
         {pricingData.map((packageData, index) => (

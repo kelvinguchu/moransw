@@ -1,5 +1,12 @@
 // components/PricingCard.tsx
 import React from "react";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: "300",
+});
 
 interface PricingCardProps {
   title: string;
@@ -8,7 +15,8 @@ interface PricingCardProps {
 
 const PricingCard: React.FC<PricingCardProps> = ({ title, items }) => {
   return (
-    <div className='border-2 rounded-lg p-6 shadow-xl bg-gray-900 border-gradient max-w-[21rem]'>
+    <div
+      className={` ${poppins.className} border-2 rounded-[1rem] p-6 shadow-xl bg-gradient-to-br from-black via-gray-900 to-black border-gradient max-w-[21rem]`}>
       <h2 className='text-2xl font-extrabold mb-6 text-white'>{title}</h2>
       <ul>
         {items.map((item, index) => (
