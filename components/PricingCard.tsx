@@ -16,7 +16,7 @@ interface PricingCardProps {
 const PricingCard: React.FC<PricingCardProps> = ({ title, items }) => {
   return (
     <div
-      className={` ${poppins.className} border-2 rounded-[1rem] p-6 shadow-xl bg-gradient-to-br from-black via-gray-900 to-black border-gradient max-w-[21rem]`}>
+      className={` ${poppins.className} border-2 rounded-[1rem] p-6 shadow-xl bg-gradient-to-br from-black via-gray-900 to-black border-gradient max-w-[21rem] md:mx-auto sm:mx-auto mx-auto`}>
       <h2 className='text-2xl font-extrabold mb-6 text-white'>{title}</h2>
       <ul>
         {items.map((item, index) => (

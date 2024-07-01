@@ -129,7 +129,7 @@ const pricingData = [
 
 const Pricing: React.FC = () => {
   return (
-    <div className='container mx-auto p-4'>
+    <div className='container md:mx-auto sm:mx-auto mx-auto p-4'>
       <Header
         icon={
           <FiDollarSign className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
@@ -138,7 +138,7 @@ const Pricing: React.FC = () => {
         gradientText='Rates'
         additionalClassNames={`${spacegrotesk.className} px-4 mb-4`}
       />
-      <div className='grid grid-cols-1 sm:grid-cols-2 sm:mx-1 lg:grid-cols-3 gap-8'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 sm:mx-1 lg:grid-cols-3 gap-8 '>
         {pricingData.map((packageData, index) => (
           <PricingCard
             key={index}

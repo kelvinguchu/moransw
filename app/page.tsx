@@ -8,6 +8,7 @@ import { TracingBeam } from "@/components/TracingBeam";
 import Process from "@/components/Process";
 import IconsCloud from "@/components/IconsCloud";
 import Pricing from "@/components/Pricing";
+import Testimonials from "@/components/Testimonials";
 export default function Home() {
   return (
     <main className='flex w-full min-h-screen flex-col items-center justify-between pt-24'>
@@ -32,6 +33,9 @@ export default function Home() {
         <section id='pricing'>
           <Pricing />
         </section>
+        <Divider />
+        <Testimonials />
+        <Divider />
       </TracingBeam>
     </main>
   );
