@@ -6,7 +6,6 @@ import Image from "next/image";
 import { Poppins } from "next/font/google";
 import MobileMenu from "./MobileMenu"; // Import the MobileMenu component
 import DarkModeToggle from "./DarkModeToggle"; // Ensure DarkModeToggle is imported
-import ContactButton from "./ContactButton";
 
 const poppins = Poppins({
   subsets: ["latin"],
