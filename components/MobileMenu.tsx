@@ -74,7 +74,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
                 </SheetClose>
 
                 <div className='flex justify-center'>
-                  <DarkModeToggle selected={mode} setSelected={setMode} />
+                  <DarkModeToggle/>
                 </div>
               </nav>
             </SheetClose>
