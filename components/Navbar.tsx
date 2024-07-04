@@ -76,7 +76,7 @@ function Navbar({ className }: { className?: string }) {
       {/* Right Side: Dark Mode Toggle and Mobile Menu */}
       <div className='flex items-center space-x-4'>
         <div className='hidden md:flex'>
-          <DarkModeToggle selected={mode} setSelected={setMode} />
+          <DarkModeToggle />
         </div>
         <div className='md:hidden'>
           <MobileMenu mode={mode} setMode={setMode} />

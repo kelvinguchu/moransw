@@ -5,6 +5,8 @@ import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import { Space_Grotesk } from "next/font/google";
 import { FiSettings } from "react-icons/fi";
 import Header from "./Header";
+import AnimatedGradientText from "@/components/ui/animated-gradient-text";
+import { cn } from "@/lib/utils";
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -181,8 +183,15 @@ const Card: React.FC<CardProps> = ({
           }`}>
           {icon}
           <div
-            className={`${spacegrotesk.className} text-3xl mt-4 font-extrabold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent`}>
-            {title}
+            className={`${spacegrotesk.className} text-3xl mt-4 font-extrabold bg-clip-text `}>
+            <AnimatedGradientText>
+              <span
+                className={cn(
+                  `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`
+                )}>
+                {title}
+              </span>
+            </AnimatedGradientText>
           </div>
         </div>
         <h4

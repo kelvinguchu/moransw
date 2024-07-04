@@ -74,7 +74,7 @@ export function Globe() {
     autoRotateSpeed: 0.5,
   };
 
-  const sampleArcs = generateArcs(20); // Generate 30 arcs dynamically
+  const sampleArcs = generateArcs(0); // Generate 30 arcs dynamically
 
   return (
     <div className='relative w-full h-[300px] md:h-[500px] flex justify-center items-center'>

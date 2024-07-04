@@ -1,5 +1,4 @@
 import React from "react";
-import { BorderBeam } from "@/components/ui/border-beam";
 import ShineBorder from "@/components/ui/shine-border";
 
 interface HeaderProps {

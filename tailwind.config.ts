@@ -94,6 +94,7 @@ const config: Config = {
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        gradient: "gradient 8s linear infinite",
       },
       keyframes: {
         "pulse-spin": {
@@ -130,6 +131,11 @@ const config: Config = {
           },
           to: {
             "background-position": "0% 0%",
+          },
+        },
+        gradient: {
+          to: {
+            backgroundPosition: "var(--bg-size) 0",
           },
         },
       },

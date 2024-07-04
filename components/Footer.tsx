@@ -102,7 +102,7 @@ const Footer: React.FC<{ className?: string }> = ({ className }) => {
                 <FiLinkedin size={24} />
               </a>
             </div>
-            <DarkModeToggle selected={mode} setSelected={setMode} />
+            <DarkModeToggle />
           </div>
         </div>
 

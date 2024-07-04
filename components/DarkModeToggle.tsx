@@ -1,35 +1,61 @@
+// components/DarkModeToggle.tsx
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiMoon, FiSun } from "react-icons/fi";
 
 const TOGGLE_CLASSES =
   "text-sm font-medium flex items-center gap-2 px-3 md:pl-3 md:pr-3.5 py-3 md:py-1.5 transition-colors relative z-10";
 
-const DarkModeToggle = ({
-  selected,
-  setSelected,
-}: {
-  selected: string;
-  setSelected: (mode: string) => void;
-}) => {
+const DarkModeToggle = () => {
+  // State to store the current theme
+  const [theme, setTheme] = useState<string>();
+
+  useEffect(() => {
+    // Attempt to retrieve the theme from local storage or default to system preference
+    const localTheme = localStorage.getItem("theme");
+    const systemPreference = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+    setTheme(localTheme || systemPreference);
+    applyTheme(localTheme || systemPreference);
+  }, []);
+
+  const toggleTheme = (newTheme: string) => {
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    applyTheme(newTheme);
+  };
+
+  const applyTheme = (theme: string) => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.add("light");
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
   return (
     <div className='relative flex w-fit items-center rounded-full'>
       <button
         className={`${TOGGLE_CLASSES} ${
-          selected === "light" ? "text-white" : "text-slate-300"
+          theme === "light" ? "text-white" : "text-slate-300"
         }`}
-        onClick={() => setSelected("light")}>
+        onClick={() => toggleTheme("light")}>
         <FiSun className='relative z-10 text-lg md:text-sm' />
       </button>
       <button
         className={`${TOGGLE_CLASSES} ${
-          selected === "dark" ? "text-white" : "text-slate-800"
+          theme === "dark" ? "text-white" : "text-slate-800"
         }`}
-        onClick={() => setSelected("dark")}>
+        onClick={() => toggleTheme("dark")}>
         <FiMoon className='relative z-10 text-lg md:text-sm' />
       </button>
       <div
         className={`absolute inset-0 z-0 flex ${
-          selected === "dark" ? "justify-end" : "justify-start"
+          theme === "dark" ? "justify-end" : "justify-start"
         }`}>
         <motion.span
           layout
