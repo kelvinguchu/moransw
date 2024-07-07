@@ -1,25 +1,7 @@
-"use client";
-
-import { useEffect, useState, useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Space_Grotesk } from "next/font/google";
-import Header from "./Header";
-import { FiSmile } from "react-icons/fi";
+import Marquee from "@/components/magicui/marquee";
 
-const spacegrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-spacegrotesk",
-});
-
-interface Review {
-  name: string;
-  username: string;
-  body: string;
-  img: string;
-}
-
-const reviews: Review[] = [
+const reviews = [
   {
     name: "C.E.O, Aquatreat Solutions Limited",
     username: "@Isaac Njenga",
@@ -58,98 +40,88 @@ const reviews: Review[] = [
   },
 ];
 
+const firstRow = reviews.slice(0, Math.ceil(reviews.length / 2));
+const secondRow = reviews.slice(Math.ceil(reviews.length / 2));
+
 interface ReviewCardProps {
-  review: Review;
+  img: string;
+  name: string;
+  username: string;
+  body: string;
 }
 
-const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => (
-  <figure
-    className={cn(
-      "max-w-xs flex-shrink-0 p-4 mx-auto my-2 rounded-xl shadow-md overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black text-white sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl"
-    )}>
-    <div className='flex flex-col items-start'>
-      <img
-        className='rounded-full h-16 w-16 mb-4'
-        src={review.img}
-        alt={review.name}
-      />
-      <figcaption className='text-lg font-semibold'>{review.name}</figcaption>
-      <p className='text-sm text-indigo-500'>{review.username}</p>
-      <blockquote className='mt-2 text-gray-300'>{review.body}</blockquote>
-    </div>
-  </figure>
-);
-
-const TestimonialCarousel: React.FC = () => {
-  const controls = useAnimation();
-  const [paused, setPaused] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    if (!paused) {
-      if (window.innerWidth < 640) {
-        controls.start({
-          y: ["0%", "-100%"],
-          transition: {
-            ease: "linear",
-            duration: 30,
-            repeat: Infinity,
-          },
-        });
-      } else {
-        controls.start({
-          x: ["0%", "-100%"],
-          transition: {
-            ease: "linear",
-            duration: 30,
-            repeat: Infinity,
-          },
-        });
-      }
-    }
-  }, [paused, controls]);
-
-  const handlePauseAnimation = () => {
-    setPaused(true);
-    controls.stop();
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  };
-
-  const handleResumeAnimation = () => {
-    setPaused(false);
-  };
-
+const ReviewCard: React.FC<ReviewCardProps> = ({
+  img,
+  name,
+  username,
+  body,
+}) => {
   return (
-    <section>
-      <Header
-        icon={
-          <FiSmile className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
-        }
-        mainText='Happy'
-        gradientText='Clients'
-        additionalClassNames={`${spacegrotesk.className} px-4 mb-4 inverted-glow`}
-      />
-      <div
-        className='relative overflow-hidden w-full sm:w-11/12 max-w-6xl mx-auto h-96 sm:h-auto'
-        onMouseEnter={handlePauseAnimation}
-        onMouseLeave={handleResumeAnimation}
-        onTouchStart={handlePauseAnimation}
-        onTouchEnd={handleResumeAnimation}>
-        <motion.div
-          className='flex sm:flex-row flex-col w-full h-full justify-center sm:justify-start'
-          animate={controls}
-          style={{ gap: "1rem" }}>
-          {reviews.concat(reviews).map((review, index) => (
-            <ReviewCard key={index} review={review} />
-          ))}
-        </motion.div>
-        <div className='pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-white dark:from-black'></div>
-        <div className='pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-white dark:from-black'></div>
+    <figure
+      className={cn(
+        "relative h-56 md:h-auto w-full md:w-64 cursor-pointer overflow-hidden rounded-xl border p-4 shadow-lg transition-transform transform hover:scale-105",
+        // light styles
+        "bg-white border-gray-300 hover:bg-gray-50",
+        // dark styles
+        "dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+      )}>
+      <div className='flex flex-col items-center md:items-start gap-2'>
+        <img
+          className='rounded-full border border-gray-300 dark:border-gray-700'
+          width='48'
+          height='48'
+          alt={name}
+          src={img}
+        />
+        <div className='flex flex-col items-center md:items-start'>
+          <figcaption className='text-base font-semibold text-gray-900 dark:text-gray-100 text-center md:text-left'>
+            {name}
+          </figcaption>
+          <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-center md:text-left'>
+            {username}
+          </p>
+        </div>
       </div>
-    </section>
+      <blockquote className='mt-2 text-sm text-gray-700 dark:text-gray-300 text-center md:text-left'>
+        {body}
+      </blockquote>
+    </figure>
   );
 };
 
-export default TestimonialCarousel;
+const MarqueeDemo: React.FC = () => {
+  return (
+    <div className='relative max-w-6xl mx-auto flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg py-5 md:shadow-xl'>
+      <div className='hidden md:flex flex-col items-center justify-center w-full'>
+        <Marquee pauseOnHover className='[--duration:20s]'>
+          {firstRow.map((review) => (
+            <ReviewCard key={review.username} {...review} />
+          ))}
+        </Marquee>
+        <Marquee reverse pauseOnHover className='[--duration:20s]'>
+          {secondRow.map((review) => (
+            <ReviewCard key={review.username} {...review} />
+          ))}
+        </Marquee>
+        <div className='pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-white dark:from-black'></div>
+        <div className='pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-white dark:from-black'></div>
+      </div>
+      <div className='flex md:hidden h-full w-11/12 items-center justify-center overflow-hidden rounded-lg border sm:px-20 md:shadow-xl'>
+        <Marquee pauseOnHover vertical className='[--duration:20s]'>
+          {firstRow.map((review) => (
+            <ReviewCard key={review.username} {...review} />
+          ))}
+        </Marquee>
+        <Marquee reverse pauseOnHover vertical className='[--duration:20s]'>
+          {secondRow.map((review) => (
+            <ReviewCard key={review.username} {...review} />
+          ))}
+        </Marquee>
+        <div className='pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-black'></div>
+        <div className='pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-black'></div>
+      </div>
+    </div>
+  );
+};
+
+export default MarqueeDemo;

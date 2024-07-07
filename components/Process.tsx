@@ -92,7 +92,7 @@ export function Process() {
         gradientText='Process'
         additionalClassNames={`${spacegrotesk.className}`}
       />
-      <div className='py-5 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-black w-full gap-4 mx-auto px-8'>
+      <div className='py-5 flex flex-col lg:flex-row items-center justify-center bg-[#F0EAF5] dark:bg-black w-full gap-4 mx-auto px-8'>
         {cards.map((card, index) => (
           <Card key={index} {...card} />
         ))}
@@ -210,3 +210,5 @@ const Card: React.FC<CardProps> = ({
 };
 
 export default Process;
+
+
