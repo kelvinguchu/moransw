@@ -106,14 +106,9 @@ const MarqueeDemo: React.FC = () => {
         <div className='pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-white dark:from-black'></div>
         <div className='pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-white dark:from-black'></div>
       </div>
-      <div className='flex md:hidden h-full w-11/12 items-center justify-center overflow-hidden rounded-lg border sm:px-20 md:shadow-xl'>
+      <div className='flex md:hidden h-[50vh] w-11/12 items-center justify-center overflow-hidden rounded-lg border sm:px-20 md:shadow-xl'>
         <Marquee pauseOnHover vertical className='[--duration:20s]'>
-          {firstRow.map((review) => (
-            <ReviewCard key={review.username} {...review} />
-          ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover vertical className='[--duration:20s]'>
-          {secondRow.map((review) => (
+          {reviews.map((review) => (
             <ReviewCard key={review.username} {...review} />
           ))}
         </Marquee>
