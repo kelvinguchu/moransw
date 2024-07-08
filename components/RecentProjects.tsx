@@ -65,8 +65,6 @@ const Panel = ({
 }: PanelProps) => {
   const { width } = useWindowSize();
   const isOpen = open === id;
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
 
   return (
     <>
@@ -100,7 +98,7 @@ const Panel = ({
                 backgroundImage: `url(${imgSrc})`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
-                display: loaded && !error ? "none" : "block",
+                display: "block",
               }}
               className='w-full h-full absolute inset-0'></div>
             <motion.div
@@ -108,18 +106,7 @@ const Panel = ({
               initial='closed'
               animate='open'
               exit='closed'
-              className='w-full h-full'>
-              <iframe
-                src={link}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  border: "none",
-                  display: loaded && !error ? "block" : "none",
-                }}
-                onLoad={() => setLoaded(true)}
-                onError={() => setError(true)}></iframe>
-            </motion.div>
+              className='w-full h-full'></motion.div>
             <div className='px-6 py-4 bg-black/75 backdrop-blur-md text-white rounded-b-lg absolute bottom-0 w-full'>
               <p>
                 <a
