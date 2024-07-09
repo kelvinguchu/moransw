@@ -1,11 +1,12 @@
+// components/Navbar.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import { Menu, MenuItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
-import MobileMenu from "./MobileMenu"; 
-import DarkModeToggle from "./DarkModeToggle"; 
+import MobileMenu from "./MobileMenu";
+import DarkModeToggle from "./DarkModeToggle";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,12 +19,28 @@ function Navbar({ className }: { className?: string }) {
   const [mode, setMode] = useState<string>("dark");
 
   useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    const systemPreference = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+    setMode(localTheme || systemPreference);
+  }, []);
+
+  useEffect(() => {
     if (mode === "dark") {
       document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
     } else {
+      document.documentElement.classList.add("light");
       document.documentElement.classList.remove("dark");
     }
+    localStorage.setItem("theme", mode);
   }, [mode]);
+
+  const toggleTheme = (newTheme: string) => {
+    setMode(newTheme);
+  };
 
   return (
     <div
@@ -40,7 +57,9 @@ function Navbar({ className }: { className?: string }) {
           alt='logo'
           className='rounded-full'
         />
-        <h1 className={`${poppins.className}`}>Moran Softwares</h1>
+        <h1 className={`${poppins.className} text-gray-900 dark:text-white`}>
+          Moran Softwares
+        </h1>
       </div>
 
       {/* Desktop Menu: Center */}
@@ -76,7 +95,7 @@ function Navbar({ className }: { className?: string }) {
       {/* Right Side: Dark Mode Toggle and Mobile Menu */}
       <div className='flex items-center space-x-4'>
         <div className='hidden md:flex'>
-          <DarkModeToggle />
+          <DarkModeToggle onToggle={toggleTheme} currentTheme={mode} />
         </div>
         <div className='md:hidden'>
           <MobileMenu mode={mode} setMode={setMode} />

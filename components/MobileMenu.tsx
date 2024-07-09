@@ -1,5 +1,6 @@
+// components/MobileMenu.tsx
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Sheet,
   SheetClose,
@@ -18,6 +19,18 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
+  const toggleTheme = (newTheme: string) => {
+    setMode(newTheme);
+    localStorage.setItem("theme", newTheme);
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.add("light");
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
   return (
     <section className='w-full max-w-[264px]'>
       <Sheet>
@@ -32,18 +45,23 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
         </SheetTrigger>
         <SheetContent
           side='left'
-          className='border-none light:bg-white dark:bg-gradient-to-br from-black via-gray-900 to-black h-screen flex flex-col'>
+          className='border-none bg-white dark:bg-gradient-to-br from-black via-gray-900 to-black h-screen flex flex-col'>
           <Link
             href='/'
             className='cursor-pointer flex items-center gap-1 px-4'>
-            <Image src='/logo.svg' width={34} height={34} alt='Moran logo' />
-            <h1 className='text-26 font-ibm-plex-serif font-bold text-black-1'>
+            <Image
+              src={mode === "dark" ? "/logo.png" : "/logo-bw.png"}
+              width={34}
+              height={34}
+              alt='Moran logo'
+            />
+            <h1 className='text-26 font-ibm-plex-serif font-bold text-gray-900 dark:text-white'>
               Moran Softwares
             </h1>
           </Link>
           <div className='mobilenav-sheet flex-1 overflow-y-auto'>
             <SheetClose asChild>
-              <nav className='flex flex-col gap-6 pt-16 text-black dark:text-white'>
+              <nav className='flex flex-col gap-6 pt-16 text-gray-900 dark:text-white'>
                 <SheetClose asChild>
                   <Link
                     href='#services'
@@ -72,9 +90,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
                     <p className='text-16 font-semibold'>Pricing</p>
                   </Link>
                 </SheetClose>
-
                 <div className='flex justify-center'>
-                  <DarkModeToggle/>
+                  <DarkModeToggle onToggle={toggleTheme} currentTheme={mode} />
                 </div>
               </nav>
             </SheetClose>

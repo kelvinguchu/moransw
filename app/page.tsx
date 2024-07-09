@@ -14,6 +14,7 @@ import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
 
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
