@@ -1,5 +1,13 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
+import { Space_Grotesk } from "next/font/google";
+import Header from "./Header";
+import { FiSmile } from "react-icons/fi";
+
+const spacegrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-spacegrotesk",
+});
 
 const reviews = [
   {
@@ -92,6 +100,14 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
 const MarqueeDemo: React.FC = () => {
   return (
     <div className='relative max-w-6xl mx-auto flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg py-5 md:shadow-xl'>
+      <Header
+        icon={
+          <FiSmile className='mx-3 text-violet-400 animate-pulse-spin w-8 h-8' />
+        }
+        mainText='Happy '
+        gradientText='Clients'
+        additionalClassNames={`${spacegrotesk.className} text-white`}
+      />
       <div className='hidden md:flex flex-col items-center justify-center w-full'>
         <Marquee pauseOnHover className='[--duration:20s]'>
           {firstRow.map((review) => (
@@ -103,8 +119,8 @@ const MarqueeDemo: React.FC = () => {
             <ReviewCard key={review.username} {...review} />
           ))}
         </Marquee>
-        <div className='pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-white dark:from-black'></div>
-        <div className='pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-white dark:from-black'></div>
+        <div className='pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-[#F0EAF5] dark:from-black'></div>
+        <div className='pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-[#F0EAF5] dark:from-black'></div>
       </div>
       <div className='flex md:hidden h-[50vh] w-11/12 items-center justify-center overflow-hidden rounded-lg border sm:px-20 md:shadow-xl'>
         <Marquee pauseOnHover vertical className='[--duration:20s]'>
@@ -112,8 +128,8 @@ const MarqueeDemo: React.FC = () => {
             <ReviewCard key={review.username} {...review} />
           ))}
         </Marquee>
-        <div className='pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-black'></div>
-        <div className='pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-black'></div>
+        <div className='pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-[#F0EAF5] dark:from-black'></div>
+        <div className='pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-[#F0EAF5] dark:from-black'></div>
       </div>
     </div>
   );

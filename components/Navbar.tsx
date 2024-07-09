@@ -4,8 +4,8 @@ import { Menu, MenuItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Poppins } from "next/font/google";
-import MobileMenu from "./MobileMenu"; // Import the MobileMenu component
-import DarkModeToggle from "./DarkModeToggle"; // Ensure DarkModeToggle is imported
+import MobileMenu from "./MobileMenu"; 
+import DarkModeToggle from "./DarkModeToggle"; 
 
 const poppins = Poppins({
   subsets: ["latin"],

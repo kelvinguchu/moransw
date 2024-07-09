@@ -97,7 +97,7 @@ html {
   /* Light mode text */
   --border-color: #e2e8f0;
   /* Light mode border */
-  --primary-color: #2563eb;
+  --primary-color: black;
   /* Light mode primary */
 }
 
@@ -109,7 +109,7 @@ html {
   /* Dark mode text */
   --border-color: #4a5568;
   /* Dark mode border */
-  --primary-color: #63b3ed;
+  --primary-color: white;
   /* Dark mode primary */
 }
 

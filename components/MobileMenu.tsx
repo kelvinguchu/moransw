@@ -32,7 +32,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
         </SheetTrigger>
         <SheetContent
           side='left'
-          className='border-none light:bg-slate-300 dark:bg-gradient-to-br from-black via-gray-900 to-black h-screen flex flex-col'>
+          className='border-none light:bg-white dark:bg-gradient-to-br from-black via-gray-900 to-black h-screen flex flex-col'>
           <Link
             href='/'
             className='cursor-pointer flex items-center gap-1 px-4'>

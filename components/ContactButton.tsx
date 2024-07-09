@@ -25,7 +25,7 @@ const ContactButton = () => {
       <HoverBorderGradient
         as='button'
         onClick={() => setIsOpen(true)}
-        containerClassName='rounded-full shadow-2xl shadow-zinc-900'
+        containerClassName='rounded-full'
         className='flex items-center space-x-2 bg-transparent py-3 px-6 text-sm font-semibold leading-6 text-white rounded-full'
         duration={1}
         clockwise>
