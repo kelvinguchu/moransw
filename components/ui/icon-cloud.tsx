@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
 import {
   Cloud,
   fetchSimpleIcons,
@@ -10,7 +10,7 @@ import {
   SimpleIcon,
 } from "react-icon-cloud";
 
-export const cloudProps: Omit<ICloud, "children"> = {
+const cloudProps: Omit<ICloud, "children"> = {
   containerProps: {
     style: {
       display: "flex",
@@ -33,11 +33,10 @@ export const cloudProps: Omit<ICloud, "children"> = {
     outlineColour: "#0000",
     maxSpeed: 0.04,
     minSpeed: 0.02,
-    // dragControl: false,
   },
 };
 
-export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
+const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
   const bgHex = theme === "light" ? "#f3f2ef" : "#080510";
   const fallbackHex = theme === "light" ? "#6e6e73" : "#ffffff";
   const minContrastRatio = theme === "dark" ? 2 : 1.2;
@@ -57,13 +56,13 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
   });
 };
 
-export type DynamicCloudProps = {
+type DynamicCloudProps = {
   iconSlugs: string[];
 };
 
 type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>;
 
-export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
+function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const [data, setData] = useState<IconData | null>(null);
   const { theme } = useTheme();
 
@@ -72,7 +71,7 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   }, [iconSlugs]);
 
   const renderedIcons = useMemo(() => {
-    if (!data) return null;
+    if (!data) return [];
 
     return Object.values(data.simpleIcons).map((icon) =>
       renderCustomIcon(icon, theme || "light")
@@ -80,9 +79,10 @@ export default function IconCloud({ iconSlugs }: DynamicCloudProps) {
   }, [data, theme]);
 
   return (
-    // @ts-ignore
-    <Cloud {...cloudProps}>
-      <>{renderedIcons}</>
-    </Cloud>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Cloud {...cloudProps}>{renderedIcons}</Cloud>
+    </Suspense>
   );
 }
+
+export default IconCloud;
