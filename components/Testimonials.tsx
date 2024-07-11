@@ -71,7 +71,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
         // light styles
         "bg-white border-gray-300 hover:bg-gray-50",
         // dark styles
-        "dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+        "dark:bg-gradient-to-br from-black via-gray-900 to-black dark:border-gray-700 dark:hover:bg-gray-700"
       )}>
       <div className='flex flex-col items-center md:items-start gap-2'>
         <img
