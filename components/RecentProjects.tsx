@@ -17,7 +17,7 @@ const VerticalAccordion = () => {
   return (
     <section
       id='recent-projects'
-      className='p-6 bg-white dark:bg-gradient-to-br from-black via-gray-900 to-black rounded-lg mx-5 md:mx-0 shadow-lg'>
+      className='p-6 bg-white dark:bg-gradient-to-br from-black via-gray-900 to-black rounded-lg mx-5 md:mx-5 shadow-lg'>
       <Header
         icon={
           <FiArchive className='mx-3 text-violet-400 animate-pulse-spin w-8 h-8' />
