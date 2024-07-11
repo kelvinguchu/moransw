@@ -9,7 +9,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { Poppins } from "next/font/google";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient"; 
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -40,7 +40,7 @@ const ContactButton = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className='fixed inset-0 z-40 grid place-items-center bg-black/60 backdrop-blur-md p-8 overflow-y-scroll cursor-pointer'>
+            className='fixed inset-0 z-40 grid place-items-center bg-black/60 dark:bg-black/80 backdrop-blur-md p-8 overflow-y-scroll cursor-pointer'>
             <motion.div
               initial={{ scale: 0.7 }}
               animate={{
@@ -49,9 +49,11 @@ const ContactButton = () => {
               }}
               exit={{ scale: 0.7 }}
               onClick={(e) => e.stopPropagation()}
-              className='relative z-50 w-full max-w-lg p-6 bg-gray-800 bg-opacity-40 backdrop-blur-md text-white rounded-lg shadow-xl border border-white/10 overflow-hidden'>
+              className='relative z-50 w-full max-w-lg p-6 bg-white dark:bg-gray-800 dark:bg-opacity-40 backdrop-blur-md text-gray-900 dark:text-white rounded-lg shadow-xl border border-gray-200 dark:border-white/10 overflow-hidden'>
               <div className='relative z-10 text-center'>
-                <h3 className='text-3xl font-bold mb-8'>Contact Information</h3>
+                <h3 className='text-2xl md:text-3xl font-bold mb-8'>
+                  Contact Information
+                </h3>
                 <div className='space-y-4'>
                   <ContactItem
                     icon={<FaWhatsapp />}
@@ -86,7 +88,7 @@ const ContactButton = () => {
                 </div>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className='mt-6 w-full py-2 text-white border border-white/20 rounded transition-colors hover:bg-white/10 hover:text-gray-300'>
+                  className='mt-6 w-full py-2 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 rounded transition-colors hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-700 dark:hover:text-gray-300'>
                   Close
                 </button>
               </div>
@@ -114,11 +116,13 @@ const ContactItem = ({
       href={href}
       target='_blank'
       rel='noopener noreferrer'
-      className='flex items-center gap-3 text-lg py-2 px-4 border  bg-transparent rounded-lg transition-colors duration-300 hover:bg-gray-600'>
+      className='flex items-center gap-3 text-lg py-2 px-4 border border-gray-300 dark:border-gray-600 bg-transparent rounded-lg transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-gray-600'>
       <span className='text-xl'>{icon}</span>
       <div className='text-left'>
         <span className='font-semibold'>{label}</span>
-        <div className='text-sm text-gray-300'>{contact}</div>
+        <div className='text-sm text-gray-500 dark:text-gray-300'>
+          {contact}
+        </div>
       </div>
     </a>
   );
