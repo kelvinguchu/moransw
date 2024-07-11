@@ -23,7 +23,7 @@ const flipWords = ["1. Design", "2. Develop", "3. Integrate"];
 const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#FF8333"];
 
 const Hero: FC = () => (
-  <main className='relative flex flex-col-reverse md:flex-row w-full overflow-hidden group'>
+  <main className='relative max-w-[90%] mx-auto flex flex-col-reverse md:flex-row w-full overflow-hidden group'>
     <GlowingStarsBackground className='absolute inset-0' />
 
     <div className='w-full md:w-1/2 pt-6 md:pt-[70px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
