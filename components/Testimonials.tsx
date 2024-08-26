@@ -3,11 +3,13 @@ import Marquee from "@/components/magicui/marquee";
 import { Space_Grotesk } from "next/font/google";
 import Header from "./Header";
 import { FiSmile } from "react-icons/fi";
+import { memo } from "react";
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-spacegrotesk",
 });
+
 
 const reviews = [
   {
@@ -58,44 +60,41 @@ interface ReviewCardProps {
   body: string;
 }
 
-const ReviewCard: React.FC<ReviewCardProps> = ({
-  img,
-  name,
-  username,
-  body,
-}) => {
-  return (
-    <figure
-      className={cn(
-        "relative h-56 md:h-auto w-full md:w-64 cursor-pointer overflow-hidden rounded-xl border p-4 shadow-lg transition-transform transform hover:scale-105",
-        // light styles
-        "bg-white border-gray-300 hover:bg-gray-50",
-        // dark styles
-        "dark:bg-gradient-to-br from-black via-gray-900 to-black dark:border-gray-700 dark:hover:bg-gray-700"
-      )}>
-      <div className='flex flex-col items-center md:items-start gap-2'>
-        <img
-          className='rounded-full border border-gray-300 dark:border-gray-700'
-          width='48'
-          height='48'
-          alt={name}
-          src={img}
-        />
-        <div className='flex flex-col items-center md:items-start'>
-          <figcaption className='text-base font-semibold text-gray-900 dark:text-gray-100 text-center md:text-left'>
-            {name}
-          </figcaption>
-          <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-center md:text-left'>
-            {username}
-          </p>
+const ReviewCard: React.FC<ReviewCardProps> = memo(
+  ({ img, name, username, body }) => {
+    return (
+      <figure
+        aria-label={`Review from ${name}, username: ${username}`}
+        className={cn(
+          "relative h-56 md:h-auto w-full md:w-64 cursor-pointer overflow-hidden rounded-xl border p-4 shadow-lg transition-transform transform hover:scale-105",
+          "bg-white border-gray-300 hover:bg-gray-50",
+          "dark:bg-gradient-to-br from-black via-gray-900 to-black dark:border-gray-700 dark:hover:bg-gray-700"
+        )}>
+        <div className='flex flex-col items-center md:items-start gap-2'>
+          <img
+            className='rounded-full border border-gray-300 dark:border-gray-700'
+            width='48'
+            height='48'
+            alt={name}
+            src={img}
+            loading='lazy' // Lazy load images for better performance
+          />
+          <div className='flex flex-col items-center md:items-start'>
+            <figcaption className='text-base font-semibold text-gray-900 dark:text-gray-100 text-center md:text-left'>
+              {name}
+            </figcaption>
+            <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-center md:text-left'>
+              {username}
+            </p>
+          </div>
         </div>
-      </div>
-      <blockquote className='mt-2 text-sm text-gray-700 dark:text-gray-300 text-center md:text-left'>
-        {body}
-      </blockquote>
-    </figure>
-  );
-};
+        <blockquote className='mt-2 text-sm text-gray-700 dark:text-gray-300 text-center md:text-left'>
+          {body}
+        </blockquote>
+      </figure>
+    );
+  }
+);
 
 const MarqueeDemo: React.FC = () => {
   return (
@@ -135,4 +134,4 @@ const MarqueeDemo: React.FC = () => {
   );
 };
 
-export default MarqueeDemo;
+export default memo(MarqueeDemo);

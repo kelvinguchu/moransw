@@ -4,7 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import useWindowSize from "../hooks/useWindowSize";
 import Header from "./Header";
 import { Space_Grotesk } from "next/font/google";
-import { FiArchive, FiExternalLink } from "react-icons/fi"; // Import the icon
+import { FiArchive, FiExternalLink } from "react-icons/fi";
+import Image from "next/image"; // Importing Next.js Image component for optimization
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -17,7 +18,7 @@ const VerticalAccordion = () => {
   return (
     <section
       id='recent-projects'
-      className='p-6 bg-white dark:bg-gradient-to-br  sm:max-w-[90vw] md:max-w-6xl lg:max-w-7xl from-black via-gray-900 to-black rounded mx-auto shadow-lg'>
+      className='p-6 bg-white dark:bg-gradient-to-br sm:max-w-[90vw] md:max-w-6xl lg:max-w-7xl from-black via-gray-900 to-black rounded mx-auto shadow-lg'>
       <Header
         icon={
           <FiArchive className='mx-3 text-violet-400 animate-pulse-spin w-8 h-8' />
@@ -65,6 +66,7 @@ const Panel = ({
 }: PanelProps) => {
   const { width } = useWindowSize();
   const isOpen = open === id;
+  const isMobile = width && width <= 768;
 
   return (
     <>
@@ -88,33 +90,33 @@ const Panel = ({
         {isOpen && (
           <motion.div
             key={`panel-${id}`}
-            variants={width && width > 1024 ? panelVariants : panelVariantsSm}
+            variants={isMobile ? mobileVariants : panelVariants}
             initial='closed'
             animate='open'
             exit='closed'
             className='w-full h-full overflow-hidden relative flex items-end rounded-lg shadow-inner'>
-            <div
-              style={{
-                backgroundImage: `url(${imgSrc})`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                display: "block",
-              }}
-              className='w-full h-full absolute inset-0'></div>
+            <Image
+              src={imgSrc}
+              alt={title}
+              layout='fill'
+              objectFit='cover'
+              className='absolute inset-0'
+            />
             <motion.div
               variants={descriptionVariants}
               initial='closed'
               animate='open'
               exit='closed'
-              className='w-full h-full'></motion.div>
+              className='w-full h-full'
+            />
             <div className='px-6 py-4 bg-white/75 dark:bg-black/75 backdrop-blur-md text-white rounded-b-lg absolute bottom-0 w-full'>
-                <a
-                  href={link}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='hover:underline flex items-center text-black dark:text-white'>
-                  {description} <FiExternalLink className='ml-2' />
-                </a>
+              <a
+                href={link}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='hover:underline flex items-center text-black dark:text-white'>
+                {description} <FiExternalLink className='ml-2' />
+              </a>
             </div>
           </motion.div>
         )}
@@ -125,14 +127,15 @@ const Panel = ({
 
 export default VerticalAccordion;
 
+// Animation variants
 const panelVariants = {
-  open: { width: "100%", height: "100%" },
-  closed: { width: "0%", height: "100%" },
+  open: { scale: 1, opacity: 1, transition: { duration: 0.5 } },
+  closed: { scale: 0.95, opacity: 0, transition: { duration: 0.3 } },
 };
 
-const panelVariantsSm = {
-  open: { width: "100%", height: "200px" },
-  closed: { width: "100%", height: "0px" },
+const mobileVariants = {
+  open: { opacity: 1, height: "200px", transition: { duration: 0.4 } },
+  closed: { opacity: 0, height: "0px", transition: { duration: 0.3 } },
 };
 
 const descriptionVariants = {
@@ -144,6 +147,7 @@ const descriptionVariants = {
   closed: { opacity: 0, y: "100%" },
 };
 
+// Project items
 const items = [
   {
     id: 1,

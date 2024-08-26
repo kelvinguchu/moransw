@@ -51,13 +51,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
             className='cursor-pointer flex items-center gap-1 px-4'>
             <Image
               src={mode === "dark" ? "/logo.png" : "/logo-bw.png"}
-              width={34}
-              height={34}
+              width={150}
+              height={60}
               alt='Moran logo'
             />
-            <h1 className='text-26 font-ibm-plex-serif font-bold text-gray-900 dark:text-white'>
-              Moran Softwares
-            </h1>
+           
           </Link>
           <div className='mobilenav-sheet flex-1 overflow-y-auto'>
             <SheetClose asChild>
