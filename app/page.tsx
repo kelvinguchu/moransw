@@ -61,7 +61,7 @@ export default function Home() {
          </section>
          <Divider />
          <section id='recent-projects'>
-           {/* <RecentProjects /> */}
+           <RecentProjects />
          </section>
          <Divider />
          <section id='pricing'>
