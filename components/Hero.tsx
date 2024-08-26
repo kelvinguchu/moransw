@@ -52,7 +52,7 @@ const Hero: FC = () => (
       </div>
     </div>
 
-    <div className='w-full md:w-1/2 relative z-1 flex justify-center md:justify-end'>
+    <div className='w-full md:w-3/4 relative z-1 flex justify-center md:justify-end'>
       <Globe />
     </div>
   </main>

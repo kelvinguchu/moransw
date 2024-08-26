@@ -46,38 +46,36 @@ export default function Home() {
     return () => clearTimeout(timer); // Cleanup the timer
   }, []);
 
-  return (
-    <main className='flex w-full min-h-screen flex-col items-center justify-between pt-24'>
-  
-        <>
-          <TracingBeam>
-            <Suspense >
-              <Hero />
-              <ProductsHero />
-              <section id='services'>
-                <Services />
-              </section>
-              <Divider />
-              <section id='process'>
-                <Process />
-              </section>
-              <Divider />
-              <section id='recent-projects'>
-                <RecentProjects />
-              </section>
-              <Divider />
-              <IconsCloud />
-              <Divider />
-              <section id='pricing'>
-                <Pricing />
-              </section>
-              <Divider />
-              <Testimonials />
-              <Divider />
-              <Footer />
-            </Suspense>
-          </TracingBeam>
-        </>
-    </main>
-  );
+ return (
+   <main className='flex w-full min-h-screen flex-col items-center justify-between pt-24'>
+     <TracingBeam>
+       <Suspense>
+         <Hero />
+         <ProductsHero />
+         <section id='services'>
+           <Services />
+         </section>
+         <Divider />
+         <section id='process'>
+           <Process />
+         </section>
+         <Divider />
+         <section id='recent-projects'>
+           <RecentProjects />
+         </section>
+         <Divider />
+         <section id='pricing'>
+           <Pricing />
+         </section>
+         <Divider />
+         <Testimonials />
+         <Divider />
+         <IconsCloud />
+         <Divider />
+         <Footer />
+       </Suspense>
+     </TracingBeam>
+   </main>
+ );
+
 }

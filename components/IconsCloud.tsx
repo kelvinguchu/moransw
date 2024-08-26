@@ -1,5 +1,4 @@
 import IconCloud from "@/components/ui/icon-cloud";
-import TypingAnimation from "@/components/ui/typing-animation";
 
 const slugs = [
   "typescript",
@@ -42,16 +41,6 @@ const slugs = [
 export function IconsCloud() {
   return (
     <section className='w-[95%] mx-auto'>
-      <TypingAnimation
-        className='text-4xl font-bold text-black dark:text-white'
-        texts={[
-          "No Limits 😤😤",
-          "Aim for the Stars ✨",
-          "Web Gurus 🚀",
-          "We the Best on 🌍🌍",
-        ]}
-        minHeight='3rem' // Set a minimum height to prevent content shift
-      />
       <div className='relative flex h-full w-full max-w-[40rem] items-center justify-center overflow-hidden rounded-lg bg-background mx-auto px-10 pb-10 pt-0'>
         <IconCloud iconSlugs={slugs} />
       </div>
