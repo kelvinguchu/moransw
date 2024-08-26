@@ -399,7 +399,7 @@ export function Globe() {
   ];
 
   return (
-    <div className='relative w-full h-[100%] md:h-[100%] flex justify-center items-center'>
+    <div className='relative w-full h-[400px] md:h-[100%] flex justify-center items-center'>
       <div className='relative w-full h-full overflow-hidden'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
