@@ -1,4 +1,5 @@
-import React, { memo } from "react";
+// components/PricingCard.tsx
+import React from "react";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
@@ -12,13 +13,11 @@ interface PricingCardProps {
   items: { description: string; price: string; technologies: string[] }[];
 }
 
-const PricingCard: React.FC<PricingCardProps> = memo(({ title, items }) => {
+const PricingCard: React.FC<PricingCardProps> = ({ title, items }) => {
   return (
     <div
-      className={`${poppins.className} border-1 rounded-[1rem] p-6 shadow-xl bg-white dark:bg-gradient-to-br from-black via-gray-900 to-black border-gradient max-w-[21rem] mx-auto`}>
-      <h2
-        className='text-2xl font-extrabold mb-6 text-gray-900 dark:text-white'
-        aria-label={`Pricing package: ${title}`}>
+      className={` ${poppins.className} border-1  rounded-[1rem] p-6 shadow-xl bg-white dark:bg-gradient-to-br from-black via-gray-900 to-black border-gradient max-w-[21rem] md:mx-auto sm:mx-auto mx-auto`}>
+      <h2 className='text-2xl font-extrabold mb-6 text-gray-900 dark:text-white'>
         {title}
       </h2>
       <ul>
@@ -38,6 +37,6 @@ const PricingCard: React.FC<PricingCardProps> = memo(({ title, items }) => {
       </ul>
     </div>
   );
-});
+};
 
 export default PricingCard;
