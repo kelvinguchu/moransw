@@ -70,7 +70,7 @@ export default function Home() {
          <Divider />
          <Testimonials />
          <Divider />
-         <IconsCloud />
+         {/* <IconsCloud /> */}
          <Divider />
          <Footer />
        </Suspense>
