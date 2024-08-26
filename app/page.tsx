@@ -34,7 +34,6 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"), {
   suspense: true,
 });
 const Footer = dynamic(() => import("@/components/Footer"), { suspense: true });
-const Loader = dynamic(() => import("@/components/Loader"), { suspense: true });
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,17 +48,10 @@ export default function Home() {
 
   return (
     <main className='flex w-full min-h-screen flex-col items-center justify-between pt-24'>
-      {isLoading ? (
-        <Suspense fallback={<Loader />}>
-          <Loader />
-        </Suspense>
-      ) : (
+  
         <>
-          <Suspense fallback={<Loader />}>
-            <Navbar />
-          </Suspense>
           <TracingBeam>
-            <Suspense fallback={<Loader />}>
+            <Suspense >
               <Hero />
               <ProductsHero />
               <section id='services'>
@@ -86,7 +78,6 @@ export default function Home() {
             </Suspense>
           </TracingBeam>
         </>
-      )}
     </main>
   );
 }

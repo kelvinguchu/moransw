@@ -1,11 +1,11 @@
 "use client";
 import { FC } from "react";
-import { FlipWords } from "./FlipWords";
 import { Space_Grotesk, Poppins } from "next/font/google";
 import ContactButton from "./ContactButton";
 import { Globe } from "./Globe";
 import { Reveal } from "./Reveal";
-import { GlowingStarsBackground } from "@/components/ui/glowing-stars";
+import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern";
+import { cn } from "@/lib/utils";
 
 // Initialize fonts
 const spacegrotesk = Space_Grotesk({
@@ -19,14 +19,21 @@ const poppins = Poppins({
   weight: "300",
 });
 
-const flipWords = ["1. Design", "2. Develop", "3. Integrate"];
-const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#FF8333"];
 
 const Hero: FC = () => (
   <main className='relative max-w-[90%] mx-auto flex flex-col-reverse md:flex-row w-full overflow-hidden group'>
-    <GlowingStarsBackground className='absolute inset-0' />
+    <AnimatedGridPattern
+      numSquares={30}
+      maxOpacity={0.1}
+      duration={3}
+      repeatDelay={1}
+      className={cn(
+        "[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
+        "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
+      )}
+    />
 
-    <div className='w-full md:w-1/2 pt-6 md:pt-[70px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
+    <div className='w-full md:w-1/2 pt-6 md:pt-[90px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
       <Reveal>
         <h2
           className={`${spacegrotesk.className} text-4xl md:text-6xl font-semibold mb-2 md:mb-4 leading-snug`}>
@@ -39,14 +46,6 @@ const Hero: FC = () => (
       <h3
         className={`${poppins.className} w-full text-sm md:text-xl font-medium mb-2 md:mb-4`}>
         for ambitious businesses and innovators.
-      </h3>
-      <h3 className='text-lg md:text-xl font-medium'>
-        <FlipWords
-          words={flipWords}
-          colors={colors}
-          duration={3000}
-          className='inline-block'
-        />
       </h3>
       <div className='mt-8 md:mt-12'>
         <ContactButton />

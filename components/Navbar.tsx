@@ -52,14 +52,12 @@ function Navbar({ className }: { className?: string }) {
       <div className='flex items-center space-x-4'>
         <Image
           src={mode === "dark" ? "/logo.png" : "/logo-bw.png"}
-          width={40}
-          height={40}
+          width={150}
+          height={60}
           alt='logo'
           className='rounded-full'
         />
-        <h1 className={`${poppins.className} text-gray-900 dark:text-white`}>
-          Moran Softwares
-        </h1>
+    
       </div>
 
       {/* Desktop Menu: Center */}

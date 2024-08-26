@@ -108,7 +108,6 @@ const Panel = ({
               exit='closed'
               className='w-full h-full'></motion.div>
             <div className='px-6 py-4 bg-white/75 dark:bg-black/75 backdrop-blur-md text-white rounded-b-lg absolute bottom-0 w-full'>
-              <p>
                 <a
                   href={link}
                   target='_blank'
@@ -116,7 +115,6 @@ const Panel = ({
                   className='hover:underline flex items-center text-black dark:text-white'>
                   {description} <FiExternalLink className='ml-2' />
                 </a>
-              </p>
             </div>
           </motion.div>
         )}
@@ -163,13 +161,27 @@ const items = [
   },
   {
     id: 3,
+    title: "UMS Kenya",
+    imgSrc: "/umskenya.webp",
+    description: "visit site",
+    link: "https://umskenya.com/",
+  },
+  {
+    id: 4,
+    title: "Njenga Farm",
+    imgSrc: "/njengafarm.webp",
+    description: "visit site",
+    link: "https://astraque.com/",
+  },
+  {
+    id: 5,
     title: "Moran Bank Limited",
     imgSrc: "/moranbank.webp",
     description: "visit site",
     link: "https://moranbank.vercel.app/",
   },
   {
-    id: 4,
+    id: 6,
     title: "Youtubify",
     imgSrc: "/youtubify.webp",
     description: "visit site",
