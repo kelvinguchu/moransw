@@ -21,7 +21,7 @@ const poppins = Poppins({
 
 
 const Hero: FC = () => (
-  <main className='relative max-w-[90%] mx-auto flex flex-col-reverse md:flex-row w-full overflow-hidden group'>
+  <main className='relative max-w-[100%] mx-auto flex flex-col-reverse md:flex-row w-full overflow-hidden group'>
     <AnimatedGridPattern
       numSquares={30}
       maxOpacity={0.1}
@@ -51,7 +51,7 @@ const Hero: FC = () => (
       </div>
     </div>
 
-    <div className='w-full  relative z-1000 md:-mt-10 flex justify-center md:justify-end'>
+    <div className='w-full relative z-1000 md:-mt-10 flex justify-center md:justify-end'>
       <Globe />
     </div>
   </main>
