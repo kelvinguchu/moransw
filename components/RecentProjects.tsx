@@ -1,11 +1,12 @@
 "use client";
+
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useWindowSize from "../hooks/useWindowSize";
 import Header from "./Header";
 import { Space_Grotesk } from "next/font/google";
 import { FiArchive, FiExternalLink } from "react-icons/fi";
-import Image from "next/image"; // Importing Next.js Image component for optimization
+import Image from "next/image";
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -86,7 +87,7 @@ const Panel = ({
         <span className='w-4 h-4 bg-indigo-600 group-hover:bg-indigo-700 transition-colors border-r border-b lg:border-b-0 lg:border-t-[1px] border-transparent rotate-45 absolute bottom-0 lg:bottom-[50%] right-[50%] lg:right-0 translate-y-[50%] translate-x-[50%] z-20' />
       </button>
 
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             key={`panel-${id}`}
@@ -94,6 +95,7 @@ const Panel = ({
             initial='closed'
             animate='open'
             exit='closed'
+            transition={{ type: "tween", ease: "easeInOut", duration: 0.5 }} // Improved transition
             className='w-full h-full overflow-hidden relative flex items-end rounded-lg shadow-inner'>
             <Image
               src={imgSrc}
@@ -107,6 +109,7 @@ const Panel = ({
               initial='closed'
               animate='open'
               exit='closed'
+              transition={{ type: "tween", ease: "easeInOut", duration: 0.5 }} // Synchronized transition for smoothness
               className='w-full h-full'
             />
             <div className='px-6 py-4 bg-white/75 dark:bg-black/75 backdrop-blur-md text-white rounded-b-lg absolute bottom-0 w-full'>
@@ -129,8 +132,8 @@ export default VerticalAccordion;
 
 // Animation variants
 const panelVariants = {
-  open: { scale: 1, opacity: 1, transition: { duration: 0.5 } },
-  closed: { scale: 0.95, opacity: 0, transition: { duration: 0.3 } },
+  open: { scale: 1, opacity: 1, width: "100%", height: "100%" },
+  closed: { scale: 0.95, opacity: 0, width: "0%", height: "100%" },
 };
 
 const mobileVariants = {
@@ -142,7 +145,6 @@ const descriptionVariants = {
   open: {
     opacity: 1,
     y: "0%",
-    transition: { delay: 0.125 },
   },
   closed: { opacity: 0, y: "100%" },
 };

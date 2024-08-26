@@ -57,7 +57,6 @@ function Navbar({ className }: { className?: string }) {
           alt='logo'
           className='rounded-full'
         />
-    
       </div>
 
       {/* Desktop Menu: Center */}
@@ -86,6 +85,19 @@ function Navbar({ className }: { className?: string }) {
             active={active}
             item='Pricing'
             href='#pricing' // Link to the section
+          />
+          {/* Call Numbers as Menu Items */}
+          <MenuItem
+            setActive={setActive}
+            active={active}
+            item='0792 554525'
+            href='tel:+254792554525' // Link to make the call
+          />
+          <MenuItem
+            setActive={setActive}
+            active={active}
+            item='0792 194217'
+            href='tel:+254792194217' // Link to make the call
           />
         </Menu>
       </div>

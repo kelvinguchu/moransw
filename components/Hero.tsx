@@ -5,6 +5,7 @@ import ContactButton from "./ContactButton";
 import { Globe } from "./Globe";
 import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
+import DottedButton from "./DottedButton";
 
 // Initialize fonts
 const spacegrotesk = Space_Grotesk({
@@ -32,7 +33,8 @@ const Hero: FC = () => (
       )}
     />
 
-    <div className='w-full  pt-6 md:pt-[90px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
+    <div className='w-full  pt-6 md:pt-[60px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
+      <DottedButton />
       <h2
         className={`${spacegrotesk.className} text-4xl md:text-6xl font-semibold mb-2 md:mb-4 leading-snug`}>
         We build Websites, Web Applications <br />{" "}

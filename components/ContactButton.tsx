@@ -1,15 +1,21 @@
 "use client";
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+
+import React, { useEffect, useState } from "react";
+import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import Image from "next/image";
 import {
   FaWhatsapp,
+  FaInstagram,
+  FaFacebook,
+  FaTiktok,
+  FaPhoneAlt,
   FaEnvelope,
   FaTwitter,
-  FaInstagram,
-  FaLinkedin,
 } from "react-icons/fa";
 import { Poppins } from "next/font/google";
-import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,124 +23,184 @@ const poppins = Poppins({
   weight: "500",
 });
 
-const ContactButton = () => {
+const ContactButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [copied, setCopied] = useState<string | null>(null);
+  const [mode, setMode] = useState<string>("dark");
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(text);
+    setTimeout(() => setCopied(null), 2000); // Reset after 2 seconds
+  };
+
+  useEffect(() => {
+    if (mode === "dark") {
+      document.documentElement.classList.add("dark");
+      document.documentElement.classList.remove("light");
+    } else {
+      document.documentElement.classList.add("light");
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", mode);
+  }, [mode]);
 
   return (
-    <>
-      <HoverBorderGradient
-        as='button'
-        onClick={() => setIsOpen(true)}
-        containerClassName='rounded-full'
-        className='flex items-center space-x-2 bg-transparent py-3 px-6 text-sm font-semibold leading-6 text-white rounded-full'
-        duration={1}
-        clockwise>
-        <Logo />
-        <span className={`${poppins.className}`}>Get In Touch Now</span>
-      </HoverBorderGradient>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <HoverBorderGradient
+          as='button'
+          onClick={() => setIsOpen(true)}
+          containerClassName='rounded-full'
+          className='flex items-center space-x-2 bg-transparent py-3 px-6 text-sm font-semibold leading-6 text-white rounded-full'
+          duration={1}
+          clockwise>
+          <span className={poppins.className}>Get In Touch Now</span>
+        </HoverBorderGradient>
+      </DialogTrigger>
+      <DialogContent
+        className={cn(
+          "bg-[#f2eaff] dark:bg-black text-gray-900 dark:text-white p-6 rounded-[15px] md:rounded-2xl shadow-xl w-full max-w-md border border-gray-300 dark:border-indigo-600",
+          "flex flex-col items-center space-y-6"
+        )}>
+        {/* Logo */}
+        <Image
+          src={mode === "dark" ? "/logo.png" : "/logo-bw.png"}
+          width={150}
+          height={60}
+          alt='logo'
+          className='rounded-full'
+        />
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
-            className='fixed inset-0 z-40 grid place-items-center bg-black/60 dark:bg-black/80 backdrop-blur-md p-8 overflow-y-scroll cursor-pointer'>
-            <motion.div
-              initial={{ scale: 0.7 }}
-              animate={{
-                scale: 1,
-                transition: { type: "spring", stiffness: 120 },
-              }}
-              exit={{ scale: 0.7 }}
-              onClick={(e) => e.stopPropagation()}
-              className='relative mt-6 z-50 w-full max-h-[90vh] max-w-lg p-6 bg-white dark:bg-gray-800 dark:bg-opacity-40 backdrop-blur-md text-gray-900 dark:text-white rounded shadow-xl border border-gray-200 dark:border-white/10 overflow-hidden'>
-              <div className='relative z-10 text-center'>
-                <div className='space-y-4'>
-                  <ContactItem
-                    icon={<FaWhatsapp />}
-                    label='WhatsApp'
-                    contact='+254725799783'
-                    href='https://wa.me/254725799783'
-                  />
-                  <ContactItem
-                    icon={<FaEnvelope />}
-                    label='Email'
-                    contact='kelvinguchu5@gmail.com'
-                    href='mailto:kelvinguchu5@gmail.com'
-                  />
-                  <ContactItem
-                    icon={<FaTwitter />}
-                    label='Twitter'
-                    contact='@guchu_ke'
-                    href='https://twitter.com/guchu_ke'
-                  />
-                  <ContactItem
-                    icon={<FaInstagram />}
-                    label='Instagram'
-                    contact='@guchu_ke'
-                    href='https://instagram.com/guchu_ke'
-                  />
-                  <ContactItem
-                    icon={<FaLinkedin />}
-                    label='LinkedIn'
-                    contact='Kelvin Guchu'
-                    href='https://www.linkedin.com/in/kelvin-guchu-28b087222/'
-                  />
-                </div>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className='mt-6 w-full py-2 text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 rounded transition-colors hover:bg-gray-200 dark:hover:bg-white/10 hover:text-gray-700 dark:hover:text-gray-300'>
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+        {/* Contact Info */}
+        <div className='space-y-4 text-center'>
+          <ContactItem
+            icon={<FaPhoneAlt />}
+            label='Call Jeff'
+            contact='+254 792 554525'
+            onCopy={() => handleCopy("+254 792 554525")}
+            copied={copied === "+254 792 554525"}
+            href='tel:+254792554525'
+          />
+          <ContactItem
+            icon={<FaPhoneAlt />}
+            label='Call Kelvin'
+            contact='+254 792 194217'
+            onCopy={() => handleCopy("+254 792 194217")}
+            copied={copied === "+254 792 194217"}
+            href='tel:+254792194217'
+          />
+          <ContactItem
+            icon={<FaEnvelope />}
+            label='Email'
+            contact='astraquesoftwares@gmail.com'
+            onCopy={() => handleCopy("astraquesoftwares@gmail.com")}
+            copied={copied === "astraquesoftwares@gmail.com"}
+            href='#'
+          />
+        </div>
+
+        {/* Social Media Links */}
+        <div className='flex space-x-4 text-lg'>
+          <SocialLink href='https://wa.me/254792554525' icon={<FaWhatsapp />} />
+          <SocialLink
+            href='https://www.instagram.com/astraque_softwares/'
+            icon={<FaInstagram />}
+          />
+          <SocialLink
+            href='https://web.facebook.com/profile.php?id=61565098643904'
+            icon={<FaFacebook />}
+          />
+          <SocialLink
+            href='https://www.tiktok.com/@astraque_softwares?lang=en'
+            icon={<FaTiktok />}
+          />
+          <SocialLink
+            href='https://x.com/astraque_kenya'
+            icon={<FaTwitter />}
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 
-const ContactItem = ({
-  icon,
-  label,
-  contact,
-  href,
-}: {
+// Contact Item Component
+interface ContactItemProps {
   icon: React.ReactNode;
   label: string;
   contact: string;
+  onCopy?: () => void;
+  copied?: boolean;
   href: string;
-}) => {
+}
+
+function ContactItem({
+  icon,
+  label,
+  contact,
+  onCopy,
+  copied,
+  href,
+}: ContactItemProps) {
+  return (
+    <div className='relative w-full'>
+      <a
+        href={href}
+        onClick={(e) => {
+          if (label === "Email") {
+            e.preventDefault();
+            window.open(
+              `https://mail.google.com/mail/?view=cm&fs=1&to=${contact}`,
+              "_blank"
+            );
+          }
+        }}
+        className='flex items-start justify-between w-full py-2 px-4 bg-white border border-indigo-600 dark:bg-transparent rounded-[0.625rem] shadow hover:bg-gray-100 dark:hover:bg-gray-900 transition'>
+        <span className='flex items-center space-x-3'>
+          <span className='text-xl'>{icon}</span>
+          <span className='flex flex-col items-start'>
+            <span className='font-semibold'>{label}</span>
+            <span className='text-gray-500 dark:text-gray-400'>{contact}</span>
+          </span>
+        </span>
+        {onCopy && (
+          <Badge
+            onClick={(e) => {
+              e.preventDefault();
+              onCopy();
+            }}
+            className='cursor-pointer bg-indigo-600 text-white text-[10px] rounded-full hover:border border-indigo-600 px-1.5 py-1'>
+            {copied
+              ? label === "Email"
+                ? "Email Copied"
+                : "Number Copied"
+              : label === "Email"
+              ? "Copy Email"
+              : "Copy Number"}
+          </Badge>
+        )}
+      </a>
+    </div>
+  );
+}
+
+// Social Media Link Component
+interface SocialLinkProps {
+  href: string;
+  icon: React.ReactNode;
+}
+
+function SocialLink({ href, icon }: SocialLinkProps) {
   return (
     <a
       href={href}
       target='_blank'
       rel='noopener noreferrer'
-      className='flex items-center gap-3 text-lg py-2 px-4 border border-gray-300 dark:border-gray-600 bg-transparent rounded transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-gray-600'>
-      <span className='text-xl'>{icon}</span>
-      <div className='text-left'>
-        <span className='font-semibold'>{label}</span>
-        <div className='text-sm text-gray-500 dark:text-gray-300'>
-          {contact}
-        </div>
-      </div>
+      className='p-2 bg-white dark:bg-indigo-600 rounded-full shadow hover:bg-gray-100 dark:hover:bg-gray-700 transition'>
+      {icon}
     </a>
   );
-};
-
-const Logo = () => {
-  return (
-    <img
-      src='/logo.svg'
-      alt='Logo'
-      width='24'
-      height='24'
-      className='h-6 w-6'
-    />
-  );
-};
+}
 
 export default ContactButton;
