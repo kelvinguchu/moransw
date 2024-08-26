@@ -3,7 +3,6 @@ import { FC } from "react";
 import { Space_Grotesk, Poppins } from "next/font/google";
 import ContactButton from "./ContactButton";
 import { Globe } from "./Globe";
-import { Reveal } from "./Reveal";
 import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
 
@@ -33,16 +32,14 @@ const Hero: FC = () => (
       )}
     />
 
-    <div className='w-full md:w-1/2 pt-6 md:pt-[90px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
-      <Reveal>
-        <h2
-          className={`${spacegrotesk.className} text-4xl md:text-6xl font-semibold mb-2 md:mb-4 leading-snug`}>
-          We build Websites, Web Applications <br />{" "}
-          <span className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>
-            & Softwares
-          </span>
-        </h2>
-      </Reveal>
+    <div className='w-full  pt-6 md:pt-[90px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
+      <h2
+        className={`${spacegrotesk.className} text-4xl md:text-6xl font-semibold mb-2 md:mb-4 leading-snug`}>
+        We build Websites, Web Applications <br />{" "}
+        <span className='bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent'>
+          & Softwares
+        </span>
+      </h2>
       <h3
         className={`${poppins.className} w-full text-sm md:text-xl font-medium mb-2 md:mb-4`}>
         for ambitious businesses and innovators.
@@ -52,7 +49,7 @@ const Hero: FC = () => (
       </div>
     </div>
 
-    <div className='w-full md:w-3/4 relative z-1 flex justify-center md:justify-end'>
+    <div className='w-full  relative z-1 md:-mt-10 flex justify-center md:justify-end'>
       <Globe />
     </div>
   </main>

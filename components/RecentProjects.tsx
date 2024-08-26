@@ -1,7 +1,7 @@
 "use client";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import useWindowSize from "../components/useWindowSize";
+import useWindowSize from "../hooks/useWindowSize";
 import Header from "./Header";
 import { Space_Grotesk } from "next/font/google";
 import { FiArchive, FiExternalLink } from "react-icons/fi"; // Import the icon
