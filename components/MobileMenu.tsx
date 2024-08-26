@@ -1,4 +1,3 @@
-// components/MobileMenu.tsx
 "use client";
 import React from "react";
 import {
@@ -55,7 +54,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
               height={60}
               alt='Moran logo'
             />
-           
           </Link>
           <div className='mobilenav-sheet flex-1 overflow-y-auto'>
             <SheetClose asChild>
@@ -88,6 +86,27 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
                     <p className='text-16 font-semibold'>Pricing</p>
                   </Link>
                 </SheetClose>
+
+                {/* Call Numbers as Menu Items */}
+                <SheetClose asChild>
+                  <Link
+                    href='tel:+254792554525'
+                    className='mobilenav-sheet_close w-full'>
+                    <p className='text-16 font-semibold'>
+                      0792 554525
+                    </p>
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    href='tel:+254792194217'
+                    className='mobilenav-sheet_close w-full'>
+                    <p className='text-16 font-semibold'>
+                     0792 194217
+                    </p>
+                  </Link>
+                </SheetClose>
+
                 <div className='flex justify-center'>
                   <DarkModeToggle onToggle={toggleTheme} currentTheme={mode} />
                 </div>
