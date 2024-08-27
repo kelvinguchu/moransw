@@ -7,8 +7,8 @@ import { ThemeProvider } from "next-themes";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Moran Softwares",
-  description: "bring your unicorn ideas to life",
+  title: "Astraque Softwares",
+  description: "Web Design, Web Development, Software Development and Graphic Design",
   icons: {
     icon: "/logo.png",
   },
