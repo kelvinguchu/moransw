@@ -3,7 +3,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Meteors } from "./ui/meteors";
-import useWindowSize from '../hooks/useWindowSize';
 
 const World = dynamic(
   () => import("@/components/ui/globe").then((m) => m.World),
@@ -13,9 +12,6 @@ const World = dynamic(
 );
 
 export function Globe() {
-  const { width } = useWindowSize();
-  const isMobile = width ? width < 768 : false; // Adjust this breakpoint as needed
-
   const globeConfig = {
     pointSize: 4,
     globeColor: "#062056",
@@ -402,10 +398,8 @@ export function Globe() {
     },
   ];
 
-  const simplifiedArcs = sampleArcs.slice(0, 10); // Use fewer arcs for mobile
-
   return (
-    <div className='relative w-full h-[400px] md:h-[100%] flex justify-center items-center'>
+    <div className='relative w-full h-[300px] md:h-[100%] flex justify-center items-center'>
       <div className='relative w-full h-full overflow-hidden'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -413,16 +407,16 @@ export function Globe() {
           transition={{ duration: 1 }}
           className='relative h-full w-full'>
           <div className='absolute top-0 left-0 right-0 bottom-0'>
-            <World data={isMobile ? simplifiedArcs : sampleArcs} globeConfig={globeConfig} />
+            <World data={sampleArcs} globeConfig={globeConfig} />
           </div>
         </motion.div>
-        {!isMobile && (
-          <Meteors
-            number={10}
-            className='absolute top-0 left-0 right-0 bottom-0 pointer-events-none'
-          />
-        )}
+        <div className='absolute inset-x-0 bottom-0 h-24 bg-transparent opacity-40 pointer-events-none'></div>
+        <div className='absolute inset-x-0 -top-10 h-24 bg-transparent opacity-40 pointer-events-none'></div>
       </div>
+      <Meteors
+        number={10}
+        className='absolute top-0 left-0 right-0 bottom-0 pointer-events-none'
+      />
     </div>
   );
 }

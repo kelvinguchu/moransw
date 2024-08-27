@@ -2,7 +2,6 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 import { motion } from "framer-motion";
-import useWindowSize from '../../hooks/useWindowSize';
 
 export const BackgroundGradient = ({
   children,
@@ -15,9 +14,6 @@ export const BackgroundGradient = ({
   containerClassName?: string;
   animate?: boolean;
 }) => {
-  const { width } = useWindowSize();
-  const isMobile = width !== undefined && width < 768; // Adjust this breakpoint as needed
-
   const variants = {
     initial: {
       backgroundPosition: "0 50%",
@@ -26,15 +22,14 @@ export const BackgroundGradient = ({
       backgroundPosition: ["0, 50%", "100% 50%", "0 50%"],
     },
   };
-
   return (
     <div className={cn("relative p-[4px] group", containerClassName)}>
       <motion.div
-        variants={animate && !isMobile ? variants : undefined}
-        initial={animate && !isMobile ? "initial" : undefined}
-        animate={animate && !isMobile ? "animate" : undefined}
+        variants={animate ? variants : undefined}
+        initial={animate ? "initial" : undefined}
+        animate={animate ? "animate" : undefined}
         transition={
-          animate && !isMobile
+          animate
             ? {
                 duration: 5,
                 repeat: Infinity,
@@ -51,11 +46,11 @@ export const BackgroundGradient = ({
         )}
       />
       <motion.div
-        variants={animate && !isMobile ? variants : undefined}
-        initial={animate && !isMobile ? "initial" : undefined}
-        animate={animate && !isMobile ? "animate" : undefined}
+        variants={animate ? variants : undefined}
+        initial={animate ? "initial" : undefined}
+        animate={animate ? "animate" : undefined}
         transition={
-          animate && !isMobile
+          animate
             ? {
                 duration: 5,
                 repeat: Infinity,

@@ -10,7 +10,7 @@ interface MeteorsProps {
 
 export const Meteors: React.FC<MeteorsProps> = ({ number = 20, className }) => {
   const { width } = useWindowSize();
-  const isMobile = width ? width < 768 : false; // Check if width is defined before comparison
+  const isMobile = width !== undefined ? width < 768 : false;
 
   const adjustedNumber = isMobile ? Math.floor(number / 2) : number;
 

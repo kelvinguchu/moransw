@@ -21,8 +21,6 @@ const spacegrotesk = Space_Grotesk({
 
 import { cn } from "@/lib/utils";
 
-import useWindowSize from '../../hooks/useWindowSize';
-
 interface VelocityScrollProps {
   text: string;
   default_velocity?: number;
@@ -45,9 +43,6 @@ export function VelocityScroll({
   default_velocity = 5,
   className,
 }: VelocityScrollProps) {
-  const { width } = useWindowSize();
-  const isMobile = width ? width < 768 : false; // Check if width is defined before comparison
-
   function ParallaxText({
     children,
     baseVelocity = 100,
@@ -89,23 +84,17 @@ export function VelocityScroll({
 
     const directionFactor = React.useRef<number>(1);
     useAnimationFrame((t, delta) => {
-      if (isMobile) {
-        // Simplified animation for mobile
-        baseX.set(baseX.get() + default_velocity * (delta / 1000));
-      } else {
-        // Existing complex animation for desktop
-        let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+      let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
-        if (velocityFactor.get() < 0) {
-          directionFactor.current = -1;
-        } else if (velocityFactor.get() > 0) {
-          directionFactor.current = 1;
-        }
-
-        moveBy += directionFactor.current * moveBy * velocityFactor.get();
-
-        baseX.set(baseX.get() + moveBy);
+      if (velocityFactor.get() < 0) {
+        directionFactor.current = -1;
+      } else if (velocityFactor.get() > 0) {
+        directionFactor.current = 1;
       }
+
+      moveBy += directionFactor.current * moveBy * velocityFactor.get();
+
+      baseX.set(baseX.get() + moveBy);
     });
 
     return (

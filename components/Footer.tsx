@@ -7,6 +7,7 @@ import { Poppins } from "next/font/google";
 import DarkModeToggle from "./DarkModeToggle";
 import { FiTwitter, FiInstagram, FiMail } from "react-icons/fi";
 import { FaWhatsapp, FaFacebook, FaTiktok } from "react-icons/fa";
+import { useTheme } from "next-themes";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,31 +17,16 @@ const poppins = Poppins({
 
 const Footer: React.FC<{ className?: string }> = ({ className }) => {
   const currentYear = new Date().getFullYear();
-  const [mode, setMode] = useState<string>("dark");
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const localTheme = localStorage.getItem("theme");
-    const systemPreference = window.matchMedia("(prefers-color-scheme: dark)")
-      .matches
-      ? "dark"
-      : "light";
-    setMode(localTheme || systemPreference);
+    setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (mode === "dark") {
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
-    } else {
-      document.documentElement.classList.add("light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, [mode]);
-
-  const toggleTheme = (newTheme: string) => {
-    setMode(newTheme);
-    localStorage.setItem("theme", newTheme);
-  };
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <footer
@@ -53,7 +39,7 @@ const Footer: React.FC<{ className?: string }> = ({ className }) => {
           {/* Left Side: Logo and Title */}
           <div className='flex flex-col items-center md:items-start space-y-4'>
             <Image
-              src={mode === "dark" ? "/logo.png" : "/logo-bw.png"}
+              src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
               width={100}
               height={100}
               alt='logo'
@@ -131,7 +117,7 @@ const Footer: React.FC<{ className?: string }> = ({ className }) => {
                 <FiTwitter size={24} />
               </a>
             </div>
-            <DarkModeToggle onToggle={toggleTheme} currentTheme={mode} />
+            <DarkModeToggle />
           </div>
         </div>
 

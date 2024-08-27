@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import React, { useEffect, useId, useRef, useState, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
-import useWindowSize from '../../hooks/useWindowSize';
-
 import { cn } from "@/lib/utils";
+import useWindowSize from "@/hooks/useWindowSize";
 
 interface GridPatternProps {
   width?: number;
@@ -32,34 +31,31 @@ export function GridPattern({
   repeatDelay = 0.5,
   ...props
 }: GridPatternProps) {
-  const { width: windowWidth } = useWindowSize();
-  const isMobile = windowWidth !== undefined && windowWidth < 768; // Adjust this breakpoint as needed
-
-  const mobileNumSquares = Math.floor(numSquares / 2); // Reduce squares for mobile
-  const adjustedNumSquares = isMobile ? mobileNumSquares : numSquares;
-
   const id = useId();
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [squares, setSquares] = useState(() => generateSquares(numSquares));
+  const { width: windowWidth } = useWindowSize();
+  const isMobile = windowWidth !== undefined && windowWidth < 768;
 
-  function getPos() {
+  const adjustedNumSquares = isMobile ? Math.floor(numSquares / 2) : numSquares;
+
+  const getPos = useCallback(() => {
     return [
       Math.floor((Math.random() * dimensions.width) / width),
       Math.floor((Math.random() * dimensions.height) / height),
     ];
-  }
+  }, [dimensions, width, height]);
 
-  // Adjust the generateSquares function to return objects with an id, x, and y
-  function generateSquares(count: number) {
+  const generateSquares = useCallback((count: number) => {
     return Array.from({ length: count }, (_, i) => ({
       id: i,
       pos: getPos(),
     }));
-  }
+  }, [getPos]);
 
-  // Function to update a single square's position
-  const updateSquarePosition = (id: number) => {
+  const squares = useMemo(() => generateSquares(adjustedNumSquares), [generateSquares, adjustedNumSquares]);
+
+  const updateSquarePosition = useCallback((id: number) => {
     setSquares((currentSquares) =>
       currentSquares.map((sq) =>
         sq.id === id
@@ -70,16 +66,16 @@ export function GridPattern({
           : sq,
       ),
     );
-  };
+  }, [getPos]);
 
-  // Update squares to animate in
+  const [squaresState, setSquares] = useState(squares);
+
   useEffect(() => {
     if (dimensions.width && dimensions.height) {
-      setSquares(generateSquares(numSquares));
+      setSquares(generateSquares(adjustedNumSquares));
     }
-  }, [dimensions, numSquares]);
+  }, [dimensions, adjustedNumSquares, generateSquares]);
 
-  // Resize observer to update container dimensions
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
@@ -99,7 +95,7 @@ export function GridPattern({
         resizeObserver.unobserve(containerRef.current);
       }
     };
-  }, [containerRef]);
+  }, []);
 
   return (
     <svg
@@ -129,14 +125,14 @@ export function GridPattern({
       </defs>
       <rect width="100%" height="100%" fill={`url(#${id})`} />
       <svg x={x} y={y} className="overflow-visible">
-        {squares.slice(0, adjustedNumSquares).map(({ pos: [x, y], id }, index) => (
+        {squaresState.map(({ pos: [x, y], id }, index) => (
           <motion.rect
             initial={{ opacity: 0 }}
             animate={{ opacity: maxOpacity }}
             transition={{
-              duration: isMobile ? duration / 2 : duration,
+              duration,
               repeat: 1,
-              delay: isMobile ? index * 0.05 : index * 0.1,
+              delay: index * 0.1,
               repeatType: "reverse",
             }}
             onAnimationComplete={() => updateSquarePosition(id)}
@@ -154,4 +150,4 @@ export function GridPattern({
   );
 }
 
-export default GridPattern;
+export default React.memo(GridPattern);

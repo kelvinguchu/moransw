@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { FiPhoneCall, FiCode, FiCheckCircle, FiSettings } from "react-icons/fi";
 import { MagicCard } from "@/components/magicui/magic-card";
@@ -32,6 +34,11 @@ const StepCard: React.FC<StepCardProps> = ({ title, description, icon }) => {
 
 const StepCards: React.FC = () => {
   const { theme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const steps = [
     {
@@ -53,6 +60,10 @@ const StepCards: React.FC = () => {
       icon: <FiCheckCircle size={32} />,
     },
   ];
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <section>
