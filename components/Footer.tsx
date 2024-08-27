@@ -123,7 +123,7 @@ const Footer: React.FC<{ className?: string }> = ({ className }) => {
 
         <div className='text-center mt-8'>
           <p className='text-sm text-gray-900 dark:text-gray-400'>
-            © {currentYear} Astraque Softwares. All rights reserved.
+            © {currentYear} Made by Astraque Softwares. All rights reserved.
           </p>
         </div>
       </div>
