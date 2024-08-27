@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 const Divider = dynamic(() => import("@/components/Divider"), {
   suspense: true,
 });
-const Hero = dynamic(() => import("@/components/Hero"), { suspense: true });
+const HeroReload = dynamic(() => import("@/components/HeroReload"), { suspense: true });
 const Navbar = dynamic(() => import("@/components/Navbar"), { suspense: true });
 const ProductsHero = dynamic(() => import("@/components/ProductsHero"), {
   suspense: true,
@@ -50,8 +50,7 @@ export default function Home() {
    <main className='flex w-full min-h-screen flex-col items-center justify-between pt-24'>
      <TracingBeam>
        <Suspense>
-         <Hero />
-         <ProductsHero />
+         <HeroReload />
          <section id='services'>
            <Services />
          </section>

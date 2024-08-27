@@ -3,8 +3,6 @@ import { FC } from "react";
 import { Space_Grotesk, Poppins } from "next/font/google";
 import ContactButton from "./ContactButton";
 import { Globe } from "./Globe";
-import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern";
-import { cn } from "@/lib/utils";
 import DottedButton from "./DottedButton";
 
 // Initialize fonts
@@ -22,16 +20,6 @@ const poppins = Poppins({
 
 const Hero: FC = () => (
   <main className='relative max-w-[100%] mx-auto flex flex-col-reverse md:flex-row w-full overflow-hidden group'>
-    <AnimatedGridPattern
-      numSquares={30}
-      maxOpacity={0.1}
-      duration={3}
-      repeatDelay={1}
-      className={cn(
-        "[mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
-        "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
-      )}
-    />
 
     <div className='w-full  pt-6 md:pt-[60px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
       <DottedButton />
