@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import useWindowSize from '../../hooks/useWindowSize';
 
 import { cn } from "@/lib/utils";
 
@@ -31,6 +32,12 @@ export function GridPattern({
   repeatDelay = 0.5,
   ...props
 }: GridPatternProps) {
+  const { width: windowWidth } = useWindowSize();
+  const isMobile = windowWidth !== undefined && windowWidth < 768; // Adjust this breakpoint as needed
+
+  const mobileNumSquares = Math.floor(numSquares / 2); // Reduce squares for mobile
+  const adjustedNumSquares = isMobile ? mobileNumSquares : numSquares;
+
   const id = useId();
   const containerRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -122,14 +129,14 @@ export function GridPattern({
       </defs>
       <rect width="100%" height="100%" fill={`url(#${id})`} />
       <svg x={x} y={y} className="overflow-visible">
-        {squares.map(({ pos: [x, y], id }, index) => (
+        {squares.slice(0, adjustedNumSquares).map(({ pos: [x, y], id }, index) => (
           <motion.rect
             initial={{ opacity: 0 }}
             animate={{ opacity: maxOpacity }}
             transition={{
-              duration,
+              duration: isMobile ? duration / 2 : duration,
               repeat: 1,
-              delay: index * 0.1,
+              delay: isMobile ? index * 0.05 : index * 0.1,
               repeatType: "reverse",
             }}
             onAnimationComplete={() => updateSquarePosition(id)}

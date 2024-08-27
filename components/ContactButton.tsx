@@ -16,6 +16,7 @@ import {
 import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { useTheme } from 'next-themes';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -24,9 +25,10 @@ const poppins = Poppins({
 });
 
 const ContactButton: React.FC = () => {
+  const { theme, setTheme } = useTheme();
+
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
-  const [mode, setMode] = useState<string>("dark");
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -35,15 +37,15 @@ const ContactButton: React.FC = () => {
   };
 
   useEffect(() => {
-    if (mode === "dark") {
+    if (theme === "dark") {
       document.documentElement.classList.add("dark");
       document.documentElement.classList.remove("light");
     } else {
       document.documentElement.classList.add("light");
       document.documentElement.classList.remove("dark");
     }
-    localStorage.setItem("theme", mode);
-  }, [mode]);
+    localStorage.setItem("theme", theme || "light");
+  }, [theme]);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -65,7 +67,7 @@ const ContactButton: React.FC = () => {
         )}>
         {/* Logo */}
         <Image
-          src={mode === "dark" ? "/logo.png" : "/logo-bw.png"}
+          src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
           width={150}
           height={60}
           alt='logo'

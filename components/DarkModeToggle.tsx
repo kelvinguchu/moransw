@@ -1,40 +1,38 @@
-// components/DarkModeToggle.tsx
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FiMoon, FiSun } from "react-icons/fi";
+import { useTheme } from "next-themes";
 
 const TOGGLE_CLASSES =
   "text-sm font-medium flex items-center gap-2 px-3 md:pl-3 md:pr-3.5 py-3 md:py-1.5 transition-colors relative z-10";
 
-interface DarkModeToggleProps {
-  onToggle: (theme: string) => void;
-  currentTheme: string;
-}
-
-const DarkModeToggle: React.FC<DarkModeToggleProps> = ({
-  onToggle,
-  currentTheme,
-}) => {
-  const [theme, setTheme] = useState<string>(currentTheme);
+const DarkModeToggle: React.FC = () => {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setTheme(currentTheme);
-  }, [currentTheme]);
+    setMounted(true);
+    setTheme("dark"); // Set default theme to dark
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
-    <div className='relative flex w-fit items-center rounded-full '>
+    <div className='relative flex w-fit items-center rounded-full'>
       <button
         className={`${TOGGLE_CLASSES} ${
           theme === "light" ? "text-slate-800" : "text-slate-300"
         }`}
-        onClick={() => onToggle("light")}>
+        onClick={() => setTheme("light")}>
         <FiSun className='relative z-10 text-lg md:text-sm' />
       </button>
       <button
         className={`${TOGGLE_CLASSES} ${
           theme === "dark" ? "text-white" : "text-slate-800"
         }`}
-        onClick={() => onToggle("dark")}>
+        onClick={() => setTheme("dark")}>
         <FiMoon className='relative z-10 text-lg md:text-sm' />
       </button>
       <div

@@ -1,34 +1,27 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import DarkModeToggle from "./DarkModeToggle";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
-interface MobileMenuProps {
-  mode: string;
-  setMode: (mode: string) => void;
-}
+const MobileMenu: React.FC = () => {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
-  const toggleTheme = (newTheme: string) => {
-    setMode(newTheme);
-    localStorage.setItem("theme", newTheme);
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-      document.documentElement.classList.remove("light");
-    } else {
-      document.documentElement.classList.add("light");
-      document.documentElement.classList.remove("dark");
-    }
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <section className='w-full max-w-[264px]'>
@@ -49,7 +42,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
             href='/'
             className='cursor-pointer flex items-center gap-1 px-4'>
             <Image
-              src={mode === "dark" ? "/logo.png" : "/logo-bw.png"}
+              src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
               width={150}
               height={60}
               alt='Moran logo'
@@ -108,7 +101,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ mode, setMode }) => {
                 </SheetClose>
 
                 <div className='flex justify-center'>
-                  <DarkModeToggle onToggle={toggleTheme} currentTheme={mode} />
+                  <DarkModeToggle />
                 </div>
               </nav>
             </SheetClose>

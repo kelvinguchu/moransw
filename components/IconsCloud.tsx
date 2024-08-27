@@ -1,4 +1,5 @@
 import IconCloud from "@/components/ui/icon-cloud";
+import useWindowSize from '../hooks/useWindowSize';
 
 const slugs = [
   "typescript",
@@ -39,10 +40,15 @@ const slugs = [
 ];
 
 export function IconsCloud() {
+  const { width } = useWindowSize();
+  const isMobile = width ? width < 768 : false; // Adjust this breakpoint as needed, handle undefined case
+
+  const adjustedSlugs = isMobile ? slugs.slice(0, 15) : slugs; // Reduce icons for mobile
+
   return (
     <section className='w-[95%] mx-auto'>
       <div className='relative flex h-full w-full max-w-[40rem] items-center justify-center overflow-hidden rounded-lg bg-background mx-auto px-10 pb-10 pt-0'>
-        <IconCloud iconSlugs={slugs} />
+        <IconCloud iconSlugs={adjustedSlugs} />
       </div>
     </section>
   );

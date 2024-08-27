@@ -1,6 +1,7 @@
 // Meteors.tsx
 import React from "react";
 import { cn } from "@/lib/utils";
+import useWindowSize from '../../hooks/useWindowSize';
 
 interface MeteorsProps {
   number?: number;
@@ -8,7 +9,12 @@ interface MeteorsProps {
 }
 
 export const Meteors: React.FC<MeteorsProps> = ({ number = 20, className }) => {
-  const meteors = new Array(number).fill(true).map(() => ({
+  const { width } = useWindowSize();
+  const isMobile = width ? width < 768 : false; // Check if width is defined before comparison
+
+  const adjustedNumber = isMobile ? Math.floor(number / 2) : number;
+
+  const meteors = new Array(adjustedNumber).fill(true).map(() => ({
     id: Math.random().toString(36).substring(7),
     left: Math.floor(Math.random() * (400 - -400) + -400),
     animationDelay: `${Math.random() * (0.8 - 0.2) + 0.2}s`,
