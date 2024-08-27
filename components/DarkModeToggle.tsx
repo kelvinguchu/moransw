@@ -13,7 +13,7 @@ const DarkModeToggle: React.FC = () => {
   useEffect(() => {
     setMounted(true);
     // Set theme to dark only if it hasn't been set before
-    if (localStorage.getItem('theme') === null) {
+    if (localStorage.getItem("theme") === null) {
       setTheme("dark");
     }
   }, []);
