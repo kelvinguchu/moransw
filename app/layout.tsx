@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Astraque Softwares",
   description: "Web Design, Web Development, Software Development and Graphic Design",
   icons: {
-    icon: "/logo.png",
+    icon: "/astraque_favi.svg",
   },
 };
 
