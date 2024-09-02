@@ -67,14 +67,7 @@ const StepCards: React.FC = () => {
 
   return (
     <section>
-      <Header
-        icon={
-          <FiSettings className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
-        }
-        mainText='Our'
-        gradientText='Process'
-        additionalClassNames={`${spacegrotesk.className}`}
-      />
+      <Header title='Our Process' />
       <div className='flex flex-col md:flex-row justify-center items-center gap-6 mt-4'>
         {steps.map((step, index) => (
           <MagicCard

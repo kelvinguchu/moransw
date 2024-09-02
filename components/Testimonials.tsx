@@ -100,14 +100,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
 const MarqueeDemo: React.FC = () => {
   return (
     <div className='relative max-w-6xl mx-auto flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg py-5 md:shadow-xl'>
-      <Header
-        icon={
-          <FiSmile className='mx-3 text-violet-400 animate-pulse-spin w-8 h-8' />
-        }
-        mainText='Happy '
-        gradientText='Clients'
-        additionalClassNames={`${spacegrotesk.className} text-white`}
-      />
+      <Header title='Happy Clients' />
       <div className='hidden md:flex flex-col items-center justify-center w-full'>
         <Marquee pauseOnHover className='[--duration:20s]'>
           {firstRow.map((review) => (

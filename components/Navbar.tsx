@@ -64,7 +64,7 @@ function Navbar({ className }: { className?: string }) {
             setActive={setActive}
             active={active}
             item='Recent Projects'
-            href='#recent-projects'
+            href='/projects'
           />
           <MenuItem
             setActive={setActive}

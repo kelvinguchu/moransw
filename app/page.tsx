@@ -7,13 +7,6 @@ const Divider = dynamic(() => import("@/components/Divider"), {
   suspense: true,
 });
 const HeroReload = dynamic(() => import("@/components/HeroReload"), { suspense: true });
-const Navbar = dynamic(() => import("@/components/Navbar"), { suspense: true });
-const ProductsHero = dynamic(() => import("@/components/ProductsHero"), {
-  suspense: true,
-});
-const RecentProjects = dynamic(() => import("@/components/RecentProjects"), {
-  suspense: true,
-});
 const Services = dynamic(() => import("@/components/Services"), {
   suspense: true,
 });
@@ -57,10 +50,6 @@ export default function Home() {
          <Divider />
          <section id='process'>
            <Process />
-         </section>
-         <Divider />
-         <section id='recent-projects'>
-           <RecentProjects />
          </section>
          <Divider />
          <section id='pricing'>

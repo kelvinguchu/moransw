@@ -89,14 +89,7 @@ const items = [
 export function Services() {
   return (
     <section id='services' className='md:-mt-0 -mt-0'>
-      <Header
-        icon={
-          <FiTool className='mx-3 text-violet-600 animate-pulse-spin w-6 h-6' />
-        }
-        mainText='Our'
-        gradientText='Services'
-        additionalClassNames={`${spacegrotesk.className} px-4 mb-4 inverted-glow`}
-      />
+      <Header title='What Do We Offer?' />
       <BentoGrid className='max-w-6xl md:px-0 px-6 mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {items.map((item, i) => (
           <BentoGridItem
