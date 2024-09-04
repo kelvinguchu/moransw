@@ -50,22 +50,22 @@ const Footer: React.FC<{ className?: string }> = ({ className }) => {
           {/* Center: Links */}
           <div className='flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6'>
             <a
-              href='#services'
+              href='/#services'
               className='hover:text-gray-500 dark:hover:text-gray-400 text-gray-900 dark:text-white'>
               Services
             </a>
             <a
-              href='#process'
+              href='/#process'
               className='hover:text-gray-500 dark:hover:text-gray-400 text-gray-900 dark:text-white'>
               Our Process
             </a>
             <a
-              href='#recent-projects'
+              href='/projects'
               className='hover:text-gray-500 dark:hover:text-gray-400 text-gray-900 dark:text-white'>
               Recent Projects
             </a>
             <a
-              href='#pricing'
+              href='/#pricing'
               className='hover:text-gray-500 dark:hover:text-gray-400 text-gray-900 dark:text-white'>
               Pricing
             </a>

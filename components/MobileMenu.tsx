@@ -41,40 +41,40 @@ const MobileMenu: React.FC = () => {
           <Link
             href='/'
             className='cursor-pointer flex items-center gap-1 px-4'>
-            <Image
-              src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
-              width={150}
-              height={60}
-              alt='Moran logo'
-            />
+              <Image
+                src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
+                width={150}
+                height={60}
+                alt='Moran logo'
+              />
           </Link>
           <div className='mobilenav-sheet flex-1 overflow-y-auto'>
             <SheetClose asChild>
               <nav className='flex flex-col gap-6 pt-16 text-gray-900 dark:text-white'>
                 <SheetClose asChild>
                   <Link
-                    href='#services'
+                    href='/#services'
                     className='mobilenav-sheet_close w-full'>
                     <p className='text-16 font-semibold'>Services</p>
                   </Link>
                 </SheetClose>
                 <SheetClose asChild>
                   <Link
-                    href='#process'
+                    href='/#process'
                     className='mobilenav-sheet_close w-full'>
                     <p className='text-16 font-semibold'>Our Process</p>
                   </Link>
                 </SheetClose>
                 <SheetClose asChild>
                   <Link
-                    href='#recent-projects'
+                    href='/projects'
                     className='mobilenav-sheet_close w-full'>
                     <p className='text-16 font-semibold'>Recent Projects</p>
                   </Link>
                 </SheetClose>
                 <SheetClose asChild>
                   <Link
-                    href='#pricing'
+                    href='/#pricing'
                     className='mobilenav-sheet_close w-full'>
                     <p className='text-16 font-semibold'>Pricing</p>
                   </Link>
@@ -85,18 +85,14 @@ const MobileMenu: React.FC = () => {
                   <Link
                     href='tel:+254792554525'
                     className='mobilenav-sheet_close w-full'>
-                    <p className='text-16 font-semibold'>
-                      0792 554525
-                    </p>
+                    <p className='text-16 font-semibold'>0792 554525</p>
                   </Link>
                 </SheetClose>
                 <SheetClose asChild>
                   <Link
                     href='tel:+254792194217'
                     className='mobilenav-sheet_close w-full'>
-                    <p className='text-16 font-semibold'>
-                     0792 194217
-                    </p>
+                    <p className='text-16 font-semibold'>0792 194217</p>
                   </Link>
                 </SheetClose>
 

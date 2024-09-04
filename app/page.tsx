@@ -26,18 +26,9 @@ const Pricing = dynamic(() => import("@/components/Pricing"), {
 const Testimonials = dynamic(() => import("@/components/Testimonials"), {
   suspense: true,
 });
-const Footer = dynamic(() => import("@/components/Footer"), { suspense: true });
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000); // 3 seconds
-
-    return () => clearTimeout(timer); // Cleanup the timer
-  }, []);
 
  return (
    <main className='flex w-full min-h-screen flex-col items-center justify-between pt-24'>
@@ -60,7 +51,6 @@ export default function Home() {
          <Divider />
          <IconsCloud />
          <Divider />
-         <Footer />
        </Suspense>
      </TracingBeam>
    </main>

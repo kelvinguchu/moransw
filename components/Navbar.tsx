@@ -8,6 +8,7 @@ import { Poppins } from "next/font/google";
 import MobileMenu from "./MobileMenu";
 import DarkModeToggle from "./DarkModeToggle";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -36,13 +37,15 @@ function Navbar({ className }: { className?: string }) {
       )}>
       {/* Left Side: Logo and Title */}
       <div className='flex items-center space-x-4'>
-        <Image
-          src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
-          width={150}
-          height={60}
-          alt='logo'
-          className='rounded-full'
-        />
+        <Link href='/' className='cursor-pointer flex items-center gap-1 px-4'>
+          <Image
+            src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
+            width={150}
+            height={60}
+            alt='logo'
+            className='rounded-full'
+          />
+        </Link>
       </div>
 
       {/* Desktop Menu: Center */}
@@ -52,13 +55,13 @@ function Navbar({ className }: { className?: string }) {
             setActive={setActive}
             active={active}
             item='Services'
-            href='#services'
+            href='/#services'
           />
           <MenuItem
             setActive={setActive}
             active={active}
             item='Our Process'
-            href='#process'
+            href='/#process'
           />
           <MenuItem
             setActive={setActive}
@@ -70,7 +73,7 @@ function Navbar({ className }: { className?: string }) {
             setActive={setActive}
             active={active}
             item='Pricing'
-            href='#pricing'
+            href='/#pricing'
           />
           <MenuItem
             setActive={setActive}

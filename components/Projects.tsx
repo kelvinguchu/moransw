@@ -17,22 +17,29 @@ const spacegrotesk = Space_Grotesk({
 
 const projects = [
   {
-    id: 1,
-    title: "Aquatreat Solutions Limited",
-    imgSrc: "/aquatreat.webp",
-    link: "https://aquatreat.co.ke/",
-  },
-  {
-    id: 2,
-    title: "Scaperthru Springs Limited",
-    imgSrc: "/scapethru.webp",
-    link: "https://scapethrusprings.co.ke/",
+    id: 7,
+    title: "Midnimo College",
+    imgSrc: "/midnimo.png",
+    link: "https://midnimocollege.com/",
   },
   {
     id: 3,
     title: "UMS Kenya",
     imgSrc: "/umskenya.webp",
     link: "https://umskenya.com/",
+  },
+  {
+    id: 1,
+    title: "Aquatreat Solutions Limited",
+    imgSrc: "/aquatreat.png",
+    link: "https://aquatreat.co.ke/",
+  },
+
+  {
+    id: 2,
+    title: "Scapethru Springs Limited",
+    imgSrc: "/scapethru.webp",
+    link: "https://scapethrusprings.co.ke/",
   },
   {
     id: 4,
