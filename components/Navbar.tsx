@@ -32,12 +32,12 @@ function Navbar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "fixed top-0 inset-x-0 w-full px-6 py-1.5 z-50 flex justify-between items-center bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10",
+        "fixed top-0 inset-x-0 w-full md:px-6 px-2 py-1.5 z-50 flex justify-between items-center bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10",
         className
       )}>
       {/* Left Side: Logo and Title */}
       <div className='flex items-center space-x-4'>
-        <Link href='/' className='cursor-pointer flex items-center gap-1 px-4'>
+        <Link href='/' className='cursor-pointer flex items-center gap-1 md:px-4 px-0'>
           <Image
             src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
             width={150}
@@ -91,7 +91,7 @@ function Navbar({ className }: { className?: string }) {
       </div>
 
       {/* Right Side: Dark Mode Toggle and Mobile Menu */}
-      <div className='flex items-center space-x-4'>
+      <div className='flex items-center space-x-2'>
         <div className='hidden md:flex'>
           <DarkModeToggle />
         </div>

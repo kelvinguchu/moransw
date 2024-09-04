@@ -20,9 +20,7 @@ const poppins = Poppins({
 
 const Hero: FC = () => (
   <main className='relative max-w-[100%] mx-auto flex flex-col-reverse md:flex-row w-full overflow-hidden group'>
-
     <div className='w-full  pt-6 md:pt-[60px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
-      <DottedButton />
       <h2
         className={`${spacegrotesk.className} text-4xl md:text-6xl font-semibold mb-2 md:mb-4 leading-snug`}>
         We build Websites, Web Applications <br />{" "}
@@ -36,6 +34,9 @@ const Hero: FC = () => (
       </h3>
       <div className='mt-8 md:mt-12'>
         <ContactButton />
+      </div>
+      <div className='mt-4 md:mt-8'>
+        <DottedButton />
       </div>
     </div>
 
