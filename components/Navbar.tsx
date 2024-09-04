@@ -32,7 +32,7 @@ function Navbar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "fixed top-0 inset-x-0 w-full md:px-6 px-2 py-1.5 z-50 flex justify-between items-center bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10",
+        "fixed top-0 inset-x-0 w-full md:px-6 px-2 py-1.5 z-50 flex justify-between items-center bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10 font-Century",
         className
       )}>
       {/* Left Side: Logo and Title */}

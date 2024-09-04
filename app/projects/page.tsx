@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const ProjectsPage = () => {
   return (
-    <div>
+    <div className="-mt-10">
       <AnimatedGridPattern
         numSquares={30}
         maxOpacity={0.1}

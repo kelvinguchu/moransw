@@ -92,6 +92,7 @@ const config: Config = {
           ...defaultTheme.fontFamily.sans,
         ],
         mono: ["var(--font-roboto-mono)", ...defaultTheme.fontFamily.mono],
+        'Century': ['Century', 'Inter', 'sans-serif'],
       },
       animation: customAnimations,
       keyframes: customKeyframes,

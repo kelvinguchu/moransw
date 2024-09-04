@@ -1,86 +1,10 @@
-/* global.css
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer utilities {
-  .border-gradient {
-    border-image-slice: 1;
-    border-width: 3px;
-    border-image-source: linear-gradient(45deg, #ffafbd, #ffc3a0, #2193b0, #6dd5ed);
-  }
-}
-
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: rgb(0 0 0 / 0.4);
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 0 0 0;
-    --foreground: 210 40% 98%;
-    --card: 0 0 0;
-    --card-foreground: 210 40% 98%;
-    --popover: 0 0 0;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
-
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-} */
+ @font-face {
+   font-family: 'Century';
+   src: url('/fonts/Century Expanded Regular.otf') format('opentype');
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
+ }
 
 /* global.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
@@ -117,7 +41,7 @@ html {
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: 'Inter', sans-serif;
+  font-family: 'century', 'Inter', sans-serif;
 }
 
 a {
@@ -136,4 +60,8 @@ a {
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+}
+
+.font-century {
+  font-family: 'Century', 'Inter', sans-serif;
 }

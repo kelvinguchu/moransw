@@ -80,7 +80,7 @@ export function VelocityScroll({
       return () => window.removeEventListener("resize", calculateRepetitions);
     }, [children]);
 
-    const x = useTransform(baseX, (v) => `${wrap(-100 / repetitions, 0, v)}%`);
+    const x = useTransform(baseX, (v) => `${wrap(-100, 0, v)}%`);
 
     const directionFactor = React.useRef<number>(1);
     useAnimationFrame((t, delta) => {
