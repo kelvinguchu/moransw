@@ -11,7 +11,7 @@ import DottedButton from "./DottedButton";
 
 const Hero: FC = () => (
   <main className={`relative max-w-[100%] mx-auto flex flex-col-reverse md:flex-row w-full overflow-hidden group ${centuryFont.className}`}>
-    <div className='w-full  pt-6 md:pt-[60px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
+    <div className='w-full px-3 md:px-0 pt-6 md:pt-[60px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left mr-10 md:mr-0'>
       <h2
         className='text-4xl md:text-6xl font-semibold mb-2 md:mb-4 leading-snug'>
         We build Websites, Web Applications <br />{" "}
