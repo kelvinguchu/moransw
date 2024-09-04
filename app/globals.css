@@ -1,6 +1,7 @@
  @font-face {
    font-family: 'Century';
-   src: url('/fonts/Century Expanded Regular.otf') format('opentype');
+   src: url('/fonts/Century Expanded Regular.otf') format('opentype'),
+        url('/fonts/Century Expanded Regular.otf') format('truetype');
    font-weight: normal;
    font-style: normal;
    font-display: swap;
@@ -41,7 +42,7 @@
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: 'century', 'Inter', sans-serif;
+  font-family: 'Century', 'Inter', sans-serif;
 }
 
 a {
@@ -62,6 +63,8 @@ html {
   scroll-behavior: smooth;
 }
 
-.font-century {
-  font-family: 'Century', 'Inter', sans-serif;
+@media (max-width: 768px) {
+  body {
+    font-family: 'Century', 'Inter', sans-serif !important;
+  }
 }
