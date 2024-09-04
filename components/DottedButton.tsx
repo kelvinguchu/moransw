@@ -21,7 +21,7 @@ const DottedButton = () => {
           <FaArrowRight className='ml-2 text-indigo-600' />
         </button>
       </DialogTrigger>
-      <DialogContent className='w-[300px] rounded-[0.5rem] md:rounded-[15px] border border-indigo-600 bg-[#f2eaff] dark:bg-black shadow-lg p-6'>
+      <DialogContent className='w-[375px] md:w-[400px] rounded-[0.5rem] md:rounded-[15px] border border-indigo-600 bg-[#f2eaff] dark:bg-black shadow-lg p-6'>
         <div className='flex flex-col items-center space-y-6'>
           {/* Logo */}
           <Image
@@ -34,7 +34,7 @@ const DottedButton = () => {
 
           {/* Message */}
           <h2 className='pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-indigo-600 bg-clip-text text-center text-3xl font-semibold leading-none text-transparent dark:bg-gradient-to-b dark:from-white dark:to-slate-900/10 dark:text-transparent'>
-            Earn Big With Us
+            Refer Us And Get:
           </h2>
 
           {/* Content */}
