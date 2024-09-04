@@ -17,12 +17,6 @@ const spacegrotesk = Space_Grotesk({
 
 const projects = [
   {
-    id: 7,
-    title: "Midnimo College",
-    imgSrc: "/midnimo.png",
-    link: "https://midnimocollege.com/",
-  },
-  {
     id: 3,
     title: "UMS Kenya",
     imgSrc: "/umskenya.webp",
