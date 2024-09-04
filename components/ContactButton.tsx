@@ -17,6 +17,7 @@ import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { useTheme } from 'next-themes';
+import { FiCopy, FiCheck } from "react-icons/fi";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -62,7 +63,7 @@ const ContactButton: React.FC = () => {
       </DialogTrigger>
       <DialogContent
         className={cn(
-          "bg-[#f2eaff] mxl-2 mr-2 md:mx-0 dark:bg-black text-gray-900 dark:text-white p-6 rounded-[15px] md:rounded-2xl shadow-xl w-full max-w-md border border-gray-300 dark:border-indigo-600",
+          "bg-[#f2eaff] mxl-2 mr-2 md:mx-0 dark:bg-black text-gray-900 dark:text-white p-6 rounded-[15px] md:rounded-2xl shadow-xl w-[375px] md:w-full max-w-md border border-gray-300 dark:border-indigo-600",
           "flex flex-col items-center space-y-6"
         )}>
         {/* Logo */}
@@ -172,14 +173,12 @@ function ContactItem({
               e.preventDefault();
               onCopy();
             }}
-            className='cursor-pointer bg-indigo-600 text-white text-[10px] rounded-full hover:border border-indigo-600 px-1.5 py-1'>
-            {copied
-              ? label === "Email"
-                ? "Email Copied"
-                : "Number Copied"
-              : label === "Email"
-              ? "Copy Email"
-              : "Copy Number"}
+            className='cursor-pointer bg-indigo-600 text-white text-[10px] rounded-full hover:border border-indigo-600 px-1.5 py-1 flex items-center justify-center'>
+            {copied ? (
+              <FiCheck className="w-3 h-3" />
+            ) : (
+              <FiCopy className="w-3 h-3" />
+            )}
           </Badge>
         )}
       </a>
