@@ -1,5 +1,4 @@
 import IconCloud from "@/components/ui/icon-cloud";
-import { Meteors } from "./ui/meteors";
 
 const slugs = [
   "typescript",
