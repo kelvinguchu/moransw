@@ -12,7 +12,7 @@ import IconsCloud from "./IconsCloud";
 
 const Hero: FC = () => (
   <main
-    className={`relative w-full max-w-6xl  mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row overflow-hidden group ${centuryFont.className}`}>
+    className={`relative w-full max-w-6xl md:-mt-10 mt-0 mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row overflow-hidden group ${centuryFont.className}`}>
     <div className='w-full pt-2 bg-transparent md:pt-[80px] relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:mr-10'>
       <h2 className='text-4xl md:text-6xl font-semibold mb-2 md:mb-4 leading-snug'>
         We build Websites, Web Applications <br />{" "}
