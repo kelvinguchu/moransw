@@ -60,13 +60,6 @@ const MobileMenu: React.FC = () => {
                 </SheetClose>
                 <SheetClose asChild>
                   <Link
-                    href='/#process'
-                    className='mobilenav-sheet_close w-full'>
-                    <p className='text-16 font-semibold'>Our Process</p>
-                  </Link>
-                </SheetClose>
-                <SheetClose asChild>
-                  <Link
                     href='/projects'
                     className='mobilenav-sheet_close w-full'>
                     <p className='text-16 font-semibold'>Recent Projects</p>

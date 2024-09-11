@@ -60,12 +60,6 @@ function Navbar({ className }: { className?: string }) {
           <MenuItem
             setActive={setActive}
             active={active}
-            item='Our Process'
-            href='/#process'
-          />
-          <MenuItem
-            setActive={setActive}
-            active={active}
             item='Recent Projects'
             href='/projects'
           />

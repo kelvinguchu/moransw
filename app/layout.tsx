@@ -87,11 +87,6 @@ export default function RootLayout({
                 },
                 {
                   "@type": "SiteNavigationElement",
-                  "name": "Our Process",
-                  "url": "https://www.astraque.com/#process"
-                },
-                {
-                  "@type": "SiteNavigationElement",
                   "name": "Recent Projects",
                   "url": "https://www.astraque.com/projects"
                 },

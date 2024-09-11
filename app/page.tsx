@@ -14,12 +14,6 @@ const TracingBeam = dynamic(
   () => import("@/components/ui/tracing-beam").then((mod) => mod.TracingBeam),
   { suspense: true }
 );
-const Process = dynamic(() => import("@/components/Process"), {
-  suspense: true,
-});
-const IconsCloud = dynamic(() => import("@/components/IconsCloud"), {
-  suspense: true,
-});
 const Pricing = dynamic(() => import("@/components/Pricing"), {
   suspense: true,
 });
@@ -39,17 +33,11 @@ export default function Home() {
            <Services />
          </section>
          <Divider />
-         <section id='process'>
-           <Process />
-         </section>
-         <Divider />
          <section id='pricing'>
            <Pricing />
          </section>
          <Divider />
          <Testimonials />
-         <Divider />
-         <IconsCloud />
          <Divider />
        </Suspense>
      </TracingBeam>

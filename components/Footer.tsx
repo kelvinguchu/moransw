@@ -55,11 +55,6 @@ const Footer: React.FC<{ className?: string }> = ({ className }) => {
               Services
             </a>
             <a
-              href='/#process'
-              className='hover:text-gray-500 dark:hover:text-gray-400 text-gray-900 dark:text-white'>
-              Our Process
-            </a>
-            <a
               href='/projects'
               className='hover:text-gray-500 dark:hover:text-gray-400 text-gray-900 dark:text-white'>
               Recent Projects

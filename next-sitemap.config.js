@@ -13,10 +13,6 @@ module.exports = {
         lastmod: new Date().toISOString(), // Set modification date dynamically
       },
       {
-        loc: "/#process", // Process section
-        lastmod: new Date().toISOString(),
-      },
-      {
         loc: "/projects", // Projects page
         lastmod: new Date().toISOString(),
       },
