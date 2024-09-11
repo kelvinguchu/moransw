@@ -19,7 +19,7 @@ const HeroReload: FC = () => (
     />
     <div className='relative z-10'>
       <Hero />
-      {/* <ProductHero /> */}
+      <ProductHero />
     </div>
   </div>
 );
