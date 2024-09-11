@@ -37,7 +37,7 @@ export default function Home() {
            <Pricing />
          </section>
          <Divider />
-         {/* <Testimonials /> */}
+         <Testimonials />
          <Divider />
        </Suspense>
      </TracingBeam>
