@@ -1,4 +1,5 @@
 import IconCloud from "@/components/ui/icon-cloud";
+import { Meteors } from "./ui/meteors";
 
 const slugs = [
   "typescript",
@@ -43,7 +44,7 @@ export function IconsCloud() {
   return (
     <section className='relative w-full h-full flex justify-center items-center' >
       <div className='relative flex h-full w-full  items-center justify-center overflow-hidden rounded-lg'>
-        <IconCloud iconSlugs={slugs} />
+              <IconCloud iconSlugs={slugs} />
       </div>
     </section>
   );
