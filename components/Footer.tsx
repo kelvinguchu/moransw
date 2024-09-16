@@ -91,7 +91,7 @@ const Footer: React.FC<{ className?: string }> = ({ className }) => {
                 <FiInstagram size={24} />
               </a>
               <a
-                href='https://web.facebook.com/profile.php?id=61565098643904'
+                href='https://web.facebook.com/profile.php?id=61565577734760'
                 target='_blank'
                 rel='noopener noreferrer'
                 className='hover:text-gray-500 dark:hover:text-gray-400'>
