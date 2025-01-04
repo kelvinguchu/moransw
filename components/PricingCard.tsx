@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { IconArrowRight } from "@tabler/icons-react";
 import type { Icon } from "@tabler/icons-react";
 import Link from "next/link";
-import HoverBorderGradient from "@/components/HoverBorderGradient";
 
 interface Technology {
   name: string;

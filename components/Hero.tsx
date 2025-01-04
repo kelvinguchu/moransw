@@ -50,10 +50,6 @@ const Hero: FC = () => {
             Transforming ideas into powerful websites, applications, and
             software solutions for forward-thinking businesses.
           </p>
-
-          <p className='text-base text-gray-400/90 leading-relaxed'>
-            We&apos;re here to help you succeed
-          </p>
         </motion.div>
 
         <motion.div

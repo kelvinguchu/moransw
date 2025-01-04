@@ -18,14 +18,6 @@ const DarkModeToggle: React.FC = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (theme === "dark") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  }, [theme, setTheme]);
-
   if (!mounted) {
     return null;
   }

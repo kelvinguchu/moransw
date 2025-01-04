@@ -93,28 +93,6 @@ export function GridPattern({
   }, [dimensions, adjustedNumSquares, generateSquares]);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const updateMousePosition = (ev: MouseEvent) => {
-      if (!container) return;
-      const rect = container.getBoundingClientRect();
-      setMousePosition({
-        x: ev.clientX - rect.left,
-        y: ev.clientY - rect.top,
-      });
-    };
-
-    container.addEventListener("mousemove", updateMousePosition);
-
-    return () => {
-      if (container) {
-        container.removeEventListener("mousemove", updateMousePosition);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         setDimensions({

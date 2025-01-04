@@ -1,109 +1,55 @@
 "use client";
-import { Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import dynamic from "next/dynamic";
+import Contact from "@/components/Contact";
 
-// Loading components
-const LoadingSpinner = () => (
-  <div className='flex items-center justify-center min-h-[200px]'>
-    <div className='w-8 h-8 border-4 border-violet-500 border-t-transparent rounded-full animate-spin'></div>
-  </div>
-);
-
-// Prioritize hero section
-const HeroReload = dynamic(() => import("@/components/HeroReload"), {
-  ssr: true, // Enable server-side rendering for the hero
-  loading: () => <LoadingSpinner />,
-});
-
-// Secondary priority components
-const Services = dynamic(() => import("@/components/Services"), {
-  loading: () => <LoadingSpinner />,
-});
-
-const About = dynamic(() => import("@/components/About"), {
-  loading: () => <LoadingSpinner />,
-});
-
-const Pricing = dynamic(() => import("@/components/Pricing"), {
-  loading: () => <LoadingSpinner />,
-});
-
-const Contact = dynamic(() => import("@/components/Contact"), {
-  loading: () => <LoadingSpinner />,
-});
-
-const Testimonials = dynamic(() => import("@/components/Testimonials"), {
-  loading: () => <LoadingSpinner />,
-});
-
-// Utility components with minimal loading states
+// Dynamically import components with Suspense for lazy loading
 const Divider = dynamic(() => import("@/components/Divider"), {
-  loading: () => <div className='h-16' />,
+  suspense: true,
 });
-
+const HeroReload = dynamic(() => import("@/components/HeroReload"), {
+  suspense: true,
+});
+const Services = dynamic(() => import("@/components/Services"), {
+  suspense: true,
+});
+const About = dynamic(() => import("@/components/About"), {
+  suspense: true,
+});
 const ScrollProgress = dynamic(
   () =>
     import("@/components/ui/ScrollProgress").then((mod) => mod.ScrollProgress),
-  {
-    loading: () => <div className='h-1 bg-violet-500/20' />,
-  }
+  { suspense: true }
 );
+const Pricing = dynamic(() => import("@/components/Pricing"), {
+  suspense: true,
+});
+const Testimonials = dynamic(() => import("@/components/Testimonials"), {
+  suspense: true,
+});
 
 export default function Home() {
   return (
     <main className='flex w-full min-h-screen flex-col items-center justify-between pt-24'>
       <ScrollProgress>
-        {/* Hero Section - Highest Priority */}
-        <Suspense fallback={<LoadingSpinner />}>
+        <Suspense>
           <HeroReload />
-        </Suspense>
-
-        {/* Services Section */}
-        <section id='services'>
-          <Suspense fallback={<LoadingSpinner />}>
+          <section id='services'>
             <Services />
-          </Suspense>
-        </section>
-
-        <Suspense fallback={<div className='h-16' />}>
+          </section>
           <Divider />
-        </Suspense>
-
-        {/* About Section */}
-        <section id='about'>
-          <Suspense fallback={<LoadingSpinner />}>
+          <section id='about'>
             <About />
-          </Suspense>
-        </section>
-
-        <Suspense fallback={<div className='h-16' />}>
+          </section>
           <Divider />
-        </Suspense>
-
-        {/* Pricing Section */}
-        <section id='pricing'>
-          <Suspense fallback={<LoadingSpinner />}>
+          <section id='pricing'>
             <Pricing />
-          </Suspense>
-        </section>
-
-        <Suspense fallback={<div className='h-16' />}>
+          </section>
           <Divider />
-        </Suspense>
-
-        {/* Contact Section */}
-        <section id='contact'>
-          <Suspense fallback={<LoadingSpinner />}>
+          <section id='contact'>
             <Contact />
-          </Suspense>
-        </section>
-
-        <Suspense fallback={<div className='h-16' />}>
+          </section>
           <Divider />
-        </Suspense>
-
-        {/* Testimonials Section */}
-        <Suspense fallback={<LoadingSpinner />}>
           <Testimonials />
         </Suspense>
       </ScrollProgress>
