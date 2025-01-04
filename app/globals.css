@@ -15,53 +15,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Define base color variables */
-:root {
-  --background-color: #f0eaf5;
-  /* Light mode background */
-  --text-color: #333;
-  /* Light mode text */
-  --border-color: #e2e8f0;
-  /* Light mode border */
-  --primary-color: black;
-  /* Light mode primary */
-}
 
-/* Dark mode variables */
-.dark {
-  --background-color: black;
-  /* Dark mode background */
-  --text-color: #cbd5e1;
-  /* Dark mode text */
-  --border-color: #4a5568;
-  /* Dark mode border */
-  --primary-color: white;
-  /* Dark mode primary */
-}
 
-/* Utility classes for common elements */
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: 'Century', 'Inter', sans-serif;
-}
-
-a {
-  color: var(--primary-color);
-}
-
-.border-custom {
-  border-color: var(--border-color);
-}
-
-/* Ensuring borders are applied where needed */
-* {
-  border-color: inherit;
-}
 
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+  background-color: #000;
+  
 }
 
 @media (max-width: 768px) {

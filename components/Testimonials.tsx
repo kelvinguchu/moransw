@@ -1,12 +1,13 @@
+"use client";
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
 import { Space_Grotesk } from "next/font/google";
-import Header from "./Header";
-import { FiSmile } from "react-icons/fi";
+import { motion } from "framer-motion";
+import { IconQuote } from "@tabler/icons-react";
 
-const spacegrotesk = Space_Grotesk({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-spacegrotesk",
+  variable: "--font-space-grotesk",
 });
 
 const reviews = [
@@ -17,7 +18,7 @@ const reviews = [
     img: "https://avatar.vercel.sh/jack",
   },
   {
-    name: "C.E.O, Pala Handrails",
+    name: "C.E.O, Steel & Allied",
     username: "@Laban Mwangi",
     body: "Outstanding work on our company website! The attention to detail and professional approach were impressive.",
     img: "https://avatar.vercel.sh/jill",
@@ -36,7 +37,7 @@ const reviews = [
   },
   {
     name: "Member, Chelco Limited",
-    username: "@Jeff Mumbi",
+    username: "@Jane Mugambi",
     body: "Implemented the Odoo CRM to our company flawlessly, everything is just smooth. Highly recommend!",
     img: "https://avatar.vercel.sh/jenny",
   },
@@ -45,6 +46,12 @@ const reviews = [
     username: "@Elishiba Njambi",
     body: "Wonderfully made farm management system, very useful and reliable. Thank you!",
     img: "https://avatar.vercel.sh/james",
+  },
+  {
+    name: "Manager, UMS Kenya",
+    username: "@Wilson Kamau",
+    body: "The stock management system has revolutionized our inventory control. Excellent work and great support!",
+    img: "https://avatar.vercel.sh/wilson",
   },
 ];
 
@@ -65,67 +72,124 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   body,
 }) => {
   return (
-    <figure
-      className={cn(
-        "relative h-56 md:h-auto w-full md:w-64 cursor-pointer overflow-hidden rounded-xl border p-4 shadow-lg transition-transform transform hover:scale-105",
-        // light styles
-        "bg-white border-gray-300 hover:bg-gray-50",
-        // dark styles
-        "dark:bg-gradient-to-br from-black via-gray-900 to-black dark:border-gray-700 dark:hover:bg-gray-700"
-      )}>
-      <div className='flex flex-col items-center md:items-start gap-2'>
-        <img
-          className='rounded-full border border-gray-300 dark:border-gray-700'
-          width='48'
-          height='48'
-          alt={name}
-          src={img}
-        />
-        <div className='flex flex-col items-center md:items-start'>
-          <figcaption className='text-base font-semibold text-gray-900 dark:text-gray-100 text-center md:text-left'>
-            {name}
-          </figcaption>
-          <p className='text-sm font-medium text-gray-600 dark:text-gray-400 text-center md:text-left'>
-            {username}
-          </p>
+    <div className='relative h-full w-[320px] mx-4'>
+      <div className='relative h-full rounded-xl overflow-hidden backdrop-blur-sm border border-white/[0.08] bg-black/30'>
+        {/* Premium Gradient Backgrounds */}
+        <div className='absolute inset-0'>
+          <div className='absolute inset-0 bg-gradient-to-br from-violet-500/5 via-transparent to-indigo-500/5' />
+          <div className='absolute inset-0 bg-[radial-gradient(circle_at_60%_30%,rgba(124,58,237,0.1),transparent_50%)]' />
         </div>
-      </div>
-      <blockquote className='mt-2 text-sm text-gray-700 dark:text-gray-300 text-center md:text-left'>
-        {body}
-      </blockquote>
-    </figure>
-  );
-};
 
-const MarqueeDemo: React.FC = () => {
-  return (
-    <div className='relative max-w-6xl mx-auto flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg py-5 md:shadow-xl'>
-      <Header title='Happy Clients' />
-      <div className='hidden md:flex flex-col items-center justify-center w-full'>
-        <Marquee pauseOnHover className='[--duration:20s]'>
-          {firstRow.map((review) => (
-            <ReviewCard key={review.username} {...review} />
-          ))}
-        </Marquee>
-        <Marquee reverse pauseOnHover className='[--duration:20s]'>
-          {secondRow.map((review) => (
-            <ReviewCard key={review.username} {...review} />
-          ))}
-        </Marquee>
-        <div className='pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-[#F0EAF5] dark:from-black'></div>
-        <div className='pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-[#F0EAF5] dark:from-black'></div>
-      </div>
-      <div className='flex md:hidden h-[50vh] w-11/12 items-center justify-center overflow-hidden rounded-lg mt-4 sm:px-20 md:shadow-xl'>
-        <Marquee pauseOnHover vertical className='[--duration:20s]'>
-          {reviews.map((review) => (
-            <ReviewCard key={review.username} {...review} />
-          ))}
-        </Marquee>
-        <div className='pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-background'></div>
-        <div className='pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-background'></div>
+        {/* Content */}
+        <div className='relative p-6 flex flex-col h-full'>
+          {/* Quote Icon */}
+          <div className='absolute top-4 right-4 text-violet-500/30'>
+            <IconQuote size={24} />
+          </div>
+
+          {/* Profile */}
+          <div className='flex items-center gap-4 mb-4'>
+            <img
+              className='w-12 h-12 rounded-full border border-white/[0.08]'
+              src={img}
+              alt={name}
+            />
+            <div>
+              <h4 className='text-sm font-medium text-white/90'>{name}</h4>
+              <p className='text-sm text-gray-400'>{username}</p>
+            </div>
+          </div>
+
+          {/* Testimonial */}
+          <p className='text-gray-300/90 text-sm leading-relaxed flex-grow'>
+            {body}
+          </p>
+
+          {/* Decorative Elements */}
+          <div className='absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent' />
+        </div>
       </div>
     </div>
   );
 };
 
-export default MarqueeDemo;
+const Testimonials: React.FC = () => {
+  return (
+    <section
+      id='testimonials'
+      className={cn(
+        "min-h-screen py-32 relative overflow-hidden flex items-center",
+        spaceGrotesk.variable
+      )}>
+      <div className='w-full'>
+        <div className='max-w-7xl mx-auto px-6 lg:px-8'>
+          {/* Section Header */}
+          <div className='text-center mb-16'>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className='flex flex-col items-center'>
+              <div className='inline-block mb-4'>
+                <div className='flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm'>
+                  <div className='w-1 h-1 rounded-full bg-violet-500'></div>
+                  <span className='text-[0.9375rem] font-light tracking-wide text-white/70'>
+                    Client Testimonials
+                  </span>
+                  <div className='w-1 h-1 rounded-full bg-indigo-500'></div>
+                </div>
+              </div>
+              <h2 className='text-4xl sm:text-5xl font-semibold text-white/95 mb-4 tracking-tight leading-[1.15]'>
+                What Our Clients Say
+              </h2>
+              <p className='max-w-2xl mx-auto text-base text-gray-400 font-light'>
+                Hear from our satisfied clients about their experience working
+                with us.
+              </p>
+              <div className='mt-6 flex items-center gap-2'>
+                <div className='w-8 h-px bg-gradient-to-r from-transparent to-violet-500/50'></div>
+                <div className='w-20 h-1 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full'></div>
+                <div className='w-8 h-px bg-gradient-to-l from-transparent to-indigo-500/50'></div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Testimonials Marquee */}
+          <div className='hidden md:block relative'>
+            <Marquee pauseOnHover className='[--duration:40s] py-4'>
+              {firstRow.map((review) => (
+                <ReviewCard key={review.username} {...review} />
+              ))}
+            </Marquee>
+            <Marquee reverse pauseOnHover className='[--duration:40s] py-4'>
+              {secondRow.map((review) => (
+                <ReviewCard key={review.username} {...review} />
+              ))}
+            </Marquee>
+
+            {/* Gradient Overlays */}
+            <div className='pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black' />
+            <div className='pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black' />
+          </div>
+
+          {/* Mobile View */}
+          <div className='md:hidden'>
+            <Marquee
+              pauseOnHover
+              vertical
+              className='[--duration:40s] h-[600px]'>
+              {reviews.map((review) => (
+                <ReviewCard key={review.username} {...review} />
+              ))}
+            </Marquee>
+            <div className='pointer-events-none absolute inset-x-0 top-0 h-1/6 bg-gradient-to-b from-black' />
+            <div className='pointer-events-none absolute inset-x-0 bottom-0 h-1/6 bg-gradient-to-t from-black' />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;

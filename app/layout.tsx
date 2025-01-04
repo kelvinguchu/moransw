@@ -9,11 +9,71 @@ import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Astraque Softwares",
+  metadataBase: new URL("https://www.astraque.com"),
+  title: {
+    default: "Astraque Softwares | Web & Software Development Solutions",
+    template: "%s | Astraque Softwares",
+  },
   description:
-    "Web Design, Web Development, Software Development, and Graphic Design",
+    "Professional web design, web development, software development, and graphic design services. Transform your digital presence with Astraque Softwares.",
+  keywords: [
+    "web development",
+    "software development",
+    "web design",
+    "graphic design",
+    "Astraque Softwares",
+    "digital solutions",
+  ],
+  authors: [{ name: "Astraque Softwares" }],
+  creator: "Astraque Softwares",
+  publisher: "Astraque Softwares",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
-    icon: "/astraque_favi.svg", // Favicon
+    icon: "/favicon.png",
+    apple: "/apple-icon.png",
+  },
+  openGraph: {
+    title: "Astraque Softwares | Web & Software Development Solutions",
+    description:
+      "Professional web design, web development, software development, and graphic design services. Transform your digital presence with Astraque Softwares.",
+    url: "https://www.astraque.com",
+    siteName: "Astraque Softwares",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Astraque Softwares",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Astraque Softwares | Web & Software Development Solutions",
+    description:
+      "Professional web design, web development, software development, and graphic design services.",
+    images: ["/twitter-image.jpg"],
+    creator: "@astraque",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
   },
 };
 
@@ -25,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <Head>
-        <link rel='icon' href='/astraque_favi.svg' type='image/svg+xml' />
+        <link rel='icon' href='/favicon.png' type='image/png' />
         <meta
           name='description'
           content='Web Design, Web Development, Software Development, and Graphic Design'

@@ -2,8 +2,8 @@
 User-agent: *
 Allow: /
 
-# Host
-Host: https://www.astraque.com
-
 # Sitemaps
 Sitemap: https://www.astraque.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
