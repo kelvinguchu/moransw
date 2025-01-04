@@ -20,6 +20,7 @@ const cloudProps: Omit<ICloud, "children"> = {
       paddingTop: 40,
     },
   },
+  id: "tech-stack-cloud",
   options: {
     reverse: true,
     depth: 1,

@@ -1,13 +1,3 @@
- @font-face {
-   font-family: 'Century';
-   src: url('/fonts/Century-Expanded-Regular.woff2') format('woff2'),
-        url('/fonts/Century-Expanded-Regular.woff') format('woff'),
-        url('/fonts/Century Expanded Regular.otf') format('opentype');
-   font-weight: normal;
-   font-style: normal;
-   font-display: swap;
- }
-
 /* global.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
@@ -15,18 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
   background-color: #000;
-  
 }
 
 @media (max-width: 768px) {
   body {
-    font-family: 'Century', 'Inter', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
   }
 }

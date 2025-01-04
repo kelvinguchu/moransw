@@ -13,11 +13,12 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiArrowUpRight } from "react-icons/fi";
 import { cn } from "@/lib/utils";
+import { useRouter, usePathname } from "next/navigation";
 
 const menuItems = [
   { href: "/#about", label: "About", description: "Our story and mission" },
   { href: "/#services", label: "Services", description: "What we offer" },
-  { href: "/#projects", label: "Projects", description: "Our recent work" },
+  { href: "/projects", label: "Projects", description: "Our recent work" },
   { href: "/#pricing", label: "Pricing", description: "Investment plans" },
   { href: "/#contact", label: "Contact", description: "Get in touch" },
 ];
@@ -32,6 +33,8 @@ const MobileMenu: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
@@ -47,10 +50,17 @@ const MobileMenu: React.FC = () => {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // For different pages
-      window.location.href = href;
+      // For different pages, use Next.js router
+      router.push(href);
     }
   };
+
+  // Prevent hydration mismatch by rendering a placeholder during SSR
+  const logoSrc = mounted
+    ? theme === "dark"
+      ? "/logo.png"
+      : "/logo-bw.png"
+    : "/logo.png";
 
   if (!mounted) return null;
 
@@ -78,11 +88,12 @@ const MobileMenu: React.FC = () => {
             <div className='absolute inset-0 bg-gradient-to-b from-violet-500/10 to-transparent pointer-events-none' />
             <Link href='/' onClick={() => setIsOpen(false)}>
               <Image
-                src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
+                src={logoSrc}
                 width={130}
                 height={50}
                 alt='logo'
                 className='transition-transform hover:scale-105'
+                priority
               />
             </Link>
           </motion.div>

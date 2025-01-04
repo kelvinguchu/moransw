@@ -1,5 +1,5 @@
 "use client";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Space_Grotesk } from "next/font/google";
@@ -120,6 +120,18 @@ const EasterEgg: FC = () => {
 
 const Footer: FC = () => {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevent hydration mismatch by rendering a placeholder during SSR
+  const logoSrc = mounted
+    ? theme === "dark"
+      ? "/logo.png"
+      : "/logo-bw.png"
+    : "/logo.png";
 
   return (
     <footer className={cn("relative mt-8 bg-black", spaceGrotesk.variable)}>
@@ -133,11 +145,12 @@ const Footer: FC = () => {
           <div className='space-y-6'>
             <div className='flex items-center space-x-3'>
               <Image
-                src={theme === "dark" ? "/logo.png" : "/logo-bw.png"}
+                src={logoSrc}
                 width={40}
                 height={40}
                 alt='logo'
                 className='rounded-full'
+                priority
               />
               <span className='text-xl font-semibold text-white tracking-tight'>
                 Astraque <span className='text-violet-500'>Softwares</span>

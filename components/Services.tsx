@@ -180,46 +180,54 @@ const EcommerceVisual: React.FC = () => (
   </div>
 );
 
-const SEOVisual: React.FC = () => (
-  <div className='relative w-full aspect-[16/9] rounded-t-3xl overflow-hidden bg-gradient-to-br from-[#4285F4]/10 to-black/40 backdrop-blur-sm'>
-    <div className='absolute inset-0 p-4'>
-      <div className='h-full flex flex-col'>
-        {/* Analytics Header */}
-        <div className='flex items-center justify-between mb-3'>
-          <div className='flex items-center space-x-3'>
-            <IconBrandGoogle className='w-4 h-4 text-[#4285F4]/50' />
-            <div className='text-[10px] text-gray-400'>Analytics Dashboard</div>
-          </div>
-          <div className='px-2 py-1 rounded bg-[#4285F4]/20 text-[10px] text-[#4285F4]'>
-            Live
-          </div>
-        </div>
-        {/* Analytics Content */}
-        <div className='flex-1 grid grid-rows-2 gap-3'>
-          <div className='grid grid-cols-3 gap-3'>
-            {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className='bg-white/5 rounded-lg p-2'>
-                <div className='w-1/2 h-2 bg-white/10 rounded mb-2'></div>
-                <div className='w-2/3 h-2 bg-[#4285F4]/20 rounded'></div>
+const SEOVisual: React.FC = () => {
+  // Predetermined heights for consistent server/client rendering
+  const barHeights = [65, 80, 45, 90, 60, 75];
+
+  return (
+    <div className='relative w-full aspect-[16/9] rounded-t-3xl overflow-hidden bg-gradient-to-br from-[#4285F4]/10 to-black/40 backdrop-blur-sm'>
+      <div className='absolute inset-0 p-4'>
+        <div className='h-full flex flex-col'>
+          {/* Analytics Header */}
+          <div className='flex items-center justify-between mb-3'>
+            <div className='flex items-center space-x-3'>
+              <IconBrandGoogle className='w-4 h-4 text-[#4285F4]/50' />
+              <div className='text-[10px] text-gray-400'>
+                Analytics Dashboard
               </div>
-            ))}
+            </div>
+            <div className='px-2 py-1 rounded bg-[#4285F4]/20 text-[10px] text-[#4285F4]'>
+              Live
+            </div>
           </div>
-          <div className='bg-white/5 rounded-lg p-3'>
-            <div className='h-full flex items-end space-x-2'>
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div
-                  key={i}
-                  className='w-full bg-[#4285F4]/20 rounded-t'
-                  style={{ height: `${Math.random() * 100}%` }}></div>
+          {/* Analytics Content */}
+          <div className='flex-1 grid grid-rows-2 gap-3'>
+            <div className='grid grid-cols-3 gap-3'>
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className='bg-white/5 rounded-lg p-2'>
+                  <div className='w-1/2 h-2 bg-white/10 rounded mb-2'></div>
+                  <div className='w-2/3 h-2 bg-[#4285F4]/20 rounded'></div>
+                </div>
               ))}
+            </div>
+            <div className='bg-white/5 rounded-lg p-3'>
+              <div className='h-full flex items-end space-x-2'>
+                {barHeights.map((height, i) => (
+                  <div
+                    key={i}
+                    className='w-full bg-[#4285F4]/20 rounded-t'
+                    style={{ height: `${height}%` }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div className='absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent' />
     </div>
-    <div className='absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent' />
-  </div>
-);
+  );
+};
 
 const FigmaVisual: React.FC = () => (
   <div className='relative w-full aspect-[16/9] rounded-t-3xl overflow-hidden bg-gradient-to-br from-[#F24E1E]/20 to-black/40 backdrop-blur-sm'>
