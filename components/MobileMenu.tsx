@@ -33,27 +33,10 @@ const MobileMenu: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const handleNavigation = (href: string) => {
-    setIsOpen(false);
-    if (href.startsWith("/#")) {
-      // For same page sections
-      const sectionId = href.replace("/#", "");
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      // For different pages, use Next.js router
-      router.push(href);
-    }
-  };
 
   // Prevent hydration mismatch by rendering a placeholder during SSR
   const logoSrc = mounted
@@ -116,10 +99,7 @@ const MobileMenu: React.FC = () => {
                   <SheetClose asChild>
                     <Link
                       href={item.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleNavigation(item.href);
-                      }}
+                      onClick={() => setIsOpen(false)}
                       className='group relative block p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] hover:border-violet-500/30 transition-colors duration-300'>
                       <div className='absolute inset-0 rounded-xl bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
                       <div className='relative flex items-center justify-between'>
