@@ -69,8 +69,8 @@ function Navbar({ className }: { className?: string }) {
               <Link href='/' className='relative flex items-center'>
                 <Image
                   src='/logo.png'
-                  width={110}
-                  height={40}
+                  width={130}
+                  height={45}
                   alt='logo'
                   className='relative'
                 />
@@ -84,7 +84,7 @@ function Navbar({ className }: { className?: string }) {
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        "relative px-5 py-2 text-sm text-gray-300 transition-colors",
+                        "relative px-5 py-2 text-[15px] text-gray-300 transition-colors",
                         "hover:text-white",
                         activeSection === item.label && "text-white"
                       )}
@@ -114,7 +114,7 @@ function Navbar({ className }: { className?: string }) {
                     href='tel:+254792554525'
                     className='group flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] hover:bg-white/[0.08] transition-colors'>
                     <FiPhone className='w-4 h-4 text-[#8A7CFF]' />
-                    <span className='text-sm text-gray-300 group-hover:text-white'>
+                    <span className='text-[15px] text-gray-300 group-hover:text-white'>
                       0792 554525
                     </span>
                   </Link>

@@ -24,8 +24,18 @@ const menuItems = [
 ];
 
 const contactItems = [
-  { href: "tel:+254792554525", label: "0792 554525", icon: "🇰🇪" },
-  { href: "tel:+254792194217", label: "0792 194217", icon: "🇰🇪" },
+  {
+    href: "tel:+254792554525",
+    label: "0792 554525",
+    icon: "🇰🇪",
+    number: "+254792554525",
+  },
+  {
+    href: "tel:+254792194217",
+    label: "0792 194217",
+    icon: "🇰🇪",
+    number: "+254792194217",
+  },
 ];
 
 const MobileMenu: React.FC = () => {
@@ -33,6 +43,7 @@ const MobileMenu: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -44,6 +55,17 @@ const MobileMenu: React.FC = () => {
       ? "/logo.png"
       : "/logo-bw.png"
     : "/logo.png";
+
+  // Copy number function
+  const handleCopy = async (number: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(number);
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 2000); // Reset after 2 seconds
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
 
   if (!mounted) return null;
 
@@ -72,8 +94,8 @@ const MobileMenu: React.FC = () => {
             <Link href='/' onClick={() => setIsOpen(false)}>
               <Image
                 src={logoSrc}
-                width={130}
-                height={50}
+                width={150}
+                height={55}
                 alt='logo'
                 className='transition-transform hover:scale-105'
                 priority
@@ -125,29 +147,53 @@ const MobileMenu: React.FC = () => {
           </nav>
 
           {/* Contact Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className='mt-auto p-6 border-t border-white/[0.08]'>
-            <div className='relative p-4 rounded-xl border border-white/[0.08] bg-white/[0.02]'>
-              <div className='absolute inset-0 rounded-xl bg-gradient-to-b from-white/5 to-transparent' />
-              <h3 className='relative text-lg font-medium text-white mb-4'>
+          <div className='mt-auto border-t border-white/[0.08]'>
+            <div className='px-6 py-8'>
+              <h3 className='text-lg font-medium text-white mb-4'>
                 Contact Us
               </h3>
-              <div className='relative space-y-2'>
+              <div className='space-y-3'>
                 {contactItems.map((item, index) => (
-                  <a
+                  <div
                     key={item.href}
-                    href={item.href}
-                    className='flex items-center gap-2 text-gray-400 hover:text-violet-400 transition-colors duration-300'>
-                    <span>{item.icon}</span>
-                    <span>{item.label}</span>
-                  </a>
+                    className='flex items-center justify-between group'>
+                    <Link
+                      href={item.href}
+                      className='flex items-center gap-2 text-gray-400 hover:text-white transition-colors'>
+                      <span>{item.icon}</span>
+                      <span>{item.label}</span>
+                    </Link>
+                    <button
+                      onClick={() => handleCopy(item.number, index)}
+                      className='p-2 rounded-lg hover:bg-white/[0.08] transition-colors'
+                      title='Copy number'>
+                      {copiedIndex === index ? (
+                        <motion.span
+                          initial={{ scale: 0.5, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          className='text-green-500 text-sm'>
+                          Copied!
+                        </motion.span>
+                      ) : (
+                        <svg
+                          className='w-4 h-4 text-gray-400 group-hover:text-violet-400'
+                          fill='none'
+                          stroke='currentColor'
+                          viewBox='0 0 24 24'>
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3'
+                          />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </SheetContent>
     </Sheet>

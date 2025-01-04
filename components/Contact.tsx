@@ -58,11 +58,11 @@ const ContactVisual: FC = () => (
               </span>
               <span className='text-white'>,</span>
               <br />
-              <span className='text-pink-400'>phone1:</span>{" "}
+              <span className='text-pink-400'>Jeff:</span>{" "}
               <span className='text-emerald-400'>"+254 792 554525"</span>
               <span className='text-white'>,</span>
               <br />
-              <span className='text-pink-400'>phone2:</span>{" "}
+              <span className='text-pink-400'>Kelvin:</span>{" "}
               <span className='text-emerald-400'>"+254 792 194217"</span>
             </div>
             <div>

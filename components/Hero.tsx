@@ -1,10 +1,11 @@
 "use client";
-import { FC } from "react";
-import { motion } from "framer-motion";
+import { FC, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Inter, Montserrat } from "next/font/google";
 import IconsCloud from "./IconsCloud";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { FiChevronDown } from "react-icons/fi";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -17,6 +18,21 @@ const inter = Inter({
 });
 
 const Hero: FC = () => {
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setHasScrolled(true);
+      } else {
+        setHasScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const fadeUpAnimation = {
     initial: { y: 20, opacity: 0 },
     animate: { y: 0, opacity: 1 },
@@ -35,7 +51,7 @@ const Hero: FC = () => {
       <motion.div
         initial='initial'
         animate='animate'
-        className='w-full md:w-1/2 pt-16 pb-20 md:pt-[80px] md:pb-0 relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:mr-10'>
+        className='w-full md:w-1/2 pt-16 pb-12 md:pt-[80px] md:pb-0 relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:mr-10'>
         <motion.div {...fadeUpAnimation} className='space-y-6'>
           <div>
             <h1 className='text-[2.75rem] md:text-[4.5rem] font-semibold tracking-[-0.02em] leading-[1.1] text-white'>
@@ -81,19 +97,40 @@ const Hero: FC = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7 }}
-        className='md:w-1/2 w-[80%] relative z-10 flex -mt-10 md:mt-0 justify-center mx-auto md:justify-end'>
-        <div className='relative w-full aspect-square max-w-[600px]'>
+        className='md:w-1/2 w-full relative z-10 flex justify-center md:justify-end py-6 md:py-0'>
+        <div className='relative w-full h-[280px] md:h-auto md:aspect-square max-w-[600px]'>
           <IconsCloud />
         </div>
       </motion.div>
 
-      {/* Background Elements */}
-      {/* <div className='absolute inset-0 -z-10'> */}
-      {/* Subtle gradient background */}
-      {/* <div className='absolute inset-0 bg-transparent'>
-          <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(138,124,255,0.05),transparent_50%)]' />
-        </div>
-      </div> */}
+      {/* Scroll Indicator with AnimatePresence */}
+      <AnimatePresence>
+        {!hasScrolled && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className='absolute bottom-[90px] md:-bottom-4 left-1/2 -translate-x-1/2 z-50'>
+            <motion.div
+              animate={{
+                y: [0, 8, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className='flex flex-col items-center gap-2'>
+              <div className='relative p-2 rounded-full bg-black/30 backdrop-blur-sm border border-violet-500/20 shadow-[0_0_15px_-3px_rgba(139,92,246,0.3)] transition-all duration-300'>
+                <div className='absolute inset-0 rounded-full bg-gradient-to-b from-violet-500/10 to-transparent' />
+                <FiChevronDown className='w-5 h-5 text-violet-400/90 relative z-10' />
+              </div>
+              <div className='h-8 w-[2px] bg-gradient-to-b from-violet-500/40 via-violet-500/20 to-transparent' />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 };
