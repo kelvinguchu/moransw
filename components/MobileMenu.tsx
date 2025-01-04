@@ -83,14 +83,14 @@ const MobileMenu: React.FC = () => {
       <SheetContent
         side='right'
         className='w-full max-w-md border-l border-white/[0.08] bg-black/95 backdrop-blur-2xl p-0'>
-        <div className='flex flex-col h-full'>
+        <div className='relative flex flex-col h-[100vh]'>
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className='relative flex justify-center py-8 border-b border-white/[0.08]'>
-            <div className='absolute inset-0 bg-gradient-to-b from-violet-500/10 to-transparent pointer-events-none' />
+            className='relative flex justify-center py-4 border-b border-white/[0.08]'>
+            <div className='absolute inset-0 [background:radial-gradient(circle_at_top,rgba(138,124,255,0.1),transparent_70%)]' />
             <Link href='/' onClick={() => setIsOpen(false)}>
               <Image
                 src={logoSrc}
@@ -104,40 +104,39 @@ const MobileMenu: React.FC = () => {
           </motion.div>
 
           {/* Navigation Items */}
-          <nav className='flex-1 py-8 px-6'>
+          <nav className='flex-1 px-6 py-4'>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className='flex flex-col space-y-3'>
+              className='flex flex-col space-y-2.5'>
               {menuItems.map((item, index) => (
                 <motion.div
                   key={item.href}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 + 0.2 }}
-                  onHoverStart={() => setActiveIndex(index)}
-                  onHoverEnd={() => setActiveIndex(null)}>
+                  transition={{ delay: index * 0.1 + 0.2 }}>
                   <SheetClose asChild>
                     <Link
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className='group relative block p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] hover:border-violet-500/30 transition-colors duration-300'>
-                      <div className='absolute inset-0 rounded-xl bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
+                      className='group relative block p-3.5 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] hover:border-violet-500/30 transition-colors duration-300'>
+                      {/* Artistic Gradients from Services */}
+                      <div className='absolute inset-0 rounded-xl [background:radial-gradient(circle_at_top,rgba(138,124,255,0.1),transparent_70%)]' />
+                      <div className='absolute inset-0 rounded-xl bg-gradient-to-b from-white/5 to-transparent' />
+                      <div className='absolute -inset-px rounded-xl opacity-0 group-hover:opacity-100 duration-300 bg-gradient-to-b from-violet-500/10 via-transparent to-transparent' />
+                      <div className='absolute bottom-0 left-0 w-1/2 h-px opacity-0 group-hover:opacity-100 bg-gradient-to-r from-violet-500/50 to-transparent duration-300' />
+                      <div className='absolute top-0 right-0 w-1/2 h-px opacity-0 group-hover:opacity-100 bg-gradient-to-l from-violet-500/50 to-transparent duration-300' />
                       <div className='relative flex items-center justify-between'>
                         <div>
-                          <h3 className='text-lg font-medium text-white mb-1'>
+                          <h3 className='text-[15px] font-medium text-white mb-0.5'>
                             {item.label}
                           </h3>
-                          <p className='text-sm text-gray-400'>
+                          <p className='text-xs text-gray-400'>
                             {item.description}
                           </p>
                         </div>
                         <FiArrowUpRight className='w-5 h-5 text-gray-400 group-hover:text-violet-400 transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform duration-300' />
-                      </div>
-                      <div className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
-                        <div className='absolute inset-0 bg-gradient-to-r from-violet-500/10 via-transparent to-transparent' />
-                        <div className='absolute right-0 bottom-0 w-32 h-32 bg-gradient-to-tl from-violet-500/20 via-transparent to-transparent rounded-tl-full' />
                       </div>
                     </Link>
                   </SheetClose>
@@ -148,35 +147,36 @@ const MobileMenu: React.FC = () => {
 
           {/* Contact Section */}
           <div className='mt-auto border-t border-white/[0.08]'>
-            <div className='px-6 py-8'>
-              <h3 className='text-lg font-medium text-white mb-4'>
+            <div className='relative px-6 py-4'>
+              <div className='absolute inset-0 [background:radial-gradient(circle_at_bottom,rgba(138,124,255,0.1),transparent_70%)]' />
+              <h3 className='relative text-[15px] font-medium text-white mb-3'>
                 Contact Us
               </h3>
-              <div className='space-y-3'>
+              <div className='relative space-y-2'>
                 {contactItems.map((item, index) => (
                   <div
                     key={item.href}
                     className='flex items-center justify-between group'>
                     <Link
                       href={item.href}
-                      className='flex items-center gap-2 text-gray-400 hover:text-white transition-colors'>
+                      className='flex items-center gap-2 text-[13px] text-gray-400 hover:text-white transition-colors'>
                       <span>{item.icon}</span>
                       <span>{item.label}</span>
                     </Link>
                     <button
                       onClick={() => handleCopy(item.number, index)}
-                      className='p-2 rounded-lg hover:bg-white/[0.08] transition-colors'
+                      className='p-1.5 rounded-lg hover:bg-white/[0.08] transition-colors'
                       title='Copy number'>
                       {copiedIndex === index ? (
                         <motion.span
                           initial={{ scale: 0.5, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
-                          className='text-green-500 text-sm'>
+                          className='text-green-500 text-xs'>
                           Copied!
                         </motion.span>
                       ) : (
                         <svg
-                          className='w-4 h-4 text-gray-400 group-hover:text-violet-400'
+                          className='w-3.5 h-3.5 text-gray-400 group-hover:text-violet-400'
                           fill='none'
                           stroke='currentColor'
                           viewBox='0 0 24 24'>

@@ -53,7 +53,7 @@ const CodeVisual: React.FC = () => (
         {/* Code content */}
         <pre className='p-4 text-[10px] md:text-xs font-mono text-gray-300/75 overflow-hidden'>
           <code className='flex flex-col gap-1'>
-            <span className='text-blue-400'>import</span>
+            <span className='text-blue-400'>import React from 'react';</span>
             <span className='text-gray-400'>{"const App = () => {"}</span>
             <span className='text-violet-400 pl-2'>
               {"  const [data, setData] = useState<Data[]>([])"}
