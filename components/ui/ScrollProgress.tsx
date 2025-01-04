@@ -47,8 +47,10 @@ export const ScrollProgress = ({
 
   return (
     <motion.div ref={scrollRef} className={cn("relative w-full", className)}>
-      {/* Progress Indicator */}
-      <div className='fixed left-8 top-24 z-50 h-[70vh]' ref={progressRef}>
+      {/* Progress Indicator - Hidden on mobile, visible from md breakpoint */}
+      <div
+        className='fixed hidden md:block left-8 top-24 z-50 h-[70vh]'
+        ref={progressRef}>
         {/* Progress Line Container */}
         <motion.div
           className='absolute left-0 h-full'
