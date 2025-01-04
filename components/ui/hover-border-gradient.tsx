@@ -4,8 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-
-
 type Direction = "TOP" | "LEFT" | "BOTTOM" | "RIGHT";
 
 export function HoverBorderGradient({
@@ -50,13 +48,12 @@ export function HoverBorderGradient({
     "radial-gradient(75% 181.15942028985506% at 50% 50%, #3275F8 0%, rgba(255, 255, 255, 0) 100%)";
 
   useEffect(() => {
-    if (!hovered) {
-      const interval = setInterval(() => {
-        setDirection((prevState) => rotateDirection(prevState));
-      }, duration * 1000);
-      return () => clearInterval(interval);
-    }
-  }, [hovered]);
+    const interval = setInterval(() => {
+      setDirection((prev) => rotateDirection(prev));
+    }, duration);
+
+    return () => clearInterval(interval);
+  }, [duration, rotateDirection]);
   return (
     <Tag
       onMouseEnter={(event: React.MouseEvent<HTMLDivElement>) => {

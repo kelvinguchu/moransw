@@ -48,7 +48,7 @@ const AfricaVisual: FC = () => (
         {/* Editor Content */}
         <div className='relative flex-1 p-6 font-mono text-sm'>
           <div className='relative z-10'>
-            <div className='text-gray-500'>// Founders of Astraque</div>
+            {/* Founders of Astraque */}
             <div className='mt-2'>
               <span className='text-violet-400'>const</span>{" "}
               <span className='text-indigo-400'>founders</span>{" "}
@@ -59,11 +59,11 @@ const AfricaVisual: FC = () => (
               <span className='text-white'>{`{`}</span>
               <br />
               <span className='ml-4 text-pink-400'>name:</span>{" "}
-              <span className='text-emerald-400'>"Kelvin Guchu"</span>
+              <span className='text-emerald-400'>&quot;Kelvin Guchu&quot;</span>
               <span className='text-white'>,</span>
               <br />
               <span className='ml-4 text-pink-400'>role:</span>{" "}
-              <span className='text-emerald-400'>"Co-founder"</span>
+              <span className='text-emerald-400'>&quot;Co-founder&quot;</span>
               <br />
               <span className='text-white'>{`},`}</span>
             </div>
@@ -71,11 +71,11 @@ const AfricaVisual: FC = () => (
               <span className='text-white'>{`{`}</span>
               <br />
               <span className='ml-4 text-pink-400'>name:</span>{" "}
-              <span className='text-emerald-400'>"Jeff Mumbi"</span>
+              <span className='text-emerald-400'>&quot;Jeff Mumbi&quot;</span>
               <span className='text-white'>,</span>
               <br />
               <span className='ml-4 text-pink-400'>role:</span>{" "}
-              <span className='text-emerald-400'>"Co-founder"</span>
+              <span className='text-emerald-400'>&quot;Co-founder&quot;</span>
               <br />
               <span className='text-white'>{`}`}</span>
             </div>
@@ -83,12 +83,12 @@ const AfricaVisual: FC = () => (
               <span className='text-violet-400'>];</span>
             </div>
 
-            <div className='mt-4 text-gray-500'>// Tech hubs across Africa</div>
+            {/* Tech hubs across Africa */}
             <div className='mt-2'>
               <span className='text-violet-400'>const</span>{" "}
               <span className='text-indigo-400'>techHubs</span>{" "}
               <span className='text-white'>=</span>{" "}
-              <span className='text-emerald-400'>"Growing..."</span>
+              <span className='text-emerald-400'>&quot;Growing...&quot;</span>
               <span className='text-white'>;</span>
             </div>
           </div>
@@ -191,9 +191,10 @@ const About: FC = () => {
                   </h2>
                   <p className='text-base text-gray-400/90 leading-relaxed'>
                     Astraque was founded by Kelvin Guchu and Jeff Mumbi,
-                    Information Technology graduates from Jomo Kenyatta University
-                    of Agriculture and Technology. Our shared vision of digital
-                    innovation and transformation drives our mission forward.
+                    Information Technology graduates from Jomo Kenyatta
+                    University of Agriculture and Technology. Our shared vision
+                    of digital innovation and transformation drives our mission
+                    forward.
                   </p>
                 </div>
 
@@ -205,8 +206,8 @@ const About: FC = () => {
                     Our Mission
                   </h3>
                   <p className='text-base text-gray-400/90 leading-relaxed'>
-                    We're committed to developing cutting-edge software
-                    solutions and websites that enhance Africa's digital
+                    We&apos;re committed to developing cutting-edge software
+                    solutions and websites that enhance Africa&apos;s digital
                     presence. Our goal is to make the online space more
                     accessible, innovative, and impactful for African businesses
                     and communities.

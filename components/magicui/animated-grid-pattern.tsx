@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useEffect, useId, useRef, useState, useCallback, useMemo } from "react";
+import React, {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import useWindowSize from "@/hooks/useWindowSize";
@@ -46,27 +53,36 @@ export function GridPattern({
     ];
   }, [dimensions, width, height]);
 
-  const generateSquares = useCallback((count: number) => {
-    return Array.from({ length: count }, (_, i) => ({
-      id: i,
-      pos: getPos(),
-    }));
-  }, [getPos]);
+  const generateSquares = useCallback(
+    (count: number) => {
+      return Array.from({ length: count }, (_, i) => ({
+        id: i,
+        pos: getPos(),
+      }));
+    },
+    [getPos]
+  );
 
-  const squares = useMemo(() => generateSquares(adjustedNumSquares), [generateSquares, adjustedNumSquares]);
+  const squares = useMemo(
+    () => generateSquares(adjustedNumSquares),
+    [generateSquares, adjustedNumSquares]
+  );
 
-  const updateSquarePosition = useCallback((id: number) => {
-    setSquares((currentSquares) =>
-      currentSquares.map((sq) =>
-        sq.id === id
-          ? {
-              ...sq,
-              pos: getPos(),
-            }
-          : sq,
-      ),
-    );
-  }, [getPos]);
+  const updateSquarePosition = useCallback(
+    (id: number) => {
+      setSquares((currentSquares) =>
+        currentSquares.map((sq) =>
+          sq.id === id
+            ? {
+                ...sq,
+                pos: getPos(),
+              }
+            : sq
+        )
+      );
+    },
+    [getPos]
+  );
 
   const [squaresState, setSquares] = useState(squares);
 
@@ -75,6 +91,28 @@ export function GridPattern({
       setSquares(generateSquares(adjustedNumSquares));
     }
   }, [dimensions, adjustedNumSquares, generateSquares]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const updateMousePosition = (ev: MouseEvent) => {
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      setMousePosition({
+        x: ev.clientX - rect.left,
+        y: ev.clientY - rect.top,
+      });
+    };
+
+    container.addEventListener("mousemove", updateMousePosition);
+
+    return () => {
+      if (container) {
+        container.removeEventListener("mousemove", updateMousePosition);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver((entries) => {
@@ -100,31 +138,29 @@ export function GridPattern({
   return (
     <svg
       ref={containerRef}
-      aria-hidden="true"
+      aria-hidden='true'
       className={cn(
         "pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
-        className,
+        className
       )}
-      {...props}
-    >
+      {...props}>
       <defs>
         <pattern
           id={id}
           width={width}
           height={height}
-          patternUnits="userSpaceOnUse"
+          patternUnits='userSpaceOnUse'
           x={x}
-          y={y}
-        >
+          y={y}>
           <path
             d={`M.5 ${height}V.5H${width}`}
-            fill="none"
+            fill='none'
             strokeDasharray={strokeDasharray}
           />
         </pattern>
       </defs>
-      <rect width="100%" height="100%" fill={`url(#${id})`} />
-      <svg x={x} y={y} className="overflow-visible">
+      <rect width='100%' height='100%' fill={`url(#${id})`} />
+      <svg x={x} y={y} className='overflow-visible'>
         {squaresState.map(({ pos: [x, y], id }, index) => (
           <motion.rect
             initial={{ opacity: 0 }}
@@ -141,8 +177,8 @@ export function GridPattern({
             height={height - 1}
             x={x * width + 1}
             y={y * height + 1}
-            fill="currentColor"
-            strokeWidth="0"
+            fill='currentColor'
+            strokeWidth='0'
           />
         ))}
       </svg>

@@ -44,7 +44,7 @@ const ContactVisual: FC = () => (
         {/* Editor Content */}
         <div className='relative flex-1 p-6 font-mono text-sm'>
           <div className='relative z-10'>
-            <div className='text-gray-500'>// Contact Information</div>
+            {/* Contact Information */}
             <div className='mt-2'>
               <span className='text-violet-400'>const</span>{" "}
               <span className='text-indigo-400'>contact</span>{" "}
@@ -54,27 +54,33 @@ const ContactVisual: FC = () => (
             <div className='ml-4'>
               <span className='text-pink-400'>email:</span>{" "}
               <span className='text-emerald-400'>
-                "astraquesoftwares@gmail.com"
+                &quot;astraquesoftwares@gmail.com&quot;
               </span>
               <span className='text-white'>,</span>
               <br />
               <span className='text-pink-400'>phone1:</span>{" "}
-              <span className='text-emerald-400'>"+254 792 554525"</span>
+              <span className='text-emerald-400'>
+                &quot;+254 792 554525&quot;
+              </span>
               <span className='text-white'>,</span>
               <br />
               <span className='text-pink-400'>phone2:</span>{" "}
-              <span className='text-emerald-400'>"+254 792 194217"</span>
+              <span className='text-emerald-400'>
+                &quot;+254 792 194217&quot;
+              </span>
             </div>
             <div>
               <span className='text-violet-400'>{`};`}</span>
             </div>
 
-            <div className='mt-4 text-gray-500'>// Let's Connect</div>
+            {/* Let's Connect */}
             <div className='mt-2'>
               <span className='text-violet-400'>const</span>{" "}
               <span className='text-indigo-400'>message</span>{" "}
               <span className='text-white'>=</span>{" "}
-              <span className='text-emerald-400'>"Send us a message..."</span>
+              <span className='text-emerald-400'>
+                &quot;Send us a message...&quot;
+              </span>
               <span className='text-white'>;</span>
             </div>
           </div>

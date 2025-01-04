@@ -50,6 +50,10 @@ const Hero: FC = () => {
             Transforming ideas into powerful websites, applications, and
             software solutions for forward-thinking businesses.
           </p>
+
+          <p className='text-base text-gray-400/90 leading-relaxed'>
+            We&apos;re here to help you succeed
+          </p>
         </motion.div>
 
         <motion.div
@@ -89,8 +93,8 @@ const Hero: FC = () => {
 
       {/* Background Elements */}
       {/* <div className='absolute inset-0 -z-10'> */}
-        {/* Subtle gradient background */}
-        {/* <div className='absolute inset-0 bg-transparent'>
+      {/* Subtle gradient background */}
+      {/* <div className='absolute inset-0 bg-transparent'>
           <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(138,124,255,0.05),transparent_50%)]' />
         </div>
       </div> */}
