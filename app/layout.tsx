@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.astraque.com"),
   title: {
-    default: "Astraque Softwares | Web & Software Development Solutions",
+    default: "Astraque Softwares | Website & Software Development Solutions",
     template: "%s | Astraque Softwares",
   },
   description:
