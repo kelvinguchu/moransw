@@ -2,7 +2,7 @@ import { VelocityScroll } from "@/components/ui/scroll-based-velocity";
 
 export function ProductHero() {
   return (
-    <section className="my-4 md:my-8">
+    <section className='my-4 md:my-8'>
       <VelocityScroll
         text='-Bringing your Unicorn ideas to life-'
         default_velocity={5}

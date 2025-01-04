@@ -1,55 +1,109 @@
 "use client";
-import { useState, useEffect, Suspense } from "react";
+import { Suspense } from "react";
 import dynamic from "next/dynamic";
-import Contact from "@/components/Contact";
 
-// Dynamically import components with Suspense for lazy loading
-const Divider = dynamic(() => import("@/components/Divider"), {
-  suspense: true,
-});
+// Loading components
+const LoadingSpinner = () => (
+  <div className='flex items-center justify-center min-h-[200px]'>
+    <div className='w-8 h-8 border-4 border-violet-500 border-t-transparent rounded-full animate-spin'></div>
+  </div>
+);
+
+// Prioritize hero section
 const HeroReload = dynamic(() => import("@/components/HeroReload"), {
-  suspense: true,
+  ssr: true, // Enable server-side rendering for the hero
+  loading: () => <LoadingSpinner />,
 });
+
+// Secondary priority components
 const Services = dynamic(() => import("@/components/Services"), {
-  suspense: true,
+  loading: () => <LoadingSpinner />,
 });
+
 const About = dynamic(() => import("@/components/About"), {
-  suspense: true,
+  loading: () => <LoadingSpinner />,
 });
+
+const Pricing = dynamic(() => import("@/components/Pricing"), {
+  loading: () => <LoadingSpinner />,
+});
+
+const Contact = dynamic(() => import("@/components/Contact"), {
+  loading: () => <LoadingSpinner />,
+});
+
+const Testimonials = dynamic(() => import("@/components/Testimonials"), {
+  loading: () => <LoadingSpinner />,
+});
+
+// Utility components with minimal loading states
+const Divider = dynamic(() => import("@/components/Divider"), {
+  loading: () => <div className='h-16' />,
+});
+
 const ScrollProgress = dynamic(
   () =>
     import("@/components/ui/ScrollProgress").then((mod) => mod.ScrollProgress),
-  { suspense: true }
+  {
+    loading: () => <div className='h-1 bg-violet-500/20' />,
+  }
 );
-const Pricing = dynamic(() => import("@/components/Pricing"), {
-  suspense: true,
-});
-const Testimonials = dynamic(() => import("@/components/Testimonials"), {
-  suspense: true,
-});
 
 export default function Home() {
   return (
     <main className='flex w-full min-h-screen flex-col items-center justify-between pt-24'>
       <ScrollProgress>
-        <Suspense>
+        {/* Hero Section - Highest Priority */}
+        <Suspense fallback={<LoadingSpinner />}>
           <HeroReload />
-          <section id='services'>
+        </Suspense>
+
+        {/* Services Section */}
+        <section id='services'>
+          <Suspense fallback={<LoadingSpinner />}>
             <Services />
-          </section>
+          </Suspense>
+        </section>
+
+        <Suspense fallback={<div className='h-16' />}>
           <Divider />
-          <section id='about'>
+        </Suspense>
+
+        {/* About Section */}
+        <section id='about'>
+          <Suspense fallback={<LoadingSpinner />}>
             <About />
-          </section>
+          </Suspense>
+        </section>
+
+        <Suspense fallback={<div className='h-16' />}>
           <Divider />
-          <section id='pricing'>
+        </Suspense>
+
+        {/* Pricing Section */}
+        <section id='pricing'>
+          <Suspense fallback={<LoadingSpinner />}>
             <Pricing />
-          </section>
+          </Suspense>
+        </section>
+
+        <Suspense fallback={<div className='h-16' />}>
           <Divider />
-          <section id='contact'>
+        </Suspense>
+
+        {/* Contact Section */}
+        <section id='contact'>
+          <Suspense fallback={<LoadingSpinner />}>
             <Contact />
-          </section>
+          </Suspense>
+        </section>
+
+        <Suspense fallback={<div className='h-16' />}>
           <Divider />
+        </Suspense>
+
+        {/* Testimonials Section */}
+        <Suspense fallback={<LoadingSpinner />}>
           <Testimonials />
         </Suspense>
       </ScrollProgress>
