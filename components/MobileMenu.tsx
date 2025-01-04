@@ -12,7 +12,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiArrowUpRight } from "react-icons/fi";
-import { cn, scrollToSection } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 const menuItems = [
   { href: "/#about", label: "About", description: "Our story and mission" },
@@ -36,6 +36,21 @@ const MobileMenu: React.FC = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const handleNavigation = (href: string) => {
+    setIsOpen(false);
+    if (href.startsWith("/#")) {
+      // For same page sections
+      const sectionId = href.replace("/#", "");
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // For different pages
+      window.location.href = href;
+    }
+  };
 
   if (!mounted) return null;
 
@@ -92,8 +107,7 @@ const MobileMenu: React.FC = () => {
                       href={item.href}
                       onClick={(e) => {
                         e.preventDefault();
-                        scrollToSection(item.href);
-                        setIsOpen(false);
+                        handleNavigation(item.href);
                       }}
                       className='group relative block p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] hover:border-violet-500/30 transition-colors duration-300'>
                       <div className='absolute inset-0 rounded-xl bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
