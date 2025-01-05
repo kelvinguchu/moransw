@@ -18,7 +18,14 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
-    optimizeCss: true,
+    optimizeCss: {
+      critters: {
+        ssrMode: "critical",
+        preload: "media",
+        pruneSource: true,
+        reduceInlineStyles: true,
+      },
+    },
     optimizePackageImports: ["framer-motion", "@react-icons/all-files"],
   },
   compiler: {
