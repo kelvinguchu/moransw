@@ -144,14 +144,19 @@ const Footer: FC = () => {
           {/* Brand Section */}
           <div className='space-y-6'>
             <div className='flex items-center space-x-3'>
-              <Image
-                src={logoSrc}
-                width={40}
-                height={40}
-                alt='logo'
-                className='rounded-full'
-                priority
-              />
+              <div className='relative w-[40px] h-[40px]'>
+                <Image
+                  src={logoSrc}
+                  width={40}
+                  height={40}
+                  alt='logo'
+                  className='w-full h-full rounded-full'
+                  priority
+                  style={{
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
               <span className='text-xl font-semibold text-white tracking-tight'>
                 Astraque <span className='text-violet-500'>Softwares</span>
               </span>

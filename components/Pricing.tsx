@@ -37,7 +37,6 @@ const pricingData = [
       { name: "Next.js", icon: IconBrandNextjs },
       { name: "Tailwind", icon: IconBrandTailwind },
     ],
-    highlight: false,
   },
   {
     title: "Professional",
@@ -56,7 +55,6 @@ const pricingData = [
       { name: "Next.js", icon: IconBrandNextjs },
       { name: "Tailwind", icon: IconBrandTailwind },
     ],
-    highlight: true,
   },
   {
     title: "Business",
@@ -75,7 +73,6 @@ const pricingData = [
       { name: "Next.js", icon: IconBrandNextjs },
       { name: "Tailwind", icon: IconBrandTailwind },
     ],
-    highlight: false,
   },
   {
     title: "WordPress",
@@ -93,7 +90,6 @@ const pricingData = [
       { name: "WordPress", icon: IconBrandWordpress },
       { name: "Custom", icon: IconLayoutGrid },
     ],
-    highlight: false,
   },
 ];
 

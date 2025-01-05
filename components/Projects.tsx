@@ -181,7 +181,7 @@ const Projects: FC = () => {
                         <h3 className='text-xl font-medium text-white/90 mb-2 font-space-grotesk group-hover:text-white'>
                           {project.title}
                         </h3>
-                        <div className='flex items-center justify-between'>
+                        <div className='flex items-center justify-between relative z-20'>
                           <p className='text-gray-400 text-sm font-light font-inter group-hover:text-gray-300'>
                             {project.description}
                           </p>
@@ -189,7 +189,13 @@ const Projects: FC = () => {
                             href={project.link}
                             target='_blank'
                             rel='noopener noreferrer'
-                            className='inline-flex items-center gap-2 text-sm text-white/70 hover:text-violet-400 transition-all duration-300 group-hover:-translate-y-0.5'>
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              window.open(project.link, "_blank");
+                            }}
+                            className='inline-flex items-center gap-2 text-sm text-white/70 hover:text-violet-400 transition-all duration-300 group-hover:-translate-y-0.5 cursor-pointer relative z-30'
+                            style={{ pointerEvents: "auto" }}>
                             <span>View Project</span>
                             <IconExternalLink className='w-4 h-4 transition-transform duration-300 group-hover:translate-x-1' />
                           </a>
@@ -199,9 +205,9 @@ const Projects: FC = () => {
                   </div>
 
                   {/* Enhanced Premium Border Effects */}
-                  <div className='absolute inset-0 border border-white/[0.08] rounded-xl group-hover:border-violet-500/30 transition-all duration-500' />
+                  <div className='absolute inset-0 border border-white/[0.08] rounded-xl group-hover:border-violet-500/30 transition-all duration-500 pointer-events-none' />
                   <div className='absolute inset-[1px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-b from-violet-500/[0.08] to-transparent pointer-events-none' />
-                  <div className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(circle_at_50%_50%,rgba(124,58,237,0.1),transparent_70%)]' />
+                  <div className='absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(circle_at_50%_50%,rgba(124,58,237,0.1),transparent_70%)] pointer-events-none' />
                 </div>
               </motion.div>
             ))}

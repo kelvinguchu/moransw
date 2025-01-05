@@ -67,13 +67,19 @@ function Navbar({ className }: { className?: string }) {
             <div className='flex items-center justify-between'>
               {/* Logo */}
               <Link href='/' className='relative flex items-center'>
-                <Image
-                  src='/logo.png'
-                  width={130}
-                  height={45}
-                  alt='logo'
-                  className='relative'
-                />
+                <div className='relative w-[130px] h-[45px]'>
+                  <Image
+                    src='/logo.png'
+                    width={130}
+                    height={45}
+                    alt='logo'
+                    className='w-full h-full'
+                    priority
+                    style={{
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
               </Link>
 
               {/* Center Navigation */}

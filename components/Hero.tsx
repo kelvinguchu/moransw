@@ -42,7 +42,7 @@ const Hero: FC = () => {
   return (
     <main
       className={cn(
-        "relative w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center md:items-start md:-mt-10 mt-0 px-4 sm:px-6 lg:px-8",
+        "relative w-full max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center md:items-start md:-mt-10 mt-0 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-80px)]",
         montserrat.variable,
         inter.variable,
         "font-sans"
@@ -51,7 +51,7 @@ const Hero: FC = () => {
       <motion.div
         initial='initial'
         animate='animate'
-        className='w-full md:w-1/2 pt-16 pb-12 md:pt-[80px] md:pb-0 relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:mr-10'>
+        className='w-full md:w-1/2 pt-16 pb-12 md:pt-[80px] md:pb-0 relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:mr-10 min-h-[400px]'>
         <motion.div {...fadeUpAnimation} className='space-y-6'>
           <div>
             <h1 className='text-[2.75rem] md:text-[4.5rem] font-semibold tracking-[-0.02em] leading-[1.1] text-white'>
@@ -97,8 +97,8 @@ const Hero: FC = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7 }}
-        className='md:w-1/2 w-full relative z-10 flex justify-center md:justify-end py-6 md:py-0'>
-        <div className='relative w-full h-[280px] md:h-auto md:aspect-square max-w-[600px]'>
+        className='md:w-1/2 w-full relative z-10 flex justify-center md:justify-end py-6 md:py-0 min-h-[280px]'>
+        <div className='relative w-full h-[280px] md:h-[500px] max-w-[600px]'>
           <IconsCloud />
         </div>
       </motion.div>

@@ -5,6 +5,8 @@ import {
   SheetClose,
   SheetContent,
   SheetTrigger,
+  SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import DarkModeToggle from "./DarkModeToggle";
 import Image from "next/image";
@@ -75,7 +77,8 @@ const MobileMenu: React.FC = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className='relative flex items-center justify-center w-10 h-10 rounded-xl bg-black/20 backdrop-blur-sm border border-white/[0.08] hover:border-violet-500/50 transition-colors duration-300'>
+          className='relative flex items-center justify-center w-10 h-10 rounded-xl bg-black/20 backdrop-blur-sm border border-white/[0.08] hover:border-violet-500/50 transition-colors duration-300'
+          aria-label='Open menu'>
           <div className='absolute inset-0 rounded-xl bg-gradient-to-b from-white/5 to-transparent' />
           <FiMenu className='w-5 h-5 text-gray-300' />
         </motion.button>
@@ -83,6 +86,10 @@ const MobileMenu: React.FC = () => {
       <SheetContent
         side='right'
         className='w-full max-w-md border-l border-white/[0.08] bg-black/95 backdrop-blur-2xl p-0'>
+        <SheetTitle className='sr-only'>Navigation Menu</SheetTitle>
+        <SheetDescription className='sr-only'>
+          Main navigation menu for mobile devices
+        </SheetDescription>
         <div className='relative flex flex-col h-[100vh]'>
           {/* Logo */}
           <motion.div
@@ -91,15 +98,23 @@ const MobileMenu: React.FC = () => {
             transition={{ duration: 0.3 }}
             className='relative flex justify-center py-4 border-b border-white/[0.08]'>
             <div className='absolute inset-0 [background:radial-gradient(circle_at_top,rgba(138,124,255,0.1),transparent_70%)]' />
-            <Link href='/' onClick={() => setIsOpen(false)}>
-              <Image
-                src={logoSrc}
-                width={150}
-                height={55}
-                alt='logo'
-                className='transition-transform hover:scale-105'
-                priority
-              />
+            <Link
+              href='/'
+              onClick={() => setIsOpen(false)}
+              className='relative'>
+              <div className='relative w-[150px] h-[55px]'>
+                <Image
+                  src={logoSrc}
+                  width={150}
+                  height={55}
+                  alt='logo'
+                  className='w-full h-full'
+                  priority
+                  style={{
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
             </Link>
           </motion.div>
 

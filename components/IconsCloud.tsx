@@ -1,4 +1,15 @@
-import IconCloud from "@/components/ui/icon-cloud";
+"use client";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+const IconCloud = dynamic(() => import("@/components/ui/icon-cloud"), {
+  ssr: false,
+  loading: () => (
+    <div className='w-full h-full flex items-center justify-center'>
+      <div className='w-12 h-12 rounded-full border-2 border-violet-500/20 border-t-violet-500 animate-spin' />
+    </div>
+  ),
+});
 
 const slugs = [
   "typescript",
@@ -45,7 +56,14 @@ export function IconsCloud() {
   return (
     <section className='relative w-full h-full flex justify-center items-center'>
       <div className='relative flex h-full w-full items-center justify-center overflow-visible md:overflow-hidden rounded-lg'>
-        <IconCloud iconSlugs={slugs} />
+        <Suspense
+          fallback={
+            <div className='w-full h-full flex items-center justify-center'>
+              <div className='w-12 h-12 rounded-full border-2 border-violet-500/20 border-t-violet-500 animate-spin' />
+            </div>
+          }>
+          <IconCloud iconSlugs={slugs} />
+        </Suspense>
       </div>
     </section>
   );
