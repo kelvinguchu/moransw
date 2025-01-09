@@ -104,7 +104,7 @@ const Hero: FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className='md:w-1/2 w-full relative z-10 flex justify-center md:justify-end py-6 md:py-0 min-h-[280px]'>
+          className='md:w-1/2 w-full relative z-10 flex justify-center md:justify-end pb-6 md:py-0 min-h-[280px]'>
           <div className='relative w-full h-[350px] md:h-[550px] max-w-[600px]'>
             <IconsCloud />
           </div>

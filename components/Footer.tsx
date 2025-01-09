@@ -127,11 +127,43 @@ const Footer: FC = () => {
   }, []);
 
   // Prevent hydration mismatch by rendering a placeholder during SSR
-  const logoSrc = mounted
-    ? theme === "dark"
-      ? "/logo.png"
-      : "/logo-bw.png"
-    : "/logo.png";
+  const logoSrc = "/logo.png"; // Always use dark theme logo initially
+
+  if (!mounted) {
+    return (
+      <footer className={cn("relative mt-8 bg-black", spaceGrotesk.variable)}>
+        <div className='absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/20 to-transparent' />
+        <div className='mx-auto max-w-7xl px-6 pb-12 pt-16 lg:px-8'>
+          {/* Render a minimal skeleton during SSR */}
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 lg:gap-16'>
+            <div className='space-y-6'>
+              <div className='flex items-center space-x-3'>
+                <div className='relative w-[40px] h-[40px]'>
+                  <Image
+                    src={logoSrc}
+                    width={40}
+                    height={40}
+                    alt='logo'
+                    className='w-full h-full rounded-full'
+                    priority
+                    style={{
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+                <span className='text-xl font-semibold text-white tracking-tight'>
+                  Astraque <span className='text-violet-500'>Softwares</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
+  // After mounting, use theme-dependent logo
+  const themeAwareLogo = theme === "dark" ? "/logo.png" : "/logo-bw.png";
 
   return (
     <footer className={cn("relative mt-8 bg-black", spaceGrotesk.variable)}>
@@ -146,7 +178,7 @@ const Footer: FC = () => {
             <div className='flex items-center space-x-3'>
               <div className='relative w-[40px] h-[40px]'>
                 <Image
-                  src={logoSrc}
+                  src={themeAwareLogo}
                   width={40}
                   height={40}
                   alt='logo'

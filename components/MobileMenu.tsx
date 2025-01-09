@@ -41,7 +41,7 @@ const contactItems = [
 ];
 
 const MobileMenu: React.FC = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -51,25 +51,35 @@ const MobileMenu: React.FC = () => {
     setMounted(true);
   }, []);
 
-  // Prevent hydration mismatch by rendering a placeholder during SSR
-  const logoSrc = mounted
-    ? theme === "dark"
-      ? "/logo.png"
-      : "/logo-bw.png"
-    : "/logo.png";
+  // Always use dark theme logo for initial render
+  const logoSrc = "/logo.png";
 
   // Copy number function
   const handleCopy = async (number: string, index: number) => {
     try {
       await navigator.clipboard.writeText(number);
       setCopiedIndex(index);
-      setTimeout(() => setCopiedIndex(null), 2000); // Reset after 2 seconds
+      setTimeout(() => setCopiedIndex(null), 2000);
     } catch (err) {
       console.error("Failed to copy:", err);
     }
   };
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return (
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className='relative flex items-center justify-center w-10 h-10 rounded-xl bg-black/20 backdrop-blur-sm border border-white/[0.08] hover:border-violet-500/50 transition-colors duration-300'
+        aria-label='Open menu'>
+        <div className='absolute inset-0 rounded-xl bg-gradient-to-b from-white/5 to-transparent' />
+        <FiMenu className='w-5 h-5 text-gray-300' />
+      </motion.button>
+    );
+  }
+
+  // After mounting, use theme-dependent logo
+  const themeAwareLogo = theme === "dark" ? "/logo.png" : "/logo-bw.png";
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -104,7 +114,7 @@ const MobileMenu: React.FC = () => {
               className='relative'>
               <div className='relative w-[150px] h-[55px]'>
                 <Image
-                  src={logoSrc}
+                  src={themeAwareLogo}
                   width={150}
                   height={55}
                   alt='logo'
