@@ -189,13 +189,8 @@ const Projects: FC = () => {
                             href={project.link}
                             target='_blank'
                             rel='noopener noreferrer'
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              window.open(project.link, "_blank");
-                            }}
-                            className='inline-flex items-center gap-2 text-sm text-white/70 hover:text-violet-400 transition-all duration-300 group-hover:-translate-y-0.5 cursor-pointer relative z-30'
-                            style={{ pointerEvents: "auto" }}>
+                            aria-label={`View ${project.title} project`}
+                            className='inline-flex items-center gap-2 text-sm text-white/70 hover:text-violet-400 transition-all duration-300 group-hover:-translate-y-0.5 cursor-pointer relative z-30'>
                             <span>View Project</span>
                             <IconExternalLink className='w-4 h-4 transition-transform duration-300 group-hover:translate-x-1' />
                           </a>

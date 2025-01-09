@@ -31,6 +31,7 @@ export const MenuItem = ({
       <Link href={href} passHref>
         <motion.a
           transition={{ duration: 0.3 }}
+          aria-label={item}
           className='cursor-pointer text-black hover:opacity-[0.9] dark:text-white'>
           {item}
         </motion.a>

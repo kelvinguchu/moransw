@@ -49,9 +49,10 @@ const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
     minContrastRatio,
     size: 42,
     aProps: {
-      href: undefined,
+      href: `#${icon.slug}`,
       target: undefined,
       rel: undefined,
+      "aria-label": `${icon.title} icon`,
       onClick: (e: any) => e.preventDefault(),
     },
   });
