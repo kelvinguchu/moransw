@@ -98,7 +98,7 @@ const Hero: FC = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7 }}
         className='md:w-1/2 w-full relative z-10 flex justify-center md:justify-end py-6 md:py-0 min-h-[280px]'>
-        <div className='relative w-full h-[280px] md:h-[500px] max-w-[600px]'>
+        <div className='relative w-full h-[280px] md:h-[550px] max-w-[600px]'>
           <IconsCloud />
         </div>
       </motion.div>

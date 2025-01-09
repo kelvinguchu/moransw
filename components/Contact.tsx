@@ -148,7 +148,8 @@ const Contact: FC = () => {
       className={cn(
         "min-h-screen py-32 relative overflow-hidden flex items-center",
         spaceGrotesk.variable
-      )}>
+      )}
+      style={{ contentVisibility: "auto" }}>
       <div className='w-full'>
         <div className='max-w-7xl mx-auto px-6 lg:px-8'>
           {/* Section Header */}
@@ -190,7 +191,8 @@ const Contact: FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className='relative h-[420px]'>
+              className='relative h-[420px]'
+              style={{ minHeight: "420px" }}>
               <ContactVisual />
             </motion.div>
 
@@ -200,7 +202,8 @@ const Contact: FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className='relative'>
+              className='relative'
+              style={{ minHeight: "420px" }}>
               <form
                 ref={form}
                 onSubmit={sendEmail}

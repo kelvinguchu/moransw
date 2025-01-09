@@ -275,17 +275,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true }}
       className={cn(
-        "group relative overflow-hidden rounded-3xl h-[420px]",
-        "bg-black shadow-[0_0_0_1px_rgba(255,255,255,0.05)]",
-        "transition-all duration-500",
-        "hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_4px_20px_-4px_rgba(0,0,0,0.5)]",
-        "backdrop-blur-sm",
-        spaceGrotesk.variable,
+        "group relative bg-black border border-white/[0.08] rounded-3xl overflow-hidden",
         className
-      )}>
+      )}
+      style={{
+        minHeight: "450px",
+        contentVisibility: "auto",
+        containIntrinsicSize: "1px 450px",
+      }}>
       {/* Background Gradient */}
       <div className='absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
 
@@ -382,45 +382,50 @@ export function Services() {
       id='services'
       className={cn(
         "py-20 relative overflow-hidden",
-        inter.variable,
-        spaceGrotesk.variable
-      )}>
-      {/* Section Title */}
-      <div className='relative text-center mb-20'>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            ease: "easeOut",
-          }}
-          className='flex flex-col items-center'>
-          <div className='inline-block mb-4'>
-            <div className='flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm'>
-              <div className='w-1 h-1 rounded-full bg-violet-500'></div>
-              <span className='text-[0.9375rem] font-light tracking-wide text-white/70 font-inter'>
-                What we offer
-              </span>
-              <div className='w-1 h-1 rounded-full bg-indigo-500'></div>
+        spaceGrotesk.variable,
+        inter.variable
+      )}
+      style={{
+        minHeight: "100vh",
+        contentVisibility: "auto",
+        containIntrinsicSize: "1px 5000px",
+      }}>
+      <div className='relative z-10 max-w-7xl mx-auto px-6 lg:px-8'>
+        {/* Section Header */}
+        <div className='text-center mb-16' style={{ minHeight: "150px" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              ease: "easeOut",
+            }}
+            className='flex flex-col items-center'>
+            <div className='inline-block mb-4'>
+              <div className='flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] backdrop-blur-sm'>
+                <div className='w-1 h-1 rounded-full bg-violet-500'></div>
+                <span className='text-[0.9375rem] font-light tracking-wide text-white/70 font-inter'>
+                  What we offer
+                </span>
+                <div className='w-1 h-1 rounded-full bg-indigo-500'></div>
+              </div>
             </div>
-          </div>
-          <h2 className='text-4xl sm:text-5xl font-semibold text-white/95 mb-4 font-space-grotesk tracking-tight leading-[1.15]'>
-            Our Services
-          </h2>
-          <p className='max-w-2xl mx-auto text-base text-gray-400 font-light font-inter'>
-            Comprehensive digital solutions tailored to transform your ideas
-            into reality
-          </p>
-          <div className='mt-6 flex items-center gap-2'>
-            <div className='w-8 h-px bg-gradient-to-r from-transparent to-violet-500/50'></div>
-            <div className='w-20 h-1 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full'></div>
-            <div className='w-8 h-px bg-gradient-to-l from-transparent to-indigo-500/50'></div>
-          </div>
-        </motion.div>
-      </div>
+            <h2 className='text-4xl sm:text-5xl font-semibold text-white/95 mb-4 font-space-grotesk tracking-tight leading-[1.15]'>
+              Our Services
+            </h2>
+            <p className='max-w-2xl mx-auto text-base text-gray-400 font-light font-inter'>
+              Comprehensive digital solutions tailored to transform your ideas
+              into reality
+            </p>
+            <div className='mt-6 flex items-center gap-2'>
+              <div className='w-8 h-px bg-gradient-to-r from-transparent to-violet-500/50'></div>
+              <div className='w-20 h-1 bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full'></div>
+              <div className='w-8 h-px bg-gradient-to-l from-transparent to-indigo-500/50'></div>
+            </div>
+          </motion.div>
+        </div>
 
-      {/* Cards Grid */}
-      <div className='max-w-7xl mx-auto px-6 lg:px-8'>
+        {/* Cards Grid */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr'>
           {items.map((item, i) => (
             <ServiceCard
