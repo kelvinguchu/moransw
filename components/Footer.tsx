@@ -182,9 +182,9 @@ const Footer: FC = () => {
 
           {/* Navigation */}
           <div className='flex flex-col items-start pt-4 sm:pt-0'>
-            <h3 className='text-sm font-semibold leading-6 text-white mb-4 sm:mb-6'>
+            <h2 className='text-sm font-semibold leading-6 text-white mb-4 sm:mb-6'>
               Navigation
-            </h3>
+            </h2>
             <ul role='list' className='space-y-3 sm:space-y-4'>
               {navigation.map((item) => (
                 <li key={item.name}>
@@ -200,9 +200,9 @@ const Footer: FC = () => {
 
           {/* Contact Navigation */}
           <div className='flex flex-col items-start pt-4 sm:pt-0'>
-            <h3 className='text-sm font-semibold leading-6 text-white mb-4 sm:mb-6'>
+            <h2 className='text-sm font-semibold leading-6 text-white mb-4 sm:mb-6'>
               Contact
-            </h3>
+            </h2>
             <ul role='list' className='space-y-3 sm:space-y-4'>
               <li>
                 <Link
