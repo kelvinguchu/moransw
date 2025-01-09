@@ -4,6 +4,7 @@ import Marquee from "@/components/magicui/marquee";
 import { Space_Grotesk } from "next/font/google";
 import { motion } from "framer-motion";
 import { IconQuote } from "@tabler/icons-react";
+import Image from "next/image";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -89,11 +90,18 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
 
           {/* Profile */}
           <div className='flex items-center gap-4 mb-4'>
-            <img
-              className='w-12 h-12 rounded-full border border-white/[0.08]'
-              src={img}
-              alt={name}
-            />
+            <div className='relative w-12 h-12'>
+              <Image
+                src={img}
+                alt={name}
+                fill
+                sizes='48px'
+                className='rounded-full border border-white/[0.08]'
+                loading='lazy'
+                fetchPriority='low'
+                decoding='async'
+              />
+            </div>
             <div>
               <p className='text-sm font-medium text-white/90'>{name}</p>
               <p className='text-sm text-gray-400'>{username}</p>
