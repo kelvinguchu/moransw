@@ -12,14 +12,12 @@ import {
 } from "framer-motion";
 
 import { Space_Grotesk } from "next/font/google";
+import { cn } from "@/lib/utils";
 
 const spacegrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-spacegrotesk",
 });
-
-
-import { cn } from "@/lib/utils";
 
 interface VelocityScrollProps {
   text: string;
@@ -76,14 +74,16 @@ export function VelocityScroll({
 
       calculateRepetitions();
 
-      window.addEventListener("resize", calculateRepetitions);
-      return () => window.removeEventListener("resize", calculateRepetitions);
+      const debouncedResize = debounce(calculateRepetitions, 100);
+      window.addEventListener("resize", debouncedResize);
+      return () => window.removeEventListener("resize", debouncedResize);
     }, [children]);
 
     const x = useTransform(baseX, (v) => `${wrap(-100, 0, v)}%`);
 
-    const directionFactor = React.useRef<number>(1);
+    const directionFactor = useRef<number>(1);
     useAnimationFrame((t, delta) => {
+      if (delta > 100) delta = 100; // Cap delta to prevent large jumps
       let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
       if (velocityFactor.get() < 0) {
@@ -93,7 +93,6 @@ export function VelocityScroll({
       }
 
       moveBy += directionFactor.current * moveBy * velocityFactor.get();
-
       baseX.set(baseX.get() + moveBy);
     });
 
@@ -115,7 +114,7 @@ export function VelocityScroll({
   }
 
   return (
-      <section className={`${spacegrotesk.className} relative w-full mb-3`} > 
+    <section className={`${spacegrotesk.className} relative w-full mb-3`}>
       <ParallaxText baseVelocity={default_velocity} className={className}>
         {text}
       </ParallaxText>
@@ -124,4 +123,13 @@ export function VelocityScroll({
       </ParallaxText>
     </section>
   );
+}
+
+// Simple debounce function
+function debounce(fn: Function, ms: number) {
+  let timer: NodeJS.Timeout;
+  return (...args: any[]) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), ms);
+  };
 }

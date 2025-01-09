@@ -1,15 +1,19 @@
 "use client";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { Suspense, memo } from "react";
 
-const IconCloud = dynamic(() => import("@/components/ui/icon-cloud"), {
-  ssr: false,
-  loading: () => (
-    <div className='w-full h-full flex items-center justify-center'>
-      <div className='w-12 h-12 rounded-full border-2 border-violet-500/20 border-t-violet-500 animate-spin' />
-    </div>
-  ),
-});
+// Memoize the IconCloud component to prevent unnecessary re-renders
+const IconCloud = dynamic(
+  () => import("@/components/ui/icon-cloud").then((mod) => memo(mod.default)),
+  {
+    ssr: false,
+    loading: () => (
+      <div className='w-full h-full flex items-center justify-center'>
+        <div className='w-12 h-12 rounded-full border-2 border-violet-500/20 border-t-violet-500 animate-spin' />
+      </div>
+    ),
+  }
+);
 
 const slugs = [
   "typescript",
@@ -52,7 +56,8 @@ const slugs = [
   "zoho",
 ];
 
-export function IconsCloud() {
+// Memoize the IconsCloud component
+export const IconsCloud = memo(function IconsCloud() {
   return (
     <section className='relative w-full h-full flex justify-center items-center'>
       <div className='relative flex h-full w-full items-center justify-center overflow-visible md:overflow-hidden rounded-lg'>
@@ -67,6 +72,6 @@ export function IconsCloud() {
       </div>
     </section>
   );
-}
+});
 
 export default IconsCloud;

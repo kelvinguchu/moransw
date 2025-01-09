@@ -26,7 +26,29 @@ const nextConfig = {
         reduceInlineStyles: true,
       },
     },
-    optimizePackageImports: ["framer-motion", "@react-icons/all-files"],
+    optimizePackageImports: [
+      "framer-motion",
+      "@react-icons/all-files",
+      "@tabler/icons-react",
+      "@radix-ui/react-icons",
+      "lucide-react",
+      "@react-three/fiber",
+      "@react-three/drei",
+      "three",
+      "@tsparticles/engine",
+      "@tsparticles/react",
+    ],
+    modularizeImports: {
+      "@tabler/icons-react": {
+        transform: "@tabler/icons-react/dist/esm/icons/{{member}}",
+      },
+      "lucide-react": {
+        transform: "lucide-react/dist/esm/icons/{{member}}",
+      },
+      "@radix-ui/react-icons": {
+        transform: "@radix-ui/react-icons/dist/{{member}}",
+      },
+    },
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
