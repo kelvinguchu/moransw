@@ -44,7 +44,7 @@ const ContactVisual: FC = () => (
         {/* Editor Content */}
         <div className='relative flex-1 p-6 font-mono text-sm'>
           <div className='relative z-10'>
-            <div className='text-gray-500'>// Contact Information</div>
+            <div className='text-gray-500'>{`// Contact Information`}</div>
             <div className='mt-2'>
               <span className='text-violet-400'>const</span>{" "}
               <span className='text-indigo-400'>contact</span>{" "}
@@ -69,7 +69,7 @@ const ContactVisual: FC = () => (
               <span className='text-violet-400'>{`};`}</span>
             </div>
 
-            <div className='mt-4 text-gray-500'>// Let's Connect</div>
+            <div className='mt-4 text-gray-500'>{`// Let's Connect`}</div>
             <div className='mt-2'>
               <span className='text-violet-400'>const</span>{" "}
               <span className='text-indigo-400'>message</span>{" "}

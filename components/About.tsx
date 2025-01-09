@@ -48,7 +48,7 @@ const AfricaVisual: FC = () => (
         {/* Editor Content */}
         <div className='relative flex-1 p-6 font-mono text-sm'>
           <div className='relative z-10'>
-            <div className='text-gray-500'>// Founders of Astraque</div>
+            <div className='text-gray-500'>{`// Founders of Astraque`}</div>
             <div className='mt-2'>
               <span className='text-violet-400'>const</span>{" "}
               <span className='text-indigo-400'>founders</span>{" "}
@@ -83,7 +83,7 @@ const AfricaVisual: FC = () => (
               <span className='text-violet-400'>];</span>
             </div>
 
-            <div className='mt-4 text-gray-500'>// Tech hubs across Africa</div>
+            <div className='mt-4 text-gray-500'>{`// Tech hubs across Africa`}</div>
             <div className='mt-2'>
               <span className='text-violet-400'>const</span>{" "}
               <span className='text-indigo-400'>techHubs</span>{" "}
