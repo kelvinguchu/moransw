@@ -126,10 +126,10 @@ export function VelocityScroll({
 }
 
 // Simple debounce function
-function debounce(fn: Function, ms: number) {
+function debounce<T extends (...args: any[]) => any>(fn: T, ms: number) {
   let timer: NodeJS.Timeout;
-  return (...args: any[]) => {
+  return (...args: Parameters<T>) => {
     clearTimeout(timer);
-    timer = setTimeout(() => fn.apply(this, args), ms);
+    timer = setTimeout(() => fn(...args), ms);
   };
 }
