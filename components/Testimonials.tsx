@@ -95,7 +95,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
               alt={name}
             />
             <div>
-              <h4 className='text-sm font-medium text-white/90'>{name}</h4>
+              <p className='text-sm font-medium text-white/90'>{name}</p>
               <p className='text-sm text-gray-400'>{username}</p>
             </div>
           </div>
@@ -140,9 +140,9 @@ const Testimonials: React.FC = () => {
                   <div className='w-1 h-1 rounded-full bg-indigo-500'></div>
                 </div>
               </div>
-              <h2 className='text-4xl sm:text-5xl font-semibold text-white/95 mb-4 tracking-tight leading-[1.15]'>
+              <h1 className='text-4xl sm:text-5xl font-semibold text-white/95 mb-4 tracking-tight leading-[1.15]'>
                 What Our Clients Say
-              </h2>
+              </h1>
               <p className='max-w-2xl mx-auto text-base text-gray-400 font-light'>
                 Hear from our satisfied clients about their experience working
                 with us.
