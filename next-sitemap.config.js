@@ -1,23 +1,22 @@
 module.exports = {
-  siteUrl: "https://www.astraque.com", // Replace with your actual site URL
-  generateRobotsTxt: true, // Generate robots.txt
-  changefreq: "daily", // How often the content changes
-  priority: 0.7, // Priority of the pages (0.0 - 1.0)
-  sitemapSize: 5000, // Maximum number of URLs per sitemap file
+  siteUrl: "https://www.astraque.com", 
+  generateRobotsTxt: true, 
+  changefreq: "daily", 
+  priority: 0.7, 
+  sitemapSize: 5000, 
 
-  // Add additional paths if you have dynamic pages like projects, services, etc.
   additionalPaths: async (config) => {
     const paths = [
       {
-        loc: "/#services", // Service section
-        lastmod: new Date().toISOString(), // Set modification date dynamically
+        loc: "/#services", 
+        lastmod: new Date().toISOString(), 
       },
       {
-        loc: "/projects", // Projects page
+        loc: "/projects", 
         lastmod: new Date().toISOString(),
       },
       {
-        loc: "/#pricing", // Pricing section
+        loc: "/#pricing", 
         lastmod: new Date().toISOString(),
       },
     ];

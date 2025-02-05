@@ -1,1 +1,1 @@
-Moran Softwares Limited
+Astraque Softwares is a software development company that specializes in creating custom software solutions for businesses of all sizes. We are a team of experienced developers who are passionate about creating innovative software solutions that help businesses grow and succeed.
